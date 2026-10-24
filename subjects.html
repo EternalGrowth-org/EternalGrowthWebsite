@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subjects | Eternal Growth</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Interactive Dot Grid Background -->
+    <div class="dot-grid">
+        <div class="dot-grid__wrap">
+            <canvas class="dot-grid__canvas" id="dotGridCanvas"></canvas>
+        </div>
+    </div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <h1>Eternal Growth</h1>
+                <span class="tagline">Tutoring</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="subjects.html" class="active">Subjects</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="index.html#contact">Get Started</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section for Subjects -->
+        <section class="hero" style="background: linear-gradient(135deg, var(--cream) 0%, var(--primary-white) 100%);">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        Discover Your <span class="highlight">Perfect Subject</span>
+                    </h1>
+                    <p class="hero-subtitle">From math magic to musical mastery — we've got every learning adventure covered!</p>
+                    <div class="cta-buttons">
+                        <button class="cta-primary" onclick="document.querySelector('.subjects-carousel').scrollIntoView()">EXPLORE SUBJECTS</button>
+                        <button class="cta-secondary" onclick="window.location.href='index.html#contact'">GET STARTED TODAY</button>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="geometric-shapes">
+                        <div class="shape circle"></div>
+                        <div class="shape triangle"></div>
+                        <div class="shape square"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enhanced Subjects Carousel -->
+        <section class="subjects-enhanced">
+            <div class="container">
+                <h2 class="section-title">SUBJECTS THAT SPARK JOY</h2>
+                <p style="text-align: center; font-size: 1.2rem; color: var(--medium-gray); margin-bottom: var(--spacing-xl);">
+                    Swipe through our amazing subjects and find your perfect learning match! ✨
+                </p>
+                
+                <div class="subjects-carousel">
+                    <div class="subjects-track" id="subjectsTrack">
+                        <!-- Math -->
+                        <div class="subject-slide math">
+                            <span class="subject-emoji">🔢</span>
+                            <h3>"Number Magic" Mathematics</h3>
+                            <p class="description">From basic arithmetic to advanced calculus — we make numbers dance and equations sing!</p>
+                            <ul class="subject-features-enhanced">
+                                <li>Algebra through Calculus</li>
+                                <li>SAT/ACT Math Prep</li>
+                                <li>Problem-solving strategies</li>
+                                <li>Confidence building</li>
+                                <li>Fun math games & activities</li>
+                            </ul>
+                        </div>
+
+                        <!-- English -->
+                        <div class="subject-slide english">
+                            <span class="subject-emoji">📚</span>
+                            <h3>"Word Wizardry" English & Writing</h3>
+                            <p class="description">Essays, grammar, reading comprehension — we turn words into wonderful stories!</p>
+                            <ul class="subject-features-enhanced">
+                                <li>Essay writing & structure</li>
+                                <li>Reading comprehension</li>
+                                <li>Grammar & vocabulary</li>
+                                <li>Creative writing workshops</li>
+                                <li>Public speaking skills</li>
+                            </ul>
+                        </div>
+
+                        <!-- Science -->
+                        <div class="subject-slide science">
+                            <span class="subject-emoji">🧪</span>
+                            <h3>"Lab Stars" Science Adventures</h3>
+                            <p class="description">Chemistry, biology, physics — making science click with hands-on experiments!</p>
+                            <ul class="subject-features-enhanced">
+                                <li>Biology & Chemistry</li>
+                                <li>Physics fundamentals</li>
+                                <li>Lab report writing</li>
+                                <li>Science fair projects</li>
+                                <li>Real-world applications</li>
+                            </ul>
+                        </div>
+
+                        <!-- Programming -->
+                        <div class="subject-slide programming">
+                            <span class="subject-emoji">💻</span>
+                            <h3>"Code Creators" Programming & Computer Science</h3>
+                            <p class="description">Learn how to think like a computer scientist — building apps, games, and solutions that make the world smarter!</p>
+                            <ul class="subject-features-enhanced">
+                                <li>Python, Java, and C++ fundamentals</li>
+                                <li>Web development (HTML, CSS, JavaScript)</li>
+                                <li>Algorithmic thinking & problem solving</li>
+                                <li>USACO & competitive programming prep</li>
+                                <li>Creative coding projects & AI basics</li>
+                            </ul>
+                        </div>
+
+                        <!-- Music -->
+                        <div class="subject-slide music">
+                            <span class="subject-emoji">🎵</span>
+                            <h3>"Melody Makers" Music Theory & Practice</h3>
+                            <p class="description">Piano, guitar, vocals, theory — let's create beautiful music together!</p>
+                            <ul class="subject-features-enhanced">
+                                <li>Piano & keyboard lessons</li>
+                                <li>Guitar (acoustic & electric)</li>
+                                <li>Music theory & composition</li>
+                                <li>Vocal training & technique</li>
+                                <li>Performance preparation</li>
+                            </ul>
+                        </div>
+
+                        <!-- Social Studies -->
+                        <div class="subject-slide social-studies">
+                            <span class="subject-emoji">🌍</span>
+                            <h3>"World Explorers" Social Studies</h3>
+                            <p class="description">History, geography, civics — exploring our world's amazing stories and cultures!</p>
+                            <ul class="subject-features-enhanced">
+                                <li>World & US History</li>
+                                <li>Geography & cultures</li>
+                                <li>Government & civics</li>
+                                <li>Research & presentation skills</li>
+                                <li>Current events discussions</li>
+                            </ul>
+                        </div>
+
+                        <!-- Beyond (Special Skills) -->
+                        <div class="subject-slide beyond">
+                            <span class="subject-emoji">🚀</span>
+                            <h3>"Beyond Basics" Special Skills</h3>
+                            <p class="description">Coding, art, study skills, test prep — expanding horizons beyond traditional subjects!</p>
+                            <ul class="subject-features-enhanced">
+                                <li>Computer programming basics</li>
+                                <li>Digital art & design</li>
+                                <li>Study skills & organization</li>
+                                <li>College prep & planning</li>
+                                <li>Life skills & confidence</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-controls">
+                    <button class="carousel-btn" id="prevBtn">‹</button>
+                    <button class="carousel-btn" id="nextBtn">›</button>
+                </div>
+
+                <div class="carousel-nav" id="carouselNav">
+                    <!-- Dots will be generated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Learning Journey -->
+        <section class="learning-journey">
+            <div class="container">
+                <h2 class="section-title" style="color: var(--primary-black);">YOUR LEARNING JOURNEY</h2>
+                <p style="text-align: center; font-size: 1.2rem; margin-bottom: var(--spacing-xl); opacity: 0.9;">
+                    Here's how we make learning magical, step by step! ✨
+                </p>
+
+                <div class="journey-step">
+                    <span class="step-number">1</span>
+                    <div style="display: inline-block;">
+                        <h3 style="margin-bottom: var(--spacing-xs); color: var(--primary-black)">🎯 Perfect Match</h3>
+                        <p style="color: var(--primary-black)">We find the perfect tutor match based on your learning style, subject needs, and personality!</p>
+                    </div>
+                </div>
+
+                <div class="journey-step">
+                    <span class="step-number">2</span>
+                    <div style="display: inline-block;">
+                        <h3 style="margin-bottom: var(--spacing-xs); color: var(--primary-black)">📋 Custom Plan</h3>
+                        <p style="color: var(--primary-black)">Your tutor creates a personalized learning plan tailored to your goals and current level.</p>
+                    </div>
+                </div>
+
+                <div class="journey-step">
+                    <span class="step-number">3</span>
+                    <div style="display: inline-block;">
+                        <h3 style="margin-bottom: var(--spacing-xs); color: var(--primary-black)">🚀 Learn & Grow</h3>
+                        <p style="color: var(--primary-black)">Regular sessions with fun activities, progress tracking, and lots of encouragement!</p>
+                    </div>
+                </div>
+
+                <div class="journey-step">
+                    <span class="step-number">4</span>
+                    <div style="display: inline-block;">
+                        <h3 style="margin-bottom: var(--spacing-xs); color: var(--primary-black)">🎉 Celebrate Success</h3>
+                        <p style="color: var(--primary-black)">Watch confidence soar as grades improve and learning becomes genuinely enjoyable!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fun Learning Facts Carousel -->
+        <section class="fun-facts">
+            <div class="container">
+                <h2 class="section-title">AMAZING LEARNING FACTS</h2>
+                <div class="carousel-container">
+                    <div class="carousel-track" id="factsTrack">
+                        <div class="carousel-slide">
+                            <div style="font-size: 3rem; margin-bottom: var(--spacing-md);">🧠</div>
+                            <h3>Your Brain is Amazing!</h3>
+                            <p>Your brain has about 86 billion neurons — that's more connections than there are stars in the Milky Way! Each time you learn something new, you're literally rewiring your brain. How cool is that?</p>
+                        </div>
+                        <div class="carousel-slide">
+                            <div style="font-size: 3rem; margin-bottom: var(--spacing-md);">🎵</div>
+                            <h3>Music Makes You Smarter!</h3>
+                            <p>Learning music doesn't just make you musical — it actually improves math skills, memory, and even helps you learn languages faster. That's why we love our "Melody Makers" program!</p>
+                        </div>
+                        <div class="carousel-slide">
+                            <div style="font-size: 3rem; margin-bottom: var(--spacing-md);">📖</div>
+                            <h3>Reading is Like Exercise!</h3>
+                            <p>Reading for just 6 minutes can reduce stress levels by up to 68% — that's better than listening to music or having a cup of tea! Plus, it exercises your brain like a workout.</p>
+                        </div>
+                        <div class="carousel-slide">
+                            <div style="font-size: 3rem; margin-bottom: var(--spacing-md);">🌱</div>
+                            <h3>Growth Mindset Magic!</h3>
+                            <p>Students who believe they can get smarter actually DO get smarter! That's the power of a growth mindset — and it's what we teach every single day at Eternal Growth.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-nav" id="factsNav">
+                    <!-- Dots will be generated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Learning Options -->
+        <section class="learning-options" style="background: var(--cream);">
+            <div class="container">
+                <h2 class="section-title">HOW YOU WANT TO LEARN</h2>
+                <div class="learning-methods">
+                    <div class="method" id="oneonone">
+                        <div class="method-icon">📚</div>
+                        <h3>"Focus" — One-on-One</h3>
+                        <p>Personalized attention for maximum impact. Perfect for students who want dedicated focus and customized pacing.</p>
+                        <button class="method-btn">BOOK FOCUS SESSION</button>
+                    </div>
+                    <div class="method" id="groups">
+                        <div class="method-icon">👥</div>
+                        <h3>"Connect" — Small Groups</h3>
+                        <p>Learn together, grow together. Great for students who thrive in collaborative, social learning environments.</p>
+                        <button class="method-btn">JOIN A GROUP</button>
+                    </div>
+                    <div class="method" id="online">
+                        <div class="method-icon">💻</div>
+                        <h3>"Flex" — Online Sessions</h3>
+                        <p>Learning from anywhere on Long Island. Perfect for busy schedules and students who love technology.</p>
+                        <button class="method-btn">GO VIRTUAL</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section style="padding: var(--spacing-xxl) 0; background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-green-light) 100%); color: var(--primary-black); text-align: center;">
+            <div class="container">
+                <h2 style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: var(--spacing-md);">Ready to Start Your Learning Adventure?</h2>
+                <p style="font-size: 1.2rem; margin-bottom: var(--spacing-lg); opacity: 0.9;">Join hundreds of happy students who've discovered the joy of learning with Eternal Growth!</p>
+                <button class="cta-primary" onclick="window.location.href='index.html#contact'" style="background: var(--primary-white); color: var(--primary-green); font-size: 1.2rem; padding: var(--spacing-md) var(--spacing-xl);">GET STARTED TODAY! 🚀</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>EternalGrowth Tutoring</h4>
+                    <p>Where Long Island students discover their potential and fall in love with learning.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>All Our Subjects</h4>
+                    <ul>
+                        <li><a href="#math">Mathematics</a></li>
+                        <li><a href="#english">English & Writing</a></li>
+                        <li><a href="#science">Science</a></li>
+                        <li><a href="#music">Music</a></li>
+                        <li><a href="#social-studies">Social Studies</a></li>
+                        <li><a href="#beyond">Beyond Basics</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Learning Options</h4>
+                    <ul>
+                        <li><a href="#oneonone">One-on-One Focus</a></li>
+                        <li><a href="#groups">Small Group Connect</a></li>
+                        <li><a href="#online">Online Flex Sessions</a></li>
+                        <li><a href="about.html">Free Consultation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect With Us</h4>
+                    <ul>
+                        <li><a href="index.html#contact">Contact Us</a></li>
+                        <li><a href="about.html">About Our Story</a></li>
+                        <li><a href="#">Parent Portal</a></li>
+                        <li><a href="#">Student Resources</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Eternal Growth, Inc. Learning never stops. Growing never ends. 🌱</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Enhanced carousel functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Subjects carousel
+            const subjectsTrack = document.getElementById('subjectsTrack');
+            const subjectSlides = subjectsTrack ? subjectsTrack.querySelectorAll('.subject-slide') : [];
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const carouselNav = document.getElementById('carouselNav');
+            
+            console.log('Carousel elements found:', {
+                subjectsTrack: !!subjectsTrack,
+                subjectSlides: subjectSlides.length,
+                prevBtn: !!prevBtn,
+                nextBtn: !!nextBtn,
+                carouselNav: !!carouselNav
+            });
+            
+            let currentSubjectIndex = 0;
+            const style = getComputedStyle(subjectSlides[0]); // compute slide width for carousel
+            const gap = parseInt(style.marginRight || style.gap || 20);
+            const slideWidth = subjectSlides[0].offsetWidth + gap;
+            
+            // Make sure the carousel is visible on load
+            if (subjectsTrack && subjectSlides.length > 0) {
+                subjectsTrack.style.transform = 'translateX(0px)';
+            }
+            
+            // Create navigation dots for subjects
+            subjectSlides.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.className = 'carousel-dot';
+                if (index === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSubjectSlide(index));
+                carouselNav.appendChild(dot);
+            });
+            
+            function updateSubjectCarousel() {
+                const offset = -currentSubjectIndex * slideWidth;
+                subjectsTrack.style.transform = `translateX(${offset}px)`;
+                
+                // Update dots
+                document.querySelectorAll('#carouselNav .carousel-dot').forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentSubjectIndex);
+                });
+                
+                // Update button states
+                prevBtn.disabled = currentSubjectIndex === 0;
+                nextBtn.disabled = currentSubjectIndex === subjectSlides.length - 1;
+            }
+            
+            function goToSubjectSlide(index) {
+                currentSubjectIndex = Math.max(0, Math.min(index, subjectSlides.length - 1));
+                updateSubjectCarousel();
+            }
+            
+            prevBtn.addEventListener('click', () => {
+                if (currentSubjectIndex > 0) {
+                    currentSubjectIndex--;
+                    updateSubjectCarousel();
+                }
+            });
+            
+            nextBtn.addEventListener('click', () => {
+                if (currentSubjectIndex < subjectSlides.length - 1) {
+                    currentSubjectIndex++;
+                    updateSubjectCarousel();
+                }
+            });
+            
+            // Facts carousel
+            const factsTrack = document.getElementById('factsTrack');
+            const factSlides = factsTrack.querySelectorAll('.carousel-slide');
+            const factsNav = document.getElementById('factsNav');
+            
+            let currentFactIndex = 0;
+            
+            // Create navigation dots for facts
+            factSlides.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.className = 'carousel-dot';
+                if (index === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goToFactSlide(index));
+                factsNav.appendChild(dot);
+            });
+            
+            function updateFactsCarousel() {
+                const offset = -currentFactIndex * 100;
+                factsTrack.style.transform = `translateX(${offset}%)`;
+                
+                // Update dots
+                document.querySelectorAll('#factsNav .carousel-dot').forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentFactIndex);
+                });
+            }
+            
+            function goToFactSlide(index) {
+                currentFactIndex = index;
+                updateFactsCarousel();
+            }
+            
+            // Auto-advance facts carousel
+            setInterval(() => {
+                currentFactIndex = (currentFactIndex + 1) % factSlides.length;
+                updateFactsCarousel();
+            }, 5000);
+            
+            // Initialize carousels
+            updateSubjectCarousel();
+            updateFactsCarousel();
+            
+            // Add touch/swipe support for mobile
+            let startX = 0;
+            let isDragging = false;
+            
+            subjectsTrack.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                isDragging = true;
+            });
+            
+            subjectsTrack.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                e.preventDefault();
+            });
+            
+            subjectsTrack.addEventListener('touchend', (e) => {
+                if (!isDragging) return;
+                isDragging = false;
+                
+                const endX = e.changedTouches[0].clientX;
+                const diff = startX - endX;
+                
+                if (Math.abs(diff) > 50) { // Minimum swipe distance
+                    if (diff > 0 && currentSubjectIndex < subjectSlides.length - 1) {
+                        currentSubjectIndex++;
+                    } else if (diff < 0 && currentSubjectIndex > 0) {
+                        currentSubjectIndex--;
+                    }
+                    updateSubjectCarousel();
+                }
+            });
+        });
+    </script>
+    <script src="dotGrid.js"></script>
+</body>
+</html>

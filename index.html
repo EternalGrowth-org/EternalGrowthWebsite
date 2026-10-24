@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eternal Growth</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Interactive Dot Grid Background -->
+    <div class="dot-grid">
+        <div class="dot-grid__wrap">
+            <canvas class="dot-grid__canvas" id="dotGridCanvas"></canvas>
+        </div>
+    </div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <h1>Eternal Growth</h1>
+                <span class="tagline">Tutoring</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="subjects.html">Subjects</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="#contact">Get Started</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <!-- Floating Background Elements -->
+            <div class="floating-bg-element"></div>
+            <div class="floating-bg-element"></div>
+            <div class="floating-bg-element"></div>
+            
+            <div class="hero-content">
+                <div class="hero-text animate-on-scroll animate-left">
+                    <h1 class="hero-title">
+                        Welcome to <span class="highlight">Eternal Growth</span>
+                    </h1>
+                    <p class="hero-subtitle">a nonprofit organization dedicated to increasing the accessibility of education.</p>
+                </div>
+                <div class="hero-visual animate-on-scroll animate-right">
+                    <div class="geometric-shapes">
+                        <div class="shape circle"></div>
+                        <div class="shape triangle"></div>
+                        <div class="shape square"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-stats">
+                <div class="stat animate-on-scroll animate-scale" style="animation-delay: 0.2s;">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Happy Students</span>
+                </div>
+                <div class="stat animate-on-scroll animate-scale" style="animation-delay: 0.4s;">
+                    <span class="stat-number">98%</span>
+                    <span class="stat-label">Grade Improvement</span>
+                </div>
+                <div class="stat animate-on-scroll animate-scale" style="animation-delay: 0.6s;">
+                    <span class="stat-number">5★</span>
+                    <span class="stat-label">Parent Reviews</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Three Ways to Learn -->
+        <section class="three-ways">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll animate-bottom">THREE WAYS TO GROW</h2>
+                <div class="learning-methods">
+                    <div class="method animate-on-scroll animate-left" style="animation-delay: 0.2s;">
+                        <div class="method-icon">📚</div>
+                        <h3>"Focus" — One-on-One</h3>
+                        <p>Personalized attention for maximum impact.</p>
+                        <button class="method-btn">GET FOCUSED</button>
+                    </div>
+                    <div class="method animate-on-scroll animate-bottom" style="animation-delay: 0.4s;">
+                        <div class="method-icon">👥</div>
+                        <h3>"Connect" — Small Groups</h3>
+                        <p>Learn together, grow together.</p>
+                        <button class="method-btn">JOIN THE GROUP</button>
+                    </div>
+                    <div class="method animate-on-scroll animate-right" style="animation-delay: 0.6s;">
+                        <div class="method-icon">💻</div>
+                        <h3>"Flex" — Online Sessions</h3>
+                        <p>Learning from anywhere on Long Island.</p>
+                        <button class="method-btn">GO VIRTUAL</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Subjects Section -->
+        <section id="services" class="subjects">
+            <div class="container">
+                <h2 class="section-title">SUBJECTS THAT SPARK JOY ✨</h2>
+                <div class="subjects-grid">
+                    <div class="subject-card math">
+                        <span class="subject-emoji">🔢</span>
+                        <h3>"Number Magic" Mathematics</h3>
+                        <p class="subject-description">From basic arithmetic to calculus — we make numbers dance and equations sing!</p>
+                        <ul class="subject-features">
+                            <li>Algebra through Calculus</li>
+                            <li>SAT/ACT Math Prep</li>
+                            <li>Problem-solving strategies</li>
+                            <li>Confidence building</li>
+                        </ul>
+                    </div>
+                    <div class="subject-card english">
+                        <span class="subject-emoji">📚</span>
+                        <h3>"Word Wizardry" English & Writing</h3>
+                        <p class="subject-description">Essays, grammar, reading comprehension — we turn words into wonderful stories!</p>
+                        <ul class="subject-features">
+                            <li>Essay writing & structure</li>
+                            <li>Reading comprehension</li>
+                            <li>Grammar & vocabulary</li>
+                            <li>Creative writing workshops</li>
+                        </ul>
+                    </div>
+                    <div class="subject-card science">
+                        <span class="subject-emoji">🧪</span>
+                        <h3>"Lab Stars" Science Adventures</h3>
+                        <p class="subject-description">Chemistry, biology, physics — making science click with hands-on experiments!</p>
+                        <ul class="subject-features">
+                            <li>Biology & Chemistry</li>
+                            <li>Physics fundamentals</li>
+                            <li>Lab report writing</li>
+                            <li>Science fair projects</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="subjects-cta">
+                    <button class="cta-primary" onclick="window.location.href='subjects.html'">EXPLORE ALL SUBJECTS 🚀</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fun Facts Section -->
+        <section class="fun-facts">
+            <div class="container">
+                <h2 class="section-title">RANDOM COOL FACTS (Because Learning is Fun!)</h2>
+                <div class="facts-grid">
+                    <div class="fact">
+                        <div class="fact-icon">🧠</div>
+                        <p>Your brain has about 86 billion neurons. That's more than there are stars in the Milky Way!</p>
+                    </div>
+                    <div class="fact">
+                        <div class="fact-icon">📖</div>
+                        <p>Reading for just 6 minutes can reduce stress levels by up to 68%. Better than tea!</p>
+                    </div>
+                    <div class="fact">
+                        <div class="fact-icon">🎯</div>
+                        <p>Students who get tutoring improve their grades by an average of 1.5 letter grades. Pretty neat, right?</p>
+                    </div>
+                    <div class="fact">
+                        <div class="fact-icon">🏝️</div>
+                        <p>Long Island is actually shaped like a fish! And we're here to help your brain swim with knowledge.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2>Made by people who take learning very seriously.</h2>
+                        <p class="about-description">
+                            We're not just tutors — we're learning enthusiasts, grade-boosters, 
+                            and confidence-builders rolled into one awesome team. Based right here 
+                            in Long Island, we know what local students need to succeed.
+                        </p>
+                        <div class="about-highlights">
+                            <div class="highlight-item">
+                                <h4>🎓 Expert Tutors</h4>
+                                <p>Certified teachers and subject matter experts who actually enjoy explaining things.</p>
+                            </div>
+                            <div class="highlight-item">
+                                <h4>🏠 Local Focus</h4>
+                                <p>We understand Long Island schools, curriculums, and what students need.</p>
+                            </div>
+                            <div class="highlight-item">
+                                <h4>🎯 Results Driven</h4>
+                                <p>Our students don't just pass — they excel and actually enjoy learning.</p>
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                    <div class="about-visual">
+                        <div class="about-shapes">
+                            <div class="shape-large circle-large"></div>
+                            <div class="shape-medium square-medium"></div>
+                            <div class="shape-small triangle-small"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h2>Ready to Start Growing?</h2>
+                        <p>Let's chat about how we can help your student thrive!</p>
+                        
+                        <div class="contact-methods">
+                            <div class="contact-method">
+                                <div class="contact-icon">📞</div>
+                                <div>
+                                    <h4>Give Us a Ring</h4>
+                                    <p>(347) 878-6615</p>
+                                </div>
+                            </div>
+                            <div class="contact-method">
+                                <div class="contact-icon">✉️</div>
+                                <div>
+                                    <h4>Drop Us a Line</h4>
+                                    <p>info@eternalgrowth.org</p>
+                                </div>
+                            </div>
+                            <div class="contact-method">
+                                <div class="contact-icon">📍</div>
+                                <div>
+                                    <h4>Find Us</h4>
+                                    <p>Serving all of Long Island, NY</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <form 
+                        class="contact-form"
+                        action="https://formspree.io/f/xqagapza"
+                        method="POST"
+                    >
+                        <h3>Get Started Today!</h3>
+                        <div class="form-group">
+                            <input type="text" name="parentName" id="parentName" placeholder="Parent/Guardian Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="studentName" id="studentName" placeholder="Student Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" id="email" placeholder="Email Address" required>
+                        </div>
+                        <div class="form-group">
+                            <select name="subject" id="subject" required>
+                                <option value="">Select Subject Area</option>
+                                <option value="math">🔢 Math (Number Magic)</option>
+                                <option value="english">📚 English (Word Wizardry)</option>
+                                <option value="science">🧪 Science (Lab Stars)</option>
+                                <option value="coding"> 💻 Coding (Code Creators)</option>
+                                <option value="music">🎵 Music (Melody Makers)</option>
+                                <option value="social-studies">🌍 Social Studies (World Explorers)</option>
+                                <option value="beyond">🚀 Beyond Basics (Special Skills)</option>
+                                <option value="multiple">✨ Multiple Subjects</option>
+                                <option value="other">💭 Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select name="grade" id="grade" required>
+                                <option value="">Student Grade Level</option>
+                                <option value="elementary">Elementary (K-5)</option>
+                                <option value="middle">Middle School (6-8)</option>
+                                <option value="high">High School (9-12)</option>
+                                <option value="college">College</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" id="message" placeholder="Tell us about your learning goals..." rows="4"></textarea>
+                        </div>
+                        <button type="submit" class="cta-primary form-submit">START THE JOURNEY!</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>EternalGrowth Tutoring</h4>
+                    <p>Where Long Island students discover their potential.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Our Subjects</h4>
+                    <ul>
+                        <li><a href="subjects.html">🔢 Mathematics</a></li>
+                        <li><a href="subjects.html">💻 Coding</a></li>
+                        <li><a href="subjects.html">📚 English & Writing</a></li>
+                        <li><a href="subjects.html">🧪 Science</a></li>
+                        <li><a href="subjects.html">🎵 Music</a></li>
+                        <li><a href="subjects.html">🌍 Social Studies</a></li>
+                        <li><a href="subjects.html">🚀 Beyond Basics</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Learning Options</h4>
+                    <ul>
+                        <li><a href="#services">One-on-One</a></li>
+                        <li><a href="#services">Small Groups</a></li>
+                        <li><a href="#services">Online Sessions</a></li>
+                        <li><a href="#about">Free Consultation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="team.html">Meet the Team</a></li>
+                        <li><a href="#">Student Resources</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Eternal Growth, Inc. Learning never stops. Growing never ends. 🌱</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="dotGrid.js"></script>
+</body>
+</html> 
