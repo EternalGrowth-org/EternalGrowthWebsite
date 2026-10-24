@@ -1,110 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About | Eternal Growth</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="motion.css">
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="apple-touch-icon" href="favicon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About — Eternal Growth</title>
+  <meta name="description" content="Eternal Growth is a nonprofit run by Long Island high school students to make good tutoring easier to reach.">
+  <meta name="theme-color" content="#f2f4ec">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+  <link href="https://api.fontshare.com/v2/css?f[]=erode@400,500,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo">
-                <h1>Eternal Growth</h1>
-                <span class="tagline">Tutoring</span>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="index.html#home">Home</a></li>
-                <li><a href="subjects.html">Subjects</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="team.html" class="active">Team</a></li>
-                <li><a href="index.html#contact">Get Started</a></li>
-            </ul>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-        </div>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <a class="wordmark" href="index.html">Eternal Growth</a>
+    <nav class="nav" aria-label="Main">
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+      <ul id="nav-links">
+        <li><a href="subjects.html">Subjects</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="team.html">Team</a></li>
+      </ul>
+      <a class="button" href="index.html#contact">Request a tutor</a>
     </nav>
-    <main>
-        <section class="about">
-            <div class="container">
-                <div class="about-content">
-                    <div class="about-text">
-                        <h2>About Eternal Growth</h2>
-                        <p>We're not just tutors — we're learning enthusiasts, grade-boosters, and confidence-builders rolled into one awesome team. Based right here in Long Island, we know what local students need to succeed.</p>
-                        <div class="about-highlights">
-                            <div class="highlight-item">
-                                <h4>🎓 Expert Tutors</h4>
-                                <p>Certified teachers and subject matter experts who actually enjoy explaining things.</p>
-                            </div>
-                            <div class="highlight-item">
-                                <h4>🏠 Local Focus</h4>
-                                <p>We understand Long Island schools, curriculums, and what students need.</p>
-                            </div>
-                            <div class="highlight-item">
-                                <h4>🎯 Results Driven</h4>
-                                <p>Our students don't just pass — they excel and actually enjoy learning.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="about-visual">
-                        <div class="about-shapes">
-                            <div class="shape-large circle-large"></div>
-                            <div class="shape-medium square-medium"></div>
-                            <div class="shape-small triangle-small"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>EternalGrowth Tutoring</h4>
-                    <p>Where Long Island students discover their potential.</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Services</h4>
-                    <ul>
-                        <li><a href="subjects.html#math">Math Tutoring</a></li>
-                        <li><a href="subjects.html#english">English & Writing</a></li>
-                        <li><a href="subjects.html#science">Science Help</a></li>
-                        <li><a href="subjects.html#testprep">Test Prep</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Learning Options</h4>
-                    <ul>
-                        <li><a href="subjects.html#oneonone">One-on-One</a></li>
-                        <li><a href="subjects.html#groups">Small Groups</a></li>
-                        <li><a href="subjects.html#online">Online Sessions</a></li>
-                        <li><a href="about.html">Free Consultation</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Connect</h4>
-                    <ul>
-                        <li><a href="index.html#contact">Contact Us</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="#">Parent Portal</a></li>
-                        <li><a href="#">Student Resources</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Eternal Growth, Inc. Learning never stops.</p>
-            </div>
+  </header>
+
+  <main id="main">
+
+    <section class="page-hero" data-ink="#17200f" data-ground="#f2f4ec" aria-labelledby="page-title">
+      <h1 id="page-title" data-reveal>About Eternal Growth</h1>
+      <p class="lead" data-reveal style="--i:1">A nonprofit dedicated to increasing the accessibility of education, run by Long Island high school students.</p>
+      <figure class="wide-map" data-open>
+        <img src="assets/long-island-1882.jpg" width="1600" height="672" alt="An 1882 map of Long Island showing the railroad lines in red">
+        <figcaption class="small soft">Long Island in 1882. Our tutors cover the whole island today, in person around Syosset and online everywhere else.</figcaption>
+      </figure>
+    </section>
+
+    <section class="chapter chapter--paper wrap" data-ink="#17200f" data-ground="#f2f4ec" aria-labelledby="why-title">
+      <div class="grid">
+        <div class="split-text">
+          <h2 class="head" id="why-title" data-reveal>Students teaching students</h2>
+          <p class="lead" data-reveal style="--i:1">Seven students from Syosset and Jericho founded Eternal Growth to make good tutoring easier to reach.</p>
+          <p data-reveal style="--i:2">Gary Han, Daniel Chen, Jack Li, Albert Zhang, Andrew Liu, Leo Dai and Michael Ren set out to do it in the most direct way they knew: older students teaching younger ones, in the subjects they know best. A high schooler remembers what made algebra click, because it happened a few years ago.</p>
+          <p data-reveal style="--i:3">Our officers are students too. Alongside their own classes they match tutors with families, run outreach and keep the club’s books. <a class="link" href="team.html">Meet them</a>.</p>
         </div>
-    </footer>
-    <script src="script.js"></script>
-    <script src="motion.js"></script>
+        <figure class="split-media" data-open style="--i:1">
+          <img src="assets/syosset-street.jpg" width="480" height="600" alt="Houses, shops and the Long Island Rail Road tracks in Syosset, seen from above" style="aspect-ratio:4/5">
+          <figcaption class="small soft">Syosset, home to most of our officers, by the rail line.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="chapter chapter--mint wrap" data-ink="#17200f" data-ground="#a8e6cf" aria-labelledby="money-title">
+      <div class="grid">
+        <figure class="split-media money-portrait" data-open>
+          <img src="images/austin_bio.jpg" width="600" height="600" alt="Austin Ma, treasurer" style="aspect-ratio:4/3;object-position:50% 90%">
+          <figcaption class="small">Austin Ma, one of our two treasurers.</figcaption>
+        </figure>
+        <div class="split-text money-text">
+          <h2 class="head" id="money-title" data-reveal>Where the money goes</h2>
+          <p class="lead" data-reveal style="--i:1">What the club raises, we give away to local organizations.</p>
+          <p data-reveal style="--i:2">Our treasurers choose which organizations receive our donations. They evaluate each one so that the money goes to causes with a direct and meaningful effect on our community.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter chapter--paper wrap" data-ink="#17200f" data-ground="#f2f4ec" aria-labelledby="values-title">
+      <div class="grid">
+        <div class="values-side">
+          <h2 class="head" id="values-title" data-reveal>What we hold to</h2>
+          <figure data-open style="--i:1">
+            <img src="assets/oyster-bay-1900.jpg" width="1000" height="1302" alt="1900 survey map of the Oyster Bay area, including Syosset">
+            <figcaption class="small soft">The Oyster Bay area in 1900, where the club began.</figcaption>
+          </figure>
+        </div>
+        <ul class="values">
+          <li class="value" data-reveal><h3>Teach it well</h3><p>Every student deserves a tutor who knows the subject and takes the time to explain it properly.</p></li>
+          <li class="value" data-reveal><h3>Open to everyone</h3><p>Learning should be within reach of every student, whatever their background or the way they learn.</p></li>
+          <li class="value" data-reveal><h3>Make it stick</h3><p>We use games, projects and real examples, because what is enjoyed is remembered.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="chapter chapter--forest wrap" data-ink="#f2f4ec" data-ground="#4a5d23" aria-labelledby="join-title">
+      <div class="grid">
+        <div class="split-text">
+          <h2 class="head" id="join-title" data-reveal>Want to tutor?</h2>
+          <p class="lead" data-reveal style="--i:1">If you are a high schooler who loves a subject and likes explaining it, we would like to hear from you.</p>
+        </div>
+        <div class="split-media join-actions" data-reveal style="--i:2">
+          <a class="button" href="mailto:info@eternalgrowth.org?subject=I%20want%20to%20tutor%20with%20Eternal%20Growth">Write to us <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="link" href="team.html#join">What we look for</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" data-ink="#f2f4ec" data-ground="#17200f">
+    <div class="grid footer-top">
+      <div class="footer-invite">
+        <h2>Learning never stops.</h2>
+        <a class="button" href="index.html#contact">Request a tutor <span class="arrow" aria-hidden="true">→</span></a>
+      </div>
+      <ul class="footer-links">
+        <li><a href="subjects.html">Subjects</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="mailto:info@eternalgrowth.org">info@eternalgrowth.org</a></li>
+        <li><a href="tel:+13478786615">(347) 878-6615</a></li>
+      </ul>
+    </div>
+    <div class="footer-legal">
+      <p>Pictures: <a href="https://commons.wikimedia.org/wiki/File:Syosset,_New_York,_USA.jpg">“Syosset, New York, USA”</a> by Quintin Soloviev, <a href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0</a>; seedling time-lapse from <a href="https://commons.wikimedia.org/wiki/File:Daily-Changes-in-Temperature-Not-the-Circadian-Clock-Regulate-Growth-Rate-in-Brachypodium-distachyon-pone.0100072.s018.ogv">Matos, Cole, Whitney, MacKinnon, Kay and Hazen</a>, <a href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Map_of_Long_Island_showing_the_Long_Island_Railroad_and_its_leased_lines._LOC_98688698.jpg">Map of Long Island</a> (1882, Library of Congress) and <a href="https://commons.wikimedia.org/wiki/File:1900_U.S.G.S._Map_of_Oyster_Bay,_Long_Island,_New_York_-_Geographicus_-_OysterBay-uscs-1925.jpg">Oyster Bay quadrangle</a> (USGS, 1900), public domain; all via Wikimedia Commons.</p>
+      <p>© 2026 Eternal Growth, Inc.</p>
+    </div>
+    <p class="footer-name" aria-hidden="true" data-reveal>Eternal Growth</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
