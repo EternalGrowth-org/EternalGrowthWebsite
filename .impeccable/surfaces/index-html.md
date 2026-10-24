@@ -7,20 +7,20 @@ related_targets: ["subjects.html","about.html","team.html"]
 
 Scope: the four public pages (index, subjects, about, team). Visitor mode: Persuade.
 Audience: Long Island parents choosing a tutor; high schoolers who may join. Action: request a tutor.
-Proof on hand: real officer and founder bios and photos; the subject list and who teaches each. No statistics or testimonials exist.
+Proof on hand: real officer and founder names, roles and bios; the subject list and who teaches each. No statistics or testimonials exist. People are shown as monogram plates until photos are approved.
 
 ## Direction contract
 
-THESIS: The site is one living tree at night. A single luminous trunk draws itself down the page as you scroll and branches into each section; subjects are branches, tutors are its leaves. Refuses the default hero, three icon cards, testimonial and CTA stack.
+THESIS: A silversmith's catalogue for a student tutoring club: every section is a framed plate in a black vitrine, engraved, hairline-bordered and lit like jewellery. Growth is shown as geometry, a tree drawn in straight lines. Refuses the default hero, three icon cards and testimonial stack, and refuses scribbled organic motion.
 
-OWN-WORLD: Night-forest ground #050a07 with deep-canopy fields #0b1a12. Bioluminescent sap green #8dffb0 as the one light, with lichen #c9f26b reserved for the primary action. Heavy liquid glass: translucent panels with a 28px blur, a saturate boost, a bright specular top edge and a faint inner rim, floating over the canopy. Geist, set tight, with Apple-scale contrast between one huge line and quiet body text.
+OWN-WORLD: Black ground #070707, bone #eeece6 type, chrome silver #a9a8a3 for secondary marks, hairlines at 16% bone, one muted sap green #a7dcb8 used only for live states. Cinzel engraved capitals for display, Geist for reading, tracked uppercase micro-labels for navigation. Frames with corner ticks; no rounded corners.
 
-STORY: Visitors see that high schoolers just ahead of their child do the teaching, see who teaches each subject, see how a request turns into a match, meet the team, and send the request.
+STORY: Visitors meet the idea (students just ahead teach), browse the seven subjects on a slider, see the four steps, meet the officers as engraved plates, and send the request.
 
-FIRST VIEWPORT: Full-bleed Vanta TRUNK growing in sap green on the night ground. Centred: "Eternal Growth" at display size, one line beneath saying what the club is, and a glass bar holding a subject picker with a "Find a tutor" button that pre-fills the request form. A floating glass nav bar sits at the top.
+FIRST VIEWPORT: Inset hairline frame around the viewport with corner ticks. Vanta NET in silver behind, a geometric straight-line tree drawing itself, the wordmark "ETERNAL GROWTH" in Cinzel rising letter by letter, a one-line description, and a framed subject finder with the primary action. Layers shift with the cursor.
 
-FORM: a user-pinned direction (tree, techy, liquid glass, Vanta, GSAP transitions, Apple-like restraint) beats the roll; concept-seed was not run. seed: none (unavailable)
+FORM: a user-pinned direction (luxury monochrome in the spirit of chromehearts.com, crisp borders, GSAP everything, straight-line animation, word animations, layered parallax, cursor tracking) beats the roll. seed: none (unavailable)
 
-Signature interaction: the scroll-drawn trunk, plus page transitions where growth rings spread from the click point to cover the screen, then open again on the next page.
+Signature interaction: shutter page transitions (vertical bars close and open around the emblem), the pinned horizontal subject slider, and the manifesto lighting word by word.
 
-FINISH: unreviewed and undocumented is unfinished; run the detector, review the renders at 1440 and 390, and write DESIGN.md from the built world.
+FINISH: unreviewed and undocumented is unfinished; run the detector, review the renders at 1440 and 390, and update DESIGN.md from the built world.

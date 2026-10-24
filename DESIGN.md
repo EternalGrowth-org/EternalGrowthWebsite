@@ -1,38 +1,40 @@
 # Design
 
-The site is one living tree at night: a night-forest ground, a single bioluminescent green, and liquid glass floating over it. Everything below is the built system in `style.css` and `script.js`.
+A silversmith's catalogue for a student tutoring club: every section is a framed plate in a black vitrine, engraved, hairline-bordered and lit like jewellery. Growth is drawn as geometry, a tree made of straight lines. Everything below is the built system in `style.css` and `script.js`.
 
 ## Colour
 | Token | Value | Job |
 |---|---|---|
-| `--ground` | #050a07 | Page ground everywhere |
-| `--canopy`, `--canopy-2` | #0b1a12, #10251a | Placeholder fills (initials tiles, image backs) |
-| `--sap` | #8dffb0 | The one light: trunk line, icons, roles, text links, focus ring |
-| `--lichen` | #c9f26b | Primary actions only, and the lit growth rings |
-| `--text`, `--text-2`, `--text-3` | #eef6ef, #a8bcae, #869c90 | Headlines and body, secondary copy, small captions |
-
-Dark is chosen from the scene: a parent reading on a phone in the evening, and a "night forest" world where green light is the material.
+| `--black` | #070707 | Page ground |
+| `--black-2`, `--panel` | #0d0d0c, #111110 | Plates, slides, the form, menus |
+| `--bone` | #eeece6 | Type, primary buttons, corner ticks |
+| `--silver`, `--steel` | #a9a8a3, #85847d | Secondary copy, small notes |
+| `--line`, `--line-2` | bone at 16% and 32% | Hairlines, borders, dividers |
+| `--sap` | #a7dcb8 | Live states only (success, hovered contact links) |
 
 ## Type
-Geist (Google Fonts, weights 300–700), one family. Five steps: small 14px, body 17–19px, lead 20–26px, head 36–68px, display 52–96px. Display tracking −0.04em, headings −0.035em, line height ~1. Headings end with a full stop, Apple style.
+- Cinzel 400–600 (Google Fonts) for display and headings: engraved capitals, letter-spacing 0.01–0.04em.
+- Geist 300–600 for reading and controls.
+- Micro labels: 12px uppercase, 0.2em tracking, used for navigation, roles and meta, never as eyebrows above headings.
+- Steps: micro 12px, small 14px, body 16–18px, lead 19–26px, head 34–72px, display 46–132px.
 
-## Liquid glass
-`.glass`: translucent white fill from 11% to 3.5%, `backdrop-filter: blur(28px) saturate(170%)`, a 1px rim at 13% white, an inset top highlight, and a soft drop shadow. A radial sheen follows the pointer (`--mx`, `--my` set by `script.js`). Used for the nav bar, the hero finder, panels, the form and person cards. Radius 28px on panels, full pill on bars and buttons.
+## Frames and lines
+- `.frame` adds a 1px hairline border with bone corner ticks (top-left, bottom-right). No rounded corners anywhere.
+- Plates (`.plate__face`) are monogram placeholders for people: concentric rings and a crosshair behind engraved initials, an inner inset border, and a light sheen that follows the cursor.
+- Subject drawings sit on a 40–48px drafting grid that fades to the edges.
 
-## Components
-- **Buttons:** pill, lichen fill with dark text, neutral shadow; `.btn--ghost` is glass; `.btn--small` in the nav.
-- **Nav:** one floating glass pill; hides on scroll down, returns on scroll up; collapses to a menu button under 760px.
-- **Photos:** portraits always fade into the ground through a vertical mask (top and bottom on the home page row, bottom on cards). Cropped copies exist for Gary, Austin and Eliot (`images/*_portrait.jpg`).
-- **Icons:** authored inline SVG, 1.5 stroke, round caps.
+## Buttons
+Bone fill with black text; on hover a black panel rises from the bottom and the text turns bone. `.btn--line` is the inverse. `.link-line` is a micro-label link with an underline that extends on hover.
 
 ## Motion (GSAP 3.12 + ScrollTrigger)
-- **Signature:** the trunk, an SVG line in the left gutter that draws as you scroll, with branches reaching to each `[data-knot]` heading.
-- **Page transitions:** growth rings spread from the click point while a dark circle covers the page; the next page opens from the centre. Driven by `sessionStorage` (`eg-arrive`) and the `.rings` overlay.
-- **Reveals:** `[data-rise]` elements rise 28px, unblur and fade in, batched with a stagger.
-- **Live pieces:** the tutors row drifts sideways (pauses on hover or focus); the growth-ring cross-section draws in and lights one ring per step as you read.
+- **Page transitions:** five vertical shutters close from the bottom around the emblem, then open from the top on the next page (`sessionStorage` key `eg-arrive`).
+- **Hero:** the inset frame draws itself line by line, corner ticks appear, the title rises letter by letter, and the straight-line tree draws trunk-first. Layers marked `data-depth` follow the cursor; the title, ghost word and tree separate on scroll.
+- **Words:** `[data-words]` lights word by word with scroll (the manifesto); `[data-split]` headings rise letter by letter; marquees speed up and reverse with scroll velocity.
+- **Slider:** on desktop the subject section pins and the track moves sideways with scroll, with a progress hairline and counter; on phones it is a native snap carousel. Arrow buttons and arrow keys step one slide.
+- **Lines:** `[data-strokes]` line art draws itself in; the process line fills as you scroll and each diamond node lights.
+- **Cursor:** a ring and dot with `mix-blend-mode: difference`, growing over interactive elements; plates tilt toward it.
+- **Footer:** the emblem ring rotates with scroll, the wordmark rises letter by letter, and a live Long Island clock ticks.
 - Everything respects `prefers-reduced-motion` and stays visible without JavaScript.
 
-## Backgrounds (Vanta 0.5.24, in `vendor/`)
-- Home hero: `VANTA.TRUNK` (p5) in sap green. It is forced to draw at 1× pixel density, because at higher densities it fills three quarters of the canvas solid.
-- Other page heroes: `VANTA.FOG` (three.js r134) in deep greens.
-- One effect per page, destroyed on `pagehide`.
+## Background
+Vanta NET 0.5.24 (three.js r134, in `vendor/`): silver lines between drifting points on black, at 32% opacity behind a dark veil. One per page, destroyed on `pagehide`.
