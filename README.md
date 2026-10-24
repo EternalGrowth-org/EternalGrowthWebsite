@@ -15,6 +15,6 @@ python -m http.server
 Then open http://localhost:8000.
 
 ## Credits
-Archive pictures and footage come from Wikimedia Commons and are credited in the footer of every page: "Syosset, New York, USA" by Quintin Soloviev (CC BY 4.0); a seedling time-lapse by Matos, Cole, Whitney, MacKinnon, Kay and Hazen (CC BY 4.0); an 1882 map of Long Island (Library of Congress, public domain); and the 1900 USGS Oyster Bay quadrangle (public domain).
+Animated backgrounds by [Vanta.js](https://www.vantajs.com) (MIT), with three.js and p5.js. Motion by [GSAP](https://gsap.com). Typeface: Geist.
 
 See `CLAUDE.md` for how the site is built and how to change it.

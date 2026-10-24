@@ -1,245 +1,158 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Subjects — Eternal Growth</title>
   <meta name="description" content="Math, English, science, coding, music, social studies and more, taught by Long Island high school students.">
-  <meta name="theme-color" content="#f2f4ec">
-  <script>document.documentElement.classList.add('js')</script>
-  <link rel="preconnect" href="https://api.fontshare.com">
-  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
-  <link href="https://api.fontshare.com/v2/css?f[]=erode@400,500,600&display=swap" rel="stylesheet">
+  <meta name="theme-color" content="#050a07">
+  <script>
+    (function () {
+      var d = document.documentElement; d.classList.remove('no-js'); d.classList.add('js');
+      try { if (sessionStorage.getItem('eg-arrive')) { sessionStorage.removeItem('eg-arrive'); if (!matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('is-arriving'); } } catch (e) {}
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="vendor/three.r134.min.js" defer></script>
+  <script src="vendor/vanta.fog.min.js" defer></script>
+  <script src="script.js" defer></script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
-
-  <header class="site-header">
-    <a class="wordmark" href="index.html">Eternal Growth</a>
-    <nav class="nav" aria-label="Main">
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
-      <ul id="nav-links">
+  <div class="rings" aria-hidden="true"><div class="rings__fill"></div><div class="rings__ring"></div><div class="rings__ring"></div><div class="rings__ring"></div></div>
+  <header class="nav glass">
+    <a class="brand" href="index.html" aria-label="Eternal Growth, home"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.25"/><circle cx="12" cy="12" r="5.75"/><circle cx="12" cy="12" r="2.25" fill="currentColor" stroke="none"/></svg><span>Eternal Growth</span></a>
+    <nav class="nav__right" aria-label="Main">
+      <ul class="nav__links" id="nav-links">
         <li><a href="subjects.html">Subjects</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="team.html">Team</a></li>
       </ul>
-      <a class="button" href="index.html#contact">Request a tutor</a>
+      <a class="btn btn--small" href="index.html#request"><span class="btn__label">Request a tutor</span><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <button class="nav__menu" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menu"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg></button>
     </nav>
   </header>
 
   <main id="main">
-
-    <section class="page-hero" data-ink="#17200f" data-ground="#f2f4ec" aria-labelledby="page-title">
-      <h1 id="page-title" data-reveal>What we teach</h1>
-      <p class="lead" data-reveal style="--i:1">Seven subjects, each taught by officers who study it, play it or compete in it.</p>
-      <div class="page-hero__field" data-ink="#f2f4ec" data-ground="#4a5d23">
-        <h2 class="visually-hidden">Jump to a subject</h2>
-        <ul class="subject-nav">
-          <li><a href="#math">Math</a></li>
-          <li><a href="#english">English and writing</a></li>
-          <li><a href="#science">Science</a></li>
-          <li><a href="#coding">Coding</a></li>
-          <li><a href="#music">Music</a></li>
-          <li><a href="#social-studies">Social studies</a></li>
-          <li><a href="#beyond">Beyond the classroom</a></li>
-        </ul>
+    <section class="hero page-hero" data-vanta="fog" aria-labelledby="page-title">
+      <div class="hero__inner">
+        <h1 class="display" id="page-title" data-rise>What we teach.</h1>
+        <p class="lead" data-rise>Seven subjects, each taught by officers who study it, play it or compete in it.</p>
+        <ul class="jump" data-rise><li><a href="#math">Math</a></li><li><a href="#english">English and writing</a></li><li><a href="#science">Science</a></li><li><a href="#coding">Coding</a></li><li><a href="#music">Music</a></li><li><a href="#social-studies">Social studies</a></li><li><a href="#beyond">Beyond the classroom</a></li></ul>
       </div>
     </section>
-
-    <section class="chapter chapter--paper subject wrap" id="math" data-ink="#17200f" data-ground="#f2f4ec" aria-labelledby="math-title">
-      <div class="grid">
-        <div class="subject__title">
-          <h2 id="math-title" data-reveal>Math</h2>
-          <p class="lead" data-reveal style="--i:1">From times tables to derivatives, with the problem-solving habits that make the next unit easier.</p>
-        </div>
-        <ul class="subject__list" aria-label="Math topics">
-            <li data-reveal style="--i:0">Algebra through calculus</li>
-            <li data-reveal style="--i:1">SAT and ACT math prep</li>
-            <li data-reveal style="--i:2">AMC competition math</li>
-            <li data-reveal style="--i:3">Problem-solving strategies</li>
-            <li data-reveal style="--i:4">Math games for younger students</li>
-        </ul>
-        <div class="subject__tutors" data-reveal style="--i:2">
-          <h3 class="subject__by">Taught by</h3>
-          <div class="tiles">
-            <a class="tutor-tile" href="team.html#jack"><img src="images/jack_bio.png" width="600" height="600" alt="" style="object-position:50% 30%"><span>Jack</span></a>
-            <a class="tutor-tile" href="team.html#sam"><img src="images/sam_bio.jpg" width="600" height="600" alt="" style="object-position:50% 55%"><span>Sam</span></a>
-            <a class="tutor-tile" href="team.html#eliot"><img src="images/eliot_bio.png" width="600" height="600" alt="" style="object-position:50% 30%"><span>Eliot</span></a>
+    <div class="grows">
+      <section class="section" aria-label="Subjects">
+        <div class="wrap">
+        <article class="subject" id="math" aria-labelledby="math-title">
+          <div class="subject__title">
+            <h2 class="head" id="math-title" data-rise data-knot="right">Math</h2>
+            <p class="lead" data-rise>From times tables to derivatives, with the problem-solving habits that make the next unit easier.</p>
           </div>
-          <a class="link subject__ask" href="index.html?subject=math#contact">Request math tutoring</a>
-        </div>
-      </div>
-    </section>
-    <section class="chapter chapter--mint subject wrap" id="english" data-ink="#17200f" data-ground="#a8e6cf" aria-labelledby="english-title">
-      <div class="grid">
-        <div class="subject__title">
-          <h2 id="english-title" data-reveal>English and writing</h2>
-          <p class="lead" data-reveal style="--i:1">Reading closely and writing clearly, from a first book report to a college essay.</p>
-        </div>
-        <ul class="subject__list" aria-label="English and writing topics">
-            <li data-reveal style="--i:0">Essay writing and structure</li>
-            <li data-reveal style="--i:1">Reading comprehension</li>
-            <li data-reveal style="--i:2">Grammar and vocabulary</li>
-            <li data-reveal style="--i:3">Creative writing</li>
-            <li data-reveal style="--i:4">Public speaking</li>
-        </ul>
-        <div class="subject__tutors" data-reveal style="--i:2">
-          <h3 class="subject__by">Taught by</h3>
-          <div class="tiles">
-            <a class="tutor-tile" href="team.html#robert"><span class="chip-initials" aria-hidden="true">RL</span><span>Robert</span></a>
-            <a class="tutor-tile" href="team.html#daniel"><img src="images/daniel_bio.png" width="600" height="600" alt="" style="object-position:50% 30%"><span>Daniel</span></a>
+          <div class="subject__body glass" data-rise>
+            <ul class="points"><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg>Algebra through calculus</li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg>SAT and ACT math</li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg>AMC competition math</li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg>Problem-solving strategies</li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg>Math games for younger students</li></ul>
+            <div class="taught"><p>Taught by</p><div class="leaves"><a class="leaf" href="team.html#jack"><img src="images/jack_bio.png" width="80" height="80" alt="" style="object-position:50% 30%" loading="lazy"><span>Jack</span></a><a class="leaf" href="team.html#sam"><img src="images/sam_bio.jpg" width="80" height="80" alt="" style="object-position:50% 55%" loading="lazy"><span>Sam</span></a><a class="leaf" href="team.html#eliot"><img src="images/eliot_portrait.jpg" width="80" height="80" alt="" style="object-position:50% 25%" loading="lazy"><span>Eliot</span></a></div></div>
+            <a class="btn btn--ghost" href="index.html?subject=math#request">Request math tutoring <svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           </div>
-          <a class="link subject__ask" href="index.html?subject=english#contact">Request English tutoring</a>
-        </div>
-      </div>
-    </section>
-    <section class="chapter chapter--paper subject wrap" id="science" data-ink="#17200f" data-ground="#f2f4ec" aria-labelledby="science-title">
-      <div class="grid">
-        <div class="subject__title">
-          <h2 id="science-title" data-reveal>Science</h2>
-          <p class="lead" data-reveal style="--i:1">Biology, chemistry and physics, with the lab work and the writing that go with them.</p>
-        </div>
-        <ul class="subject__list" aria-label="Science topics">
-            <li data-reveal style="--i:0">Biology and chemistry</li>
-            <li data-reveal style="--i:1">Physics fundamentals</li>
-            <li data-reveal style="--i:2">Lab report writing</li>
-            <li data-reveal style="--i:3">Science fair projects</li>
-            <li data-reveal style="--i:4">How it applies outside class</li>
-        </ul>
-        <div class="subject__tutors" data-reveal style="--i:2">
-          <h3 class="subject__by">Taught by</h3>
-          <div class="tiles">
-            <a class="tutor-tile" href="team.html#eliot"><img src="images/eliot_bio.png" width="600" height="600" alt="" style="object-position:50% 30%"><span>Eliot</span></a>
-            <a class="tutor-tile" href="team.html#gary"><img src="images/gary_bio.png" width="600" height="600" alt="" style="object-position:50% 40%"><span>Gary</span></a>
-            <a class="tutor-tile" href="team.html#sue"><img src="images/sue_bio.jpg" width="600" height="600" alt="" style="object-position:50% 55%"><span>Sue</span></a>
+        </article>
+        <article class="subject" id="english" aria-labelledby="english-title">
+          <div class="subject__title">
+            <h2 class="head" id="english-title" data-rise data-knot="left">English and writing</h2>
+            <p class="lead" data-rise>Reading closely and writing clearly, from a first book report to a college essay.</p>
           </div>
-          <a class="link subject__ask" href="index.html?subject=science#contact">Request science tutoring</a>
-        </div>
-      </div>
-    </section>
-    <section class="chapter chapter--forest subject wrap" id="coding" data-ink="#f2f4ec" data-ground="#4a5d23" aria-labelledby="coding-title">
-      <div class="grid">
-        <div class="subject__title">
-          <h2 id="coding-title" data-reveal>Coding</h2>
-          <p class="lead" data-reveal style="--i:1">How to think like a computer scientist, by building apps, games and small tools.</p>
-        </div>
-        <ul class="subject__list" aria-label="Coding topics">
-            <li data-reveal style="--i:0">Python, Java and C++ fundamentals</li>
-            <li data-reveal style="--i:1">HTML, CSS and JavaScript</li>
-            <li data-reveal style="--i:2">Algorithmic thinking</li>
-            <li data-reveal style="--i:3">USACO and competitive programming</li>
-            <li data-reveal style="--i:4">Creative coding and AI basics</li>
-        </ul>
-        <div class="subject__tutors" data-reveal style="--i:2">
-          <h3 class="subject__by">Taught by</h3>
-          <div class="tiles">
-            <a class="tutor-tile" href="team.html#jack"><img src="images/jack_bio.png" width="600" height="600" alt="" style="object-position:50% 30%"><span>Jack</span></a>
-            <a class="tutor-tile" href="team.html#victor"><img src="images/victor_bio.webp" width="600" height="600" alt="" style="object-position:50% 35%"><span>Victor</span></a>
+          <div class="subject__body glass" data-rise>
+            <ul class="points"><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg>Essay writing and structure</li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg>Reading comprehension</li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg>Grammar and vocabulary</li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg>Creative writing</li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg>Public speaking</li></ul>
+            <div class="taught"><p>Taught by</p><div class="leaves"><a class="leaf" href="team.html#robert"><span class="leaf__initials" aria-hidden="true">RL</span><span>Robert</span></a><a class="leaf" href="team.html#daniel"><img src="images/daniel_bio.png" width="80" height="80" alt="" style="object-position:50% 30%" loading="lazy"><span>Daniel</span></a></div></div>
+            <a class="btn btn--ghost" href="index.html?subject=english#request">Request English tutoring <svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           </div>
-          <a class="link subject__ask" href="index.html?subject=coding#contact">Request coding tutoring</a>
-        </div>
-      </div>
-    </section>
-    <section class="chapter chapter--paper subject wrap" id="music" data-ink="#17200f" data-ground="#f2f4ec" aria-labelledby="music-title">
-      <div class="grid">
-        <div class="subject__title">
-          <h2 id="music-title" data-reveal>Music</h2>
-          <p class="lead" data-reveal style="--i:1">Lessons and theory from officers who have played for years, from first notes to a recital.</p>
-        </div>
-        <ul class="subject__list" aria-label="Music topics">
-            <li data-reveal style="--i:0">Piano and keyboard</li>
-            <li data-reveal style="--i:1">Violin, viola and flute</li>
-            <li data-reveal style="--i:2">Guitar, acoustic and electric</li>
-            <li data-reveal style="--i:3">Music theory and composition</li>
-            <li data-reveal style="--i:4">Performance preparation</li>
-        </ul>
-        <div class="subject__tutors" data-reveal style="--i:2">
-          <h3 class="subject__by">Taught by</h3>
-          <div class="tiles">
-            <a class="tutor-tile" href="team.html#sue"><img src="images/sue_bio.jpg" width="600" height="600" alt="" style="object-position:50% 55%"><span>Sue</span></a>
-            <a class="tutor-tile" href="team.html#vincent"><img src="images/vincent_bio.jpg" width="600" height="600" alt="" style="object-position:50% 25%"><span>Vincent</span></a>
-            <a class="tutor-tile" href="team.html#daniel"><img src="images/daniel_bio.png" width="600" height="600" alt="" style="object-position:50% 30%"><span>Daniel</span></a>
-            <a class="tutor-tile" href="team.html#katherine"><img src="images/katherine_bio.jpg" width="600" height="600" alt="" style="object-position:50% 35%"><span>Katherine</span></a>
-            <a class="tutor-tile" href="team.html#gary"><img src="images/gary_bio.png" width="600" height="600" alt="" style="object-position:50% 40%"><span>Gary</span></a>
-            <a class="tutor-tile" href="team.html#sam"><img src="images/sam_bio.jpg" width="600" height="600" alt="" style="object-position:50% 55%"><span>Sam</span></a>
+        </article>
+        <article class="subject" id="science" aria-labelledby="science-title">
+          <div class="subject__title">
+            <h2 class="head" id="science-title" data-rise data-knot="right">Science</h2>
+            <p class="lead" data-rise>Biology, chemistry and physics, with the lab work and the writing that go with them.</p>
           </div>
-          <a class="link subject__ask" href="index.html?subject=music#contact">Request music tutoring</a>
-        </div>
-      </div>
-    </section>
-    <section class="chapter chapter--mint subject wrap" id="social-studies" data-ink="#17200f" data-ground="#a8e6cf" aria-labelledby="social-studies-title">
-      <div class="grid">
-        <div class="subject__title">
-          <h2 id="social-studies-title" data-reveal>Social studies</h2>
-          <p class="lead" data-reveal style="--i:1">History, geography and civics: the stories behind how the world got this way.</p>
-        </div>
-        <ul class="subject__list" aria-label="Social studies topics">
-            <li data-reveal style="--i:0">US and world history</li>
-            <li data-reveal style="--i:1">Geography and cultures</li>
-            <li data-reveal style="--i:2">Government and civics</li>
-            <li data-reveal style="--i:3">Research and presentations</li>
-            <li data-reveal style="--i:4">Current events</li>
-        </ul>
-        <div class="subject__tutors" data-reveal style="--i:2">
-          <h3 class="subject__by">Taught by</h3>
-          <div class="tiles">
-            <a class="tutor-tile" href="team.html#isaac"><img src="images/isaac_bio.webp" width="600" height="600" alt="" style="object-position:50% 35%"><span>Isaac</span></a>
-            <a class="tutor-tile" href="team.html#robert"><span class="chip-initials" aria-hidden="true">RL</span><span>Robert</span></a>
+          <div class="subject__body glass" data-rise>
+            <ul class="points"><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg>Biology and chemistry</li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg>Physics fundamentals</li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg>Lab report writing</li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg>Science fair projects</li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg>How it applies outside class</li></ul>
+            <div class="taught"><p>Taught by</p><div class="leaves"><a class="leaf" href="team.html#eliot"><img src="images/eliot_portrait.jpg" width="80" height="80" alt="" style="object-position:50% 25%" loading="lazy"><span>Eliot</span></a><a class="leaf" href="team.html#gary"><img src="images/gary_portrait.jpg" width="80" height="80" alt="" style="object-position:50% 30%" loading="lazy"><span>Gary</span></a><a class="leaf" href="team.html#sue"><img src="images/sue_bio.jpg" width="80" height="80" alt="" style="object-position:50% 52%" loading="lazy"><span>Sue</span></a></div></div>
+            <a class="btn btn--ghost" href="index.html?subject=science#request">Request science tutoring <svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           </div>
-          <a class="link subject__ask" href="index.html?subject=social-studies#contact">Request social studies tutoring</a>
-        </div>
-      </div>
-    </section>
-    <section class="chapter chapter--paper subject wrap" id="beyond" data-ink="#17200f" data-ground="#f2f4ec" aria-labelledby="beyond-title">
-      <div class="grid">
-        <div class="subject__title">
-          <h2 id="beyond-title" data-reveal>Beyond the classroom</h2>
-          <p class="lead" data-reveal style="--i:1">Skills that help in every class, and a few that go past school altogether.</p>
-        </div>
-        <ul class="subject__list" aria-label="Beyond the classroom topics">
-            <li data-reveal style="--i:0">Study skills and organization</li>
-            <li data-reveal style="--i:1">Digital art and design</li>
-            <li data-reveal style="--i:2">Chess</li>
-            <li data-reveal style="--i:3">College prep and planning</li>
-            <li data-reveal style="--i:4">Confidence and life skills</li>
-        </ul>
-        <div class="subject__tutors" data-reveal style="--i:2">
-          <h3 class="subject__by">Taught by</h3>
-          <div class="tiles">
-            <a class="tutor-tile" href="team.html#sue"><img src="images/sue_bio.jpg" width="600" height="600" alt="" style="object-position:50% 55%"><span>Sue</span></a>
-            <a class="tutor-tile" href="team.html#sam"><img src="images/sam_bio.jpg" width="600" height="600" alt="" style="object-position:50% 55%"><span>Sam</span></a>
-            <a class="tutor-tile" href="team.html#katherine"><img src="images/katherine_bio.jpg" width="600" height="600" alt="" style="object-position:50% 35%"><span>Katherine</span></a>
+        </article>
+        <article class="subject" id="coding" aria-labelledby="coding-title">
+          <div class="subject__title">
+            <h2 class="head" id="coding-title" data-rise data-knot="left">Coding</h2>
+            <p class="lead" data-rise>How to think like a computer scientist, by building apps, games and small tools.</p>
           </div>
-          <a class="link subject__ask" href="index.html?subject=beyond#contact">Request beyond the classroom tutoring</a>
+          <div class="subject__body glass" data-rise>
+            <ul class="points"><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg>Python, Java and C++</li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg>HTML, CSS and JavaScript</li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg>Algorithmic thinking</li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg>USACO and competitive programming</li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg>Creative coding and AI basics</li></ul>
+            <div class="taught"><p>Taught by</p><div class="leaves"><a class="leaf" href="team.html#jack"><img src="images/jack_bio.png" width="80" height="80" alt="" style="object-position:50% 30%" loading="lazy"><span>Jack</span></a><a class="leaf" href="team.html#victor"><img src="images/victor_bio.webp" width="80" height="80" alt="" style="object-position:50% 30%" loading="lazy"><span>Victor</span></a></div></div>
+            <a class="btn btn--ghost" href="index.html?subject=coding#request">Request coding tutoring <svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </article>
+        <article class="subject" id="music" aria-labelledby="music-title">
+          <div class="subject__title">
+            <h2 class="head" id="music-title" data-rise data-knot="right">Music</h2>
+            <p class="lead" data-rise>Lessons and theory from officers who have played for years, from first notes to a recital.</p>
+          </div>
+          <div class="subject__body glass" data-rise>
+            <ul class="points"><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg>Piano and keyboard</li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg>Violin, viola and flute</li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg>Guitar, acoustic and electric</li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg>Music theory and composition</li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg>Performance preparation</li></ul>
+            <div class="taught"><p>Taught by</p><div class="leaves"><a class="leaf" href="team.html#sue"><img src="images/sue_bio.jpg" width="80" height="80" alt="" style="object-position:50% 52%" loading="lazy"><span>Sue</span></a><a class="leaf" href="team.html#vincent"><img src="images/vincent_bio.jpg" width="80" height="80" alt="" style="object-position:50% 25%" loading="lazy"><span>Vincent</span></a><a class="leaf" href="team.html#daniel"><img src="images/daniel_bio.png" width="80" height="80" alt="" style="object-position:50% 30%" loading="lazy"><span>Daniel</span></a><a class="leaf" href="team.html#katherine"><img src="images/katherine_bio.jpg" width="80" height="80" alt="" style="object-position:50% 30%" loading="lazy"><span>Katherine</span></a><a class="leaf" href="team.html#gary"><img src="images/gary_portrait.jpg" width="80" height="80" alt="" style="object-position:50% 30%" loading="lazy"><span>Gary</span></a><a class="leaf" href="team.html#sam"><img src="images/sam_bio.jpg" width="80" height="80" alt="" style="object-position:50% 55%" loading="lazy"><span>Sam</span></a></div></div>
+            <a class="btn btn--ghost" href="index.html?subject=music#request">Request music tutoring <svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </article>
+        <article class="subject" id="social-studies" aria-labelledby="social-studies-title">
+          <div class="subject__title">
+            <h2 class="head" id="social-studies-title" data-rise data-knot="left">Social studies</h2>
+            <p class="lead" data-rise>History, geography and civics: the stories behind how the world got this way.</p>
+          </div>
+          <div class="subject__body glass" data-rise>
+            <ul class="points"><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg>US and world history</li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg>Geography and cultures</li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg>Government and civics</li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg>Research and presentations</li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg>Current events</li></ul>
+            <div class="taught"><p>Taught by</p><div class="leaves"><a class="leaf" href="team.html#isaac"><img src="images/isaac_bio.webp" width="80" height="80" alt="" style="object-position:50% 30%" loading="lazy"><span>Isaac</span></a><a class="leaf" href="team.html#robert"><span class="leaf__initials" aria-hidden="true">RL</span><span>Robert</span></a></div></div>
+            <a class="btn btn--ghost" href="index.html?subject=social-studies#request">Request social studies tutoring <svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </article>
+        <article class="subject" id="beyond" aria-labelledby="beyond-title">
+          <div class="subject__title">
+            <h2 class="head" id="beyond-title" data-rise data-knot="right">Beyond the classroom</h2>
+            <p class="lead" data-rise>Skills that help in every class, and a few that go past school altogether.</p>
+          </div>
+          <div class="subject__body glass" data-rise>
+            <ul class="points"><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg>Study skills and organization</li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg>Digital art and design</li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg>Chess</li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg>College prep and planning</li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg>Confidence and life skills</li></ul>
+            <div class="taught"><p>Taught by</p><div class="leaves"><a class="leaf" href="team.html#sue"><img src="images/sue_bio.jpg" width="80" height="80" alt="" style="object-position:50% 52%" loading="lazy"><span>Sue</span></a><a class="leaf" href="team.html#sam"><img src="images/sam_bio.jpg" width="80" height="80" alt="" style="object-position:50% 55%" loading="lazy"><span>Sam</span></a><a class="leaf" href="team.html#katherine"><img src="images/katherine_bio.jpg" width="80" height="80" alt="" style="object-position:50% 30%" loading="lazy"><span>Katherine</span></a></div></div>
+            <a class="btn btn--ghost" href="index.html?subject=beyond#request">Request beyond the classroom tutoring <svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </article>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   </main>
 
-  <footer class="site-footer" data-ink="#f2f4ec" data-ground="#17200f">
-    <div class="grid footer-top">
-      <div class="footer-invite">
-        <h2>Learning never stops.</h2>
-        <a class="button" href="index.html#contact">Request a tutor <span class="arrow" aria-hidden="true">→</span></a>
+  <footer class="footer">
+    <div class="footer__glow" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="footer__top">
+        <h2 class="head" data-rise>Learning never stops.</h2>
+        <a class="btn" href="index.html#request" data-rise>Request a tutor <svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
-      <ul class="footer-links">
+      <ul class="footer__links">
         <li><a href="subjects.html">Subjects</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="team.html">Team</a></li>
         <li><a href="mailto:info@eternalgrowth.org">info@eternalgrowth.org</a></li>
         <li><a href="tel:+13478786615">(347) 878-6615</a></li>
       </ul>
+      <p class="wordmark" aria-hidden="true">Eternal Growth</p>
+      <div class="footer__legal">
+        <p>© 2026 Eternal Growth, Inc. A student-run nonprofit on Long Island, New York.</p>
+        <p>Animated backgrounds by <a href="https://www.vantajs.com">Vanta.js</a>.</p>
+      </div>
     </div>
-    <div class="footer-legal">
-      <p>Pictures: <a href="https://commons.wikimedia.org/wiki/File:Syosset,_New_York,_USA.jpg">“Syosset, New York, USA”</a> by Quintin Soloviev, <a href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0</a>; seedling time-lapse from <a href="https://commons.wikimedia.org/wiki/File:Daily-Changes-in-Temperature-Not-the-Circadian-Clock-Regulate-Growth-Rate-in-Brachypodium-distachyon-pone.0100072.s018.ogv">Matos, Cole, Whitney, MacKinnon, Kay and Hazen</a>, <a href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Map_of_Long_Island_showing_the_Long_Island_Railroad_and_its_leased_lines._LOC_98688698.jpg">Map of Long Island</a> (1882, Library of Congress) and <a href="https://commons.wikimedia.org/wiki/File:1900_U.S.G.S._Map_of_Oyster_Bay,_Long_Island,_New_York_-_Geographicus_-_OysterBay-uscs-1925.jpg">Oyster Bay quadrangle</a> (USGS, 1900), public domain; all via Wikimedia Commons.</p>
-      <p>© 2026 Eternal Growth, Inc.</p>
-    </div>
-    <p class="footer-name" aria-hidden="true" data-reveal>Eternal Growth</p>
   </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>

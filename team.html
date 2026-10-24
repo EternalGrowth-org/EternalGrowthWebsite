@@ -1,181 +1,165 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Team — Eternal Growth</title>
   <meta name="description" content="Meet the officers and founders of Eternal Growth, a student-run tutoring nonprofit on Long Island.">
-  <meta name="theme-color" content="#f2f4ec">
-  <script>document.documentElement.classList.add('js')</script>
-  <link rel="preconnect" href="https://api.fontshare.com">
-  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
-  <link href="https://api.fontshare.com/v2/css?f[]=erode@400,500,600&display=swap" rel="stylesheet">
+  <meta name="theme-color" content="#050a07">
+  <script>
+    (function () {
+      var d = document.documentElement; d.classList.remove('no-js'); d.classList.add('js');
+      try { if (sessionStorage.getItem('eg-arrive')) { sessionStorage.removeItem('eg-arrive'); if (!matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('is-arriving'); } } catch (e) {}
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="vendor/three.r134.min.js" defer></script>
+  <script src="vendor/vanta.fog.min.js" defer></script>
+  <script src="script.js" defer></script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
-
-  <header class="site-header">
-    <a class="wordmark" href="index.html">Eternal Growth</a>
-    <nav class="nav" aria-label="Main">
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
-      <ul id="nav-links">
+  <div class="rings" aria-hidden="true"><div class="rings__fill"></div><div class="rings__ring"></div><div class="rings__ring"></div><div class="rings__ring"></div></div>
+  <header class="nav glass">
+    <a class="brand" href="index.html" aria-label="Eternal Growth, home"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.25"/><circle cx="12" cy="12" r="5.75"/><circle cx="12" cy="12" r="2.25" fill="currentColor" stroke="none"/></svg><span>Eternal Growth</span></a>
+    <nav class="nav__right" aria-label="Main">
+      <ul class="nav__links" id="nav-links">
         <li><a href="subjects.html">Subjects</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="team.html">Team</a></li>
       </ul>
-      <a class="button" href="index.html#contact">Request a tutor</a>
+      <a class="btn btn--small" href="index.html#request"><span class="btn__label">Request a tutor</span><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <button class="nav__menu" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menu"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg></button>
     </nav>
   </header>
 
   <main id="main">
-
-    <section class="page-hero" data-ink="#17200f" data-ground="#f2f4ec" aria-labelledby="page-title">
-      <h1 id="page-title" data-reveal>Meet the team</h1>
-      <p class="lead" data-reveal style="--i:1">Eleven officers and seven founders, all of them students, most of them from Syosset.</p>
-      <div class="page-hero__field team-faces" aria-hidden="true">
-        <img src="images/daniel_bio.png" width="600" height="600" alt="" style="object-position:50% 30%"><img src="images/katherine_bio.jpg" width="600" height="600" alt="" style="object-position:50% 35%"><img src="images/jack_bio.png" width="600" height="600" alt="" style="object-position:50% 30%"><img src="images/eliot_bio.png" width="600" height="600" alt="" style="object-position:50% 30%"><img src="images/sue_bio.jpg" width="600" height="600" alt="" style="object-position:50% 55%"><img src="images/vincent_bio.jpg" width="600" height="600" alt="" style="object-position:50% 25%"><img src="images/sam_bio.jpg" width="600" height="600" alt="" style="object-position:50% 55%"><img src="images/isaac_bio.webp" width="600" height="600" alt="" style="object-position:50% 35%"><img src="images/austin_bio.jpg" width="600" height="600" alt="" style="object-position:50% 45%"><img src="images/victor_bio.webp" width="600" height="600" alt="" style="object-position:50% 35%"><img src="images/gary_bio.png" width="600" height="600" alt="" style="object-position:50% 40%"><img src="images/albert_bio.png" width="600" height="600" alt="" style="object-position:50% 22%"><img src="images/andrew_bio.webp" width="600" height="600" alt="" style="object-position:50% 40%">
+    <section class="hero page-hero" data-vanta="fog" aria-labelledby="page-title">
+      <div class="hero__inner">
+        <h1 class="display" id="page-title" data-rise>Meet the team.</h1>
+        <p class="lead" data-rise>Eleven officers and seven founders. All of them students, most of them from Syosset.</p>
+        
       </div>
     </section>
-
-    <section class="chapter chapter--paper wrap" id="officers" data-ink="#17200f" data-ground="#f2f4ec" aria-labelledby="officers-title">
-      <div class="grid people">
-        <div class="team-head">
-          <h2 class="head" id="officers-title" data-reveal>Our officers</h2>
-          <p class="soft" data-reveal style="--i:1">They tutor, and they run the club: matching tutors, handling outreach, keeping the books.</p>
+    <div class="grows">
+      <section class="section" id="officers" aria-labelledby="officers-title">
+        <div class="wrap">
+          <h2 class="head" id="officers-title" data-rise data-knot="right">Our officers.</h2>
+          <p class="lead" data-rise style="margin-top:20px;max-width:40ch">They tutor, and they run the club: matching tutors, handling outreach, keeping the books.</p>
+          <div class="people">
+          <article class="person glass" id="daniel" data-rise>
+            <div class="person__photo"><img src="images/daniel_bio.png" width="600" height="600" alt="Daniel Chen" style="object-position:50% 30%" loading="lazy" decoding="async"></div>
+            <div class="person__body"><h3>Daniel Chen</h3><p class="role">President</p><p class="bio">Daniel is a violinist and varsity diver from Syosset. As a shortlisted writer for the John Locke Global Essay Competition, a classical violin student at the Manhattan School of Music Precollege Program, and a county-level diver, Daniel is passionate about academics, arts and sports.</p></div>
+          </article>
+          <article class="person glass" id="katherine" data-rise>
+            <div class="person__photo"><img src="images/katherine_bio.jpg" width="600" height="600" alt="Katherine Fei" style="object-position:50% 30%" loading="lazy" decoding="async"></div>
+            <div class="person__body"><h3>Katherine Fei</h3><p class="role">Vice President</p><p class="bio">Hi! My name is Katherine and I’m a senior from Syosset. I am very passionate about flute, art and business. Eternal Growth has been a long-term commitment for me and I’ve grown a lot throughout my years in it.</p></div>
+          </article>
+          <article class="person glass" id="jack" data-rise>
+            <div class="person__photo"><img src="images/jack_bio.png" width="600" height="600" alt="Jack Li" style="object-position:50% 30%" loading="lazy" decoding="async"></div>
+            <div class="person__body"><h3>Jack Li</h3><p class="role">Webmaster</p><p class="bio">Jack Li is a programmer and tutor from Jericho, NY. As an AIME qualifier and USACO Gold division competitor, Jack enjoys passing on his knowledge of math and programming to young students and developing their love of STEM. He maintains the website and helps bring technology into our learning programs.</p></div>
+          </article>
+          <article class="person glass" id="eliot" data-rise>
+            <div class="person__photo"><img src="images/eliot_portrait.jpg" width="600" height="600" alt="Eliot Bih" style="object-position:50% 25%" loading="lazy" decoding="async"></div>
+            <div class="person__body"><h3>Eliot Bih</h3><p class="role">Director of STEM</p><p class="bio">Hi! My name is Eliot and I’m a senior from Syosset. I’m very passionate about math, science and music!</p></div>
+          </article>
+          <article class="person glass" id="robert" data-rise>
+            <div class="person__photo"><div class="person__initials" role="img" aria-label="Robert Liu Meng"><b>RL</b></div></div>
+            <div class="person__body"><h3>Robert Liu Meng</h3><p class="role">Director of Humanities</p><p class="bio">Hi! I’m Robert. I joined Eternal Growth to give back to the same community that built my strengths. I chose humanities to show the people around me the beauty of finding observations qualitatively, not just quantitatively. I have taken AP Lang, am taking AP Lit, and am exploring philosophy, ideology and beyond.</p></div>
+          </article>
+          <article class="person glass" id="sue" data-rise>
+            <div class="person__photo"><img src="images/sue_bio.jpg" width="600" height="600" alt="Sue Nian" style="object-position:50% 52%" loading="lazy" decoding="async"></div>
+            <div class="person__body"><h3>Sue Nian</h3><p class="role">Director of Fine Arts</p><p class="bio">I’ve been playing piano for 13 years and creating art for 6, and both have become essential parts of who I am. I was invited to perform at the annual NYSSMA Piano Festival. I’m also deeply interested in biology and math, and I love exploring how creativity and logic connect in both fields.</p></div>
+          </article>
+          <article class="person glass" id="vincent" data-rise>
+            <div class="person__photo"><img src="images/vincent_bio.jpg" width="600" height="600" alt="Vincent Yang" style="object-position:50% 25%" loading="lazy" decoding="async"></div>
+            <div class="person__body"><h3>Vincent Yang</h3><p class="role">Director of Sports</p><p class="bio">As Director of Sports, I encourage students to work and play cooperatively and competitively to keep them active. I have been a classically trained pianist for over ten years and founded Golden Sound, a music group that performs at local senior homes. I tutor younger children, coaching them through skills and confidence.</p></div>
+          </article>
+          <article class="person glass" id="sam" data-rise>
+            <div class="person__photo"><img src="images/sam_bio.jpg" width="600" height="600" alt="Sam Moon" style="object-position:50% 55%" loading="lazy" decoding="async"></div>
+            <div class="person__body"><h3>Sam Moon</h3><p class="role">Secretary of Membership</p><p class="bio">Good morning, afternoon and evening! I’m Samuel Moon, a senior at Syosset High School, in charge of the logistics and personnel of our students, so please come to me with any questions. I teach anything from AMC tests, middle and high school math and the SAT to guitar and chess.</p></div>
+          </article>
+          <article class="person glass" id="isaac" data-rise>
+            <div class="person__photo"><img src="images/isaac_bio.webp" width="600" height="600" alt="Isaac Tsui" style="object-position:50% 30%" loading="lazy" decoding="async"></div>
+            <div class="person__body"><h3>Isaac Tsui</h3><p class="role">Secretary of Outreach</p><p class="bio">Hi! My name is Isaac Tsui and I am the secretary of outreach. I am a junior at Syosset High School, and the things that interest me include history, aviation and literature.</p></div>
+          </article>
+          <article class="person glass" id="austin" data-rise>
+            <div class="person__photo"><img src="images/austin_portrait.jpg" width="600" height="600" alt="Austin Ma" style="object-position:50% 30%" loading="lazy" decoding="async"></div>
+            <div class="person__body"><h3>Austin Ma</h3><p class="role">Treasurer</p><p class="bio">As Treasurer of Eternal Growth, I guide the selection of organizations that receive our donations, evaluating each to make sure our funds go to causes that have a direct and meaningful impact on our community.</p></div>
+          </article>
+          <article class="person glass" id="victor" data-rise>
+            <div class="person__photo"><img src="images/victor_bio.webp" width="600" height="600" alt="Victor Pan" style="object-position:50% 30%" loading="lazy" decoding="async"></div>
+            <div class="person__body"><h3>Victor Pan</h3><p class="role">Treasurer</p><p class="bio">Victor Pan is a junior at Syosset High School with a passion for swimming and technology. He is an AI enthusiast who designs and codes AI applications, combining creativity with technical skill to explore the future of intelligent software.</p></div>
+          </article>
+          </div>
         </div>
-        <article class="person" id="daniel" data-reveal style="--i:0">
-          <img class="person__photo" src="images/daniel_bio.png" width="600" height="600" alt="Daniel Chen" style="object-position:50% 30%">
-          <h3>Daniel Chen</h3>
-          <p class="role">President</p>
-          <p class="bio">Daniel is a violinist and varsity diver from Syosset. As a shortlisted writer for the John Locke Global Essay Competition, a classical violin student at the Manhattan School of Music Precollege Program, and a county-level diver, Daniel is passionate about academics, arts and sports.</p>
-        </article>
-        <article class="person" id="katherine" data-reveal style="--i:1">
-          <img class="person__photo" src="images/katherine_bio.jpg" width="600" height="600" alt="Katherine Fei" style="object-position:50% 35%">
-          <h3>Katherine Fei</h3>
-          <p class="role">Vice President</p>
-          <p class="bio">Hi! My name is Katherine and I’m a senior from Syosset. I am very passionate about flute, art and business. Eternal Growth has been a long-term commitment for me and I’ve grown a lot throughout my years in it.</p>
-        </article>
-        <article class="person" id="jack" data-reveal style="--i:0">
-          <img class="person__photo" src="images/jack_bio.png" width="600" height="600" alt="Jack Li" style="object-position:50% 30%">
-          <h3>Jack Li</h3>
-          <p class="role">Webmaster</p>
-          <p class="bio">Jack Li is a programmer and tutor from Jericho, NY. As an AIME qualifier and USACO Gold division competitor, Jack enjoys passing on his knowledge of math and programming to young students and developing their love of STEM. He maintains the website and helps bring technology into our learning programs.</p>
-        </article>
-        <article class="person" id="eliot" data-reveal style="--i:1">
-          <img class="person__photo" src="images/eliot_bio.png" width="600" height="600" alt="Eliot Bih" style="object-position:50% 30%">
-          <h3>Eliot Bih</h3>
-          <p class="role">Director of STEM</p>
-          <p class="bio">Hi! My name is Eliot and I’m a senior from Syosset. I’m very passionate about math, science and music!</p>
-        </article>
-        <article class="person" id="robert" data-reveal style="--i:0">
-          <div class="person__initials" role="img" aria-label="Robert Liu Meng"><span>RL</span></div>
-          <h3>Robert Liu Meng</h3>
-          <p class="role">Director of Humanities</p>
-          <p class="bio">Hi! I’m Robert. I joined Eternal Growth to give back to the same community that built my strengths. I chose humanities to show the people around me the beauty of finding observations qualitatively, not just quantitatively. I have taken AP Lang, am taking AP Lit, and am exploring philosophy, ideology and beyond.</p>
-        </article>
-        <article class="person" id="sue" data-reveal style="--i:1">
-          <img class="person__photo" src="images/sue_bio.jpg" width="600" height="600" alt="Sue Nian" style="object-position:50% 55%">
-          <h3>Sue Nian</h3>
-          <p class="role">Director of Fine Arts</p>
-          <p class="bio">I’ve been playing piano for 13 years and creating art for 6, and both have become essential parts of who I am. I was invited to perform at the annual NYSSMA Piano Festival. I’m also deeply interested in biology and math, and I love exploring how creativity and logic connect in both fields.</p>
-        </article>
-        <article class="person" id="vincent" data-reveal style="--i:0">
-          <img class="person__photo" src="images/vincent_bio.jpg" width="600" height="600" alt="Vincent Yang" style="object-position:50% 25%">
-          <h3>Vincent Yang</h3>
-          <p class="role">Director of Sports</p>
-          <p class="bio">As Director of Sports, I encourage students to work and play cooperatively and competitively to keep them active. I have been a classically trained pianist for over ten years and founded Golden Sound, a music group that performs at local senior homes. I tutor younger children, coaching them through skills and confidence.</p>
-        </article>
-        <article class="person" id="sam" data-reveal style="--i:1">
-          <img class="person__photo" src="images/sam_bio.jpg" width="600" height="600" alt="Sam Moon" style="object-position:50% 55%">
-          <h3>Sam Moon</h3>
-          <p class="role">Secretary of Membership</p>
-          <p class="bio">Good morning, afternoon and evening! I’m Samuel Moon, a senior at Syosset High School, in charge of the logistics and personnel of our students, so please come to me with any questions. I teach anything from AMC tests, middle and high school math and the SAT to guitar and chess.</p>
-        </article>
-        <article class="person" id="isaac" data-reveal style="--i:0">
-          <img class="person__photo" src="images/isaac_bio.webp" width="600" height="600" alt="Isaac Tsui" style="object-position:50% 35%">
-          <h3>Isaac Tsui</h3>
-          <p class="role">Secretary of Outreach</p>
-          <p class="bio">Hi! My name is Isaac Tsui and I am the secretary of outreach. I am a junior at Syosset High School, and the things that interest me include history, aviation and literature.</p>
-        </article>
-        <article class="person" id="austin" data-reveal style="--i:1">
-          <img class="person__photo" src="images/austin_bio.jpg" width="600" height="600" alt="Austin Ma" style="object-position:50% 45%">
-          <h3>Austin Ma</h3>
-          <p class="role">Treasurer</p>
-          <p class="bio">As Treasurer of Eternal Growth, I guide the selection of organizations that receive our donations, evaluating each to make sure our funds go to causes that have a direct and meaningful impact on our community.</p>
-        </article>
-        <article class="person" id="victor" data-reveal style="--i:0">
-          <img class="person__photo" src="images/victor_bio.webp" width="600" height="600" alt="Victor Pan" style="object-position:50% 35%">
-          <h3>Victor Pan</h3>
-          <p class="role">Treasurer</p>
-          <p class="bio">Victor Pan is a junior at Syosset High School with a passion for swimming and technology. He is an AI enthusiast who designs and codes AI applications, combining creativity with technical skill to explore the future of intelligent software.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="chapter chapter--mint wrap" id="founders" data-ink="#17200f" data-ground="#a8e6cf" aria-labelledby="founders-title">
-      <div class="grid founders">
-        <div class="team-head">
-          <h2 class="head" id="founders-title" data-reveal>Our founders</h2>
-          <p data-reveal style="--i:1">Seven students started Eternal Growth. Two of them, Daniel Chen and Jack Li, still run it as officers. Leo Dai and Michael Ren complete the founding seven.</p>
+      </section>
+      <section class="section" id="founders" aria-labelledby="founders-title">
+        <div class="wrap">
+          <h2 class="head" id="founders-title" data-rise data-knot="left">Our founders.</h2>
+          <p class="lead" data-rise style="margin-top:20px;max-width:46ch">Seven students planted Eternal Growth. Daniel Chen and Jack Li still run it as officers; Leo Dai and Michael Ren complete the founding seven.</p>
+          <div class="people">
+          <article class="person glass" id="gary" data-rise>
+            <div class="person__photo"><img src="images/gary_portrait.jpg" width="600" height="600" alt="Gary Han" style="object-position:50% 30%" loading="lazy" decoding="async"></div>
+            <div class="person__body"><h3>Gary Han</h3><p class="role">Founder</p><p class="bio">Gary Han is a researcher, violist and community leader from Syosset, NY. A 2025 Regeneron ISEF Grand Award winner and YoungArts National Winner in Classical Music, he has discovered new exocomets with deep learning, performed as principal violist at Juilliard Pre-College, and founded nonprofits bringing STEM and music education to underserved students.</p></div>
+          </article>
+          <article class="person glass" id="albert" data-rise>
+            <div class="person__photo"><img src="images/albert_bio.png" width="600" height="600" alt="Albert Zhang" style="object-position:50% 20%" loading="lazy" decoding="async"></div>
+            <div class="person__body"><h3>Albert Zhang</h3><p class="role">Founder</p><p class="bio">Albert is studying Business Administration at the Tepper School of Business at Carnegie Mellon University, class of 2029. At Syosset High School he was an active member of the DECA club.</p></div>
+          </article>
+          <article class="person glass" id="andrew" data-rise>
+            <div class="person__photo"><img src="images/andrew_bio.webp" width="600" height="600" alt="Andrew Liu" style="object-position:50% 35%" loading="lazy" decoding="async"></div>
+            <div class="person__body"><h3>Andrew Liu</h3><p class="role">Founder</p><p class="bio">Andrew is a freshman at RPI studying aerospace engineering, and likes anything to do with flying or driving. At Syosset High School he helped create Eternal Growth and tutored math, reading and an introduction to computer-aided design. He hopes to work on helicopters or supersonic commercial travel.</p></div>
+          </article>
+          </div>
         </div>
-        <article class="founder" id="gary" data-reveal style="--i:0">
-          <figure><img src="images/gary_bio.png" width="600" height="600" alt="Gary Han" style="object-position:50% 40%"></figure>
-          <h3>Gary Han</h3>
-          <p>Gary Han is a researcher, violist and community leader from Syosset, NY. A 2025 Regeneron ISEF Grand Award winner and YoungArts National Winner in Classical Music, he has discovered new exocomets with deep learning, performed as principal violist at Juilliard Pre-College, and founded nonprofits bringing STEM and music education to underserved students.</p>
-        </article>
-        <article class="founder" id="albert" data-reveal style="--i:1">
-          <figure><img src="images/albert_bio.png" width="600" height="600" alt="Albert Zhang" style="object-position:50% 22%"></figure>
-          <h3>Albert Zhang</h3>
-          <p>Albert is studying Business Administration at the Tepper School of Business at Carnegie Mellon University, class of 2029. At Syosset High School he was an active member of the DECA club.</p>
-        </article>
-        <article class="founder" id="andrew" data-reveal style="--i:2">
-          <figure><img src="images/andrew_bio.webp" width="600" height="600" alt="Andrew Liu" style="object-position:50% 40%"></figure>
-          <h3>Andrew Liu</h3>
-          <p>Andrew is a freshman at RPI studying aerospace engineering, and likes anything to do with flying or driving. At Syosset High School he helped create Eternal Growth and tutored math, reading and an introduction to computer-aided design. He hopes to work on helicopters or supersonic commercial travel.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="chapter chapter--forest wrap" id="join" data-ink="#f2f4ec" data-ground="#4a5d23" aria-labelledby="join-title">
-      <div class="grid">
-        <div class="split-text">
-          <h2 class="head" id="join-title" data-reveal>Tutor with us</h2>
-          <p class="lead" data-reveal style="--i:1">We are always looking for students who want to make learning easier to reach for the kids around them.</p>
-          <p data-reveal style="--i:2"><a class="button" href="mailto:info@eternalgrowth.org?subject=I%20want%20to%20tutor%20with%20Eternal%20Growth">Write to us <span class="arrow" aria-hidden="true">→</span></a></p>
+      </section>
+      <section class="section" id="join" aria-labelledby="join-title">
+        <div class="wrap">
+          <div class="join glass" data-rise>
+            <div>
+              <h2 class="head" id="join-title" data-knot="right">Tutor with us.</h2>
+              <p class="lead">We are always looking for high schoolers who want to make learning easier to reach for the kids around them.</p>
+              <a class="btn" href="mailto:info@eternalgrowth.org?subject=I%20want%20to%20tutor%20with%20Eternal%20Growth">Write to us <svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div>
+            <ul>
+              <li><strong>A love of teaching</strong><span>You like helping someone get it, and you notice when they do.</span></li>
+              <li><strong>Depth in a subject</strong><span>You know it well enough to explain it three different ways.</span></li>
+              <li><strong>A growth mindset</strong><span>You believe every student can improve with the right support.</span></li>
+            </ul>
+          </div>
         </div>
-        <ul class="join-list split-media">
-          <li data-reveal><strong>A love of teaching.</strong> You like helping someone get it, and you notice when they do.</li>
-          <li data-reveal style="--i:1"><strong>Depth in a subject.</strong> You know it well enough to explain it three different ways.</li>
-          <li data-reveal style="--i:2"><strong>A growth mindset.</strong> You believe every student can improve with the right support.</li>
-        </ul>
-      </div>
-    </section>
+      </section>
+    </div>
   </main>
 
-  <footer class="site-footer" data-ink="#f2f4ec" data-ground="#17200f">
-    <div class="grid footer-top">
-      <div class="footer-invite">
-        <h2>Learning never stops.</h2>
-        <a class="button" href="index.html#contact">Request a tutor <span class="arrow" aria-hidden="true">→</span></a>
+  <footer class="footer">
+    <div class="footer__glow" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="footer__top">
+        <h2 class="head" data-rise>Learning never stops.</h2>
+        <a class="btn" href="index.html#request" data-rise>Request a tutor <svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
-      <ul class="footer-links">
+      <ul class="footer__links">
         <li><a href="subjects.html">Subjects</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="team.html">Team</a></li>
         <li><a href="mailto:info@eternalgrowth.org">info@eternalgrowth.org</a></li>
         <li><a href="tel:+13478786615">(347) 878-6615</a></li>
       </ul>
+      <p class="wordmark" aria-hidden="true">Eternal Growth</p>
+      <div class="footer__legal">
+        <p>© 2026 Eternal Growth, Inc. A student-run nonprofit on Long Island, New York.</p>
+        <p>Animated backgrounds by <a href="https://www.vantajs.com">Vanta.js</a>.</p>
+      </div>
     </div>
-    <div class="footer-legal">
-      <p>Pictures: <a href="https://commons.wikimedia.org/wiki/File:Syosset,_New_York,_USA.jpg">“Syosset, New York, USA”</a> by Quintin Soloviev, <a href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0</a>; seedling time-lapse from <a href="https://commons.wikimedia.org/wiki/File:Daily-Changes-in-Temperature-Not-the-Circadian-Clock-Regulate-Growth-Rate-in-Brachypodium-distachyon-pone.0100072.s018.ogv">Matos, Cole, Whitney, MacKinnon, Kay and Hazen</a>, <a href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Map_of_Long_Island_showing_the_Long_Island_Railroad_and_its_leased_lines._LOC_98688698.jpg">Map of Long Island</a> (1882, Library of Congress) and <a href="https://commons.wikimedia.org/wiki/File:1900_U.S.G.S._Map_of_Oyster_Bay,_Long_Island,_New_York_-_Geographicus_-_OysterBay-uscs-1925.jpg">Oyster Bay quadrangle</a> (USGS, 1900), public domain; all via Wikimedia Commons.</p>
-      <p>© 2026 Eternal Growth, Inc.</p>
-    </div>
-    <p class="footer-name" aria-hidden="true" data-reveal>Eternal Growth</p>
   </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>
