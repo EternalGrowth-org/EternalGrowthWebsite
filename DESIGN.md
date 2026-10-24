@@ -1,6 +1,6 @@
 # Design
 
-A gallery in daylight: white walls, soft grey haze drifting behind black type, and words that move like a curated exhibition. Everything below is the built system in `style.css` and `script.js`.
+A gallery in daylight, in the rain: off-white walls, grey haze and soft blurred rain behind compact black type, with a faint thorn ring behind each hero. Everything below is the built system in `style.css` and `script.js`.
 
 ## Colour
 | Token | Value | Job |
@@ -12,7 +12,7 @@ A gallery in daylight: white walls, soft grey haze drifting behind black type, a
 | `--line`, `--line-2` | ink at 10% and 20% | Dividers and panel rims |
 
 ## Type
-Host Grotesk (Google Fonts, 200–700), one family.
+Archivo (Google Fonts, width 62–125, weight 400–800), one family. Headings at 600 weight and 88% width; SplitText masks carry extra padding so nothing clips.
 - Display 54–176px at weight 300, tracking −0.055em, line height 0.94.
 - Headings 37–84px at weight 300, tracking −0.045em.
 - Lead 19–26px, body 16–18px, micro labels 12px uppercase at 0.14em tracking.
@@ -45,3 +45,12 @@ Host Grotesk (Google Fonts, 200–700), one family.
 
 ## Background
 Vanta FOG 0.5.24 (three.js r134, in `vendor/`) in greys on the fixed `.atmos` layer, with three blurred grey orbs and a faint noise texture as the fallback.
+
+## Added in the rain pass
+- **Liquid-glass nav:** a backdrop blur plus an SVG displacement filter (`#liquid`) for refraction where supported, with a pointer-following highlight.
+- **Rain:** a canvas of thin grey drops at three depths, slightly blurred; wind follows the cursor.
+- **Thorn ring:** an original SVG of two interwoven vines with straight thorns, blurred, drawn in with DrawSVG and slowly rotating.
+- **Hero orbit:** seven subject icons travel an ellipse with MotionPath.
+- **Impact:** a black band of counters, a DrawSVG giving ring (the black arc is the ~10% to Swim Across America), and pinned "chapters" where one shape morphs (MorphSVG) while the word scrambles.
+- **Cards:** a cursor spotlight and a gradient rim follow the pointer. Buttons are magnetic, with a glint under the cursor.
+- **Footer:** a dark rounded close with a morphing mark; the large wordmark is gone.

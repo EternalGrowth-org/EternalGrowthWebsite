@@ -1,6 +1,6 @@
 # Eternal Growth website
 
-Static site for Eternal Growth, a Long Island nonprofit tutoring organization run by high school students. Light, minimal "gallery in daylight" design (Host Grotesk, black type on white with a drifting grey fog) and GSAP 3.13 motion throughout. Live at https://eternalgrowth.org.
+Static site for Eternal Growth, a Long Island nonprofit tutoring organization run by high school students. Light, minimal design: compact Archivo type in black on off-white, with a drifting grey fog, soft canvas rain and a blurred thorn ring, plus GSAP 3.13 motion throughout. Live at https://eternalgrowth.org.
 
 ## Stack and hosting
 - Plain HTML, CSS and JavaScript. No build step, no framework, no package manager.
@@ -9,7 +9,7 @@ Static site for Eternal Growth, a Long Island nonprofit tutoring organization ru
 - Domain registered at Squarespace; DNS points to GitHub Pages. Email runs on Google Workspace, so never touch MX, SPF, DKIM or the googlehosted records.
 
 ## Files
-- `index.html`, `subjects.html`, `about.html`, `team.html` — the four pages. The header (nav, shutter overlay, cursor, fog layer) and footer are identical on every page; change them in all four. Page content sits inside `#smooth-wrapper > #smooth-content` for ScrollSmoother; fixed elements stay outside it.
+- `index.html`, `subjects.html`, `impact.html`, `about.html`, `team.html` — the five pages. The header (nav, shutter overlay, cursor, fog layer) and footer are identical on every page; change them in all five. Page content sits inside `#smooth-wrapper > #smooth-content` for ScrollSmoother; fixed elements stay outside it.
 - `style.css` — all styles. Tokens on `:root` (colours `--ground`, `--ink`, greys, `--line`, type steps). See `DESIGN.md` for the system.
 - `script.js` — ScrollSmoother, SplitText and ScrambleText text effects, MorphSVG marks, DrawSVG line art, the MotionPath process dot, the pinned subject slider, shutter page transitions, cursor, nav, plate tilt, footer clock, FAQ, the Vanta fog, the hero finder and the request form (Formspree, sent in the background, shows matching tutors).
 - `vendor/` — Vanta 0.5.24 (`vanta.fog`) and three.js r134, served locally. GSAP 3.13.0 and its plugins (ScrollTrigger, ScrollSmoother, SplitText, DrawSVG, MorphSVG, MotionPath, ScrambleText) load from jsDelivr.
@@ -18,6 +18,7 @@ Static site for Eternal Growth, a Long Island nonprofit tutoring organization ru
 - Contact form posts to Formspree (`https://formspree.io/f/xqagapza`). Field names (`parentName`, `studentName`, `email`, `subject`, `grade`, `message`) are what Formspree receives; don't rename them.
 
 ## Updating content
+- Impact figures (more than $35,000 raised, about $3,500 to Swim Across America, subsidized tutoring) appear on the home page band, `impact.html` and the FAQ answer about money. Update all three together.
 - Tutors per subject live in three places: the home page slider, `subjects.html`, and `BY_SUBJECT` in `script.js`. Keep them in step.
 - Animations are set in the markup:
   - `data-anim="chars|lines|blur|flip|fill|scramble"` for text;
