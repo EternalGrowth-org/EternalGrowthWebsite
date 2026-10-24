@@ -48,16 +48,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     
 
-    // Interactive shapes - add click effects
-    document.querySelectorAll('.shape, .shape-large, .shape-medium, .shape-small').forEach(shape => {
-        shape.addEventListener('click', function() {
-            this.style.transform += ' scale(1.2)';
-            setTimeout(() => {
-                this.style.transform = this.style.transform.replace(' scale(1.2)', '');
-            }, 300);
-        });
-    });
-
     // Fun facts rotation
     const facts = document.querySelectorAll('.fact');
     facts.forEach((fact, index) => {
@@ -82,29 +72,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 ripple.remove();
             }, 600);
         });
-    });
-
-    // Parallax effect for hero shapes (subtle)
-    let ticking = false;
-    
-    function updateShapes() {
-        const scrolled = window.pageYOffset;
-        const rate = scrolled * -0.5;
-        const shapes = document.querySelectorAll('.geometric-shapes .shape');
-        
-        shapes.forEach((shape, index) => {
-            const speed = (index + 1) * 0.3;
-            shape.style.transform += ` translateY(${rate * speed}px)`;
-        });
-        
-        ticking = false;
-    }
-
-    window.addEventListener('scroll', function() {
-        if (!ticking) {
-            requestAnimationFrame(updateShapes);
-            ticking = true;
-        }
     });
 
     // Enhanced Intersection Observer for scroll-triggered animations
@@ -142,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, observerOptions);
 
     // Observe elements for animation
-    document.querySelectorAll('.animate-on-scroll, .stat, .method, .subject-card, .fact, .highlight-item').forEach(el => {
+    document.querySelectorAll('.animate-on-scroll, .method, .subject-card, .fact, .highlight-item').forEach(el => {
         observer.observe(el);
     });
 
