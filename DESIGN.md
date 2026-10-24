@@ -5,17 +5,17 @@ A gallery in daylight, in the rain: off-white walls, grey haze and soft blurred 
 ## Colour
 | Token | Value | Job |
 |---|---|---|
-| `--ground` | #f4f4f2 | Page ground (painted by the fixed `.atmos` layer; `body` is transparent so the haze shows) |
+| `--ground` | #f2f2ef | Page ground (painted by the fixed `.atmos` layer; `body` is transparent so the haze shows) |
 | `--white`, `--panel` | #ffffff, white at 72% | The form, slides, plates, principle and way panels |
 | `--ink` | #0b0b0b | Type, buttons, the morphing mark, the process dot |
-| `--gray-1`, `--gray-2`, `--gray-3` | #4f4f4b, #6f6f6a, #b9b9b4 | Body copy, labels, the unread state of the manifesto |
+| `--gray-1`, `--gray-2`, `--gray-3` | #4c4c48, #6b6b66, #b4b4ae | Body copy, labels, the unread state of the manifesto |
 | `--line`, `--line-2` | ink at 10% and 20% | Dividers and panel rims |
 
 ## Type
 Archivo (Google Fonts, width 62–125, weight 400–800), one family. Headings at 600 weight and 88% width; SplitText masks carry extra padding so nothing clips.
-- Display 54–176px at weight 300, tracking −0.055em, line height 0.94.
-- Headings 37–84px at weight 300, tracking −0.045em.
-- Lead 19–26px, body 16–18px, micro labels 12px uppercase at 0.14em tracking.
+- Display 46–122px at weight 600, 88% width, tracking −0.035em, line height 1.02.
+- Headings 32–64px at weight 600, 88% width, tracking −0.03em.
+- Lead 18–22px, body 16–18px, micro labels 12px uppercase at 0.12em tracking.
 
 ## Surfaces and controls
 - Panels: white at 72% with a blur, a 1px rim at 10% ink, 20px radius. They lift 6px on hover.
