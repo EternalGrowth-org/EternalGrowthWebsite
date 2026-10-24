@@ -1,6 +1,6 @@
 # Eternal Growth website
 
-Static site for Eternal Growth, a Long Island nonprofit tutoring organization run by high school students. Light, minimal design: compact Archivo type in black on off-white, with a drifting grey fog, soft canvas rain and a blurred thorn ring, plus GSAP 3.13 motion throughout. Live at https://eternalgrowth.org.
+Static site for Eternal Growth, a Long Island nonprofit tutoring organization run by high school students. Light, minimal design: compact Archivo type in black on off-white, with a slow grey fog and GSAP 3.13 motion throughout. Live at https://eternalgrowth.org.
 
 ## Stack and hosting
 - Plain HTML, CSS and JavaScript. No build step, no framework, no package manager.

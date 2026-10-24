@@ -38,40 +38,7 @@
     } catch (e) { fog = null; }
   }
   addEventListener('pagehide', () => { if (fog) { fog.destroy(); fog = null; } });
-  if (motion) G.utils.toArray('.atmos__orb').forEach((orb, i) => G.to(orb, { x: () => G.utils.random(-120, 120), y: () => G.utils.random(-90, 90), scale: () => G.utils.random(0.85, 1.2), duration: G.utils.random(9, 14), ease: 'sine.inOut', repeat: -1, yoyo: true, repeatRefresh: true, delay: i }));
-
-  /* ---------------------------------------------------------------- soft rain */
-  const rain = document.querySelector('.rain');
-  if (rain && motion) {
-    const ctx = rain.getContext('2d');
-    let W = 0, H = 0, dpr = Math.min(devicePixelRatio || 1, 2), drops = [], wind = 0, windTo = 0, running = true;
-    const make = (y) => {
-      const z = Math.random();
-      return { x: Math.random() * (W + 200) - 100, y: y ?? Math.random() * H, z, len: 14 + z * 46, speed: 5 + z * 13, w: 0.5 + z * 1.4, a: 0.06 + z * 0.18 };
-    };
-    const size = () => {
-      W = innerWidth; H = innerHeight;
-      rain.width = W * dpr; rain.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      const n = Math.round(Math.min(160, (W * H) / 9000));
-      drops = Array.from({ length: n }, () => make());
-    };
-    size(); addEventListener('resize', size);
-    addEventListener('pointermove', (e) => { windTo = (e.clientX / innerWidth - 0.5) * 2.4; }, { passive: true });
-    document.addEventListener('visibilitychange', () => { running = !document.hidden; });
-    G.ticker.add(() => {
-      if (!running) return;
-      wind += (windTo - wind) * 0.03;
-      ctx.clearRect(0, 0, W, H);
-      ctx.lineCap = 'round';
-      for (const d of drops) {
-        d.y += d.speed; d.x += wind * (0.6 + d.z);
-        if (d.y - d.len > H) Object.assign(d, make(-d.len));
-        ctx.strokeStyle = `rgba(70, 70, 66, ${d.a})`;
-        ctx.lineWidth = d.w;
-        ctx.beginPath(); ctx.moveTo(d.x, d.y); ctx.lineTo(d.x - wind * d.len * 0.08, d.y - d.len); ctx.stroke();
-      }
-    });
-  }
+  if (fog) atmos.classList.add('has-fog');
 
   /* ---------------------------------------------------------------- page transition */
   const shutter = document.querySelector('.shutter');
@@ -149,11 +116,9 @@
       const n = e.target.closest && e.target.closest('.nav');
       if (n) n.style.setProperty('--nx', e.clientX - n.getBoundingClientRect().left + 'px');
     }, { passive: true });
-    const orbs = G.utils.toArray('.atmos__orb').map((o, i) => ({ x: G.quickTo(o, 'xPercent', { duration: 2.4, ease: 'power3' }), y: G.quickTo(o, 'yPercent', { duration: 2.4, ease: 'power3' }), d: (i + 1) * 6 }));
     const depth = G.utils.toArray('[data-depth]').map((el) => ({ x: G.quickTo(el, 'x', { duration: 1.4, ease: 'power3' }), y: G.quickTo(el, 'y', { duration: 1.4, ease: 'power3' }), d: parseFloat(el.dataset.depth) }));
     addEventListener('pointermove', (e) => {
       const nx = e.clientX / innerWidth - 0.5, ny = e.clientY / innerHeight - 0.5;
-      orbs.forEach((o) => { o.x(nx * o.d); o.y(ny * o.d); });
       depth.forEach((l) => { l.x(nx * l.d * 100); l.y(ny * l.d * 100); });
     }, { passive: true });
   }
@@ -216,24 +181,62 @@
     });
   }
 
-  /* ---------------------------------------------------------------- hero: thorns draw, icons orbit */
+  /* ---------------------------------------------------------------- hero: one choreographed entrance, then it recedes */
   function hero() {
+    const h = document.querySelector('.hero');
+    if (!h || !motion) return;
+    const inner = h.querySelector('.hero__inner');
+    const late = root.classList.contains('is-arriving') ? 0.8 : 0;
+    G.from(atmos, { opacity: 0, duration: 1.6, ease: 'power2.out', delay: late });
+    G.fromTo(h.querySelectorAll('.finder, .chips, .hero__inner > .btn, .jump'), { y: 28, opacity: 0 }, { y: 0, opacity: 1, duration: 1.1, ease: 'expo.out', stagger: 0.08, delay: late + 0.9 });
+    // as you scroll away the hero recedes: smaller, softer, lighter
+    G.to(inner, { scale: 0.9, opacity: 0, filter: 'blur(8px)', yPercent: -8, ease: 'none', scrollTrigger: { trigger: h, start: 'top top', end: 'bottom 20%', scrub: true } });
+  }
+
+  /* ---------------------------------------------------------------- scroll velocity gives headings and cards a slight lean */
+  function lean() {
     if (!motion) return;
-    const thorns = document.querySelector('.hero__thorns');
-    if (thorns && has('DrawSVGPlugin')) {
-      G.fromTo(thorns.querySelectorAll('path'), { drawSVG: '0%' }, { drawSVG: '100%', duration: 3.2, ease: 'power2.inOut', stagger: 0.12, delay: 0.3 });
-      G.to(thorns, { rotate: 360, duration: 160, ease: 'none', repeat: -1 });
-      G.to(thorns, { scale: 1.15, opacity: 0.25, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
-    }
-    const chips = G.utils.toArray('.orb-chip');
-    if (chips.length && has('MotionPathPlugin')) {
-      chips.forEach((c, i) => {
-        G.set(c, { opacity: 0, scale: 0.6 });
-        G.to(c, { opacity: 1, scale: 1, duration: 0.8, ease: 'back.out(2)', delay: 0.8 + i * 0.08 });
-        G.to(c, { motionPath: { path: '#orbit-path', align: '#orbit-path', alignOrigin: [0.5, 0.5], start: i / chips.length, end: i / chips.length + 1 }, duration: 48, ease: 'none', repeat: -1 });
+    const targets = G.utils.toArray('.shead .head, .slider__track, .cards, .plates');
+    if (!targets.length) return;
+    const setters = targets.map((t) => G.quickTo(t, 'skewY', { duration: 0.6, ease: 'power3' }));
+    let reset;
+    ST.create({ start: 0, end: 'max', onUpdate: (self) => {
+      const v = G.utils.clamp(-3, 3, self.getVelocity() / -400);
+      setters.forEach((fn) => fn(v));
+      clearTimeout(reset); reset = setTimeout(() => setters.forEach((fn) => fn(0)), 120);
+    } });
+  }
+
+  /* ---------------------------------------------------------------- graphics open through a mask */
+  function clips() {
+    if (!motion) return;
+    G.utils.toArray('[data-clip]').forEach((el) => {
+      G.fromTo(el, { clipPath: 'inset(18% 18% 18% 18% round 28px)', scale: 0.94 }, { clipPath: 'inset(0% 0% 0% 0% round 22px)', scale: 1, duration: 1.4, ease: 'expo.inOut', scrollTrigger: { trigger: el, start: 'top 88%' } });
+    });
+  }
+
+  /* ---------------------------------------------------------------- impact cards stack as you scroll (desktop) */
+  function stack() {
+    const box = document.querySelector('[data-stack]');
+    if (!box || !motion) return;
+    G.matchMedia().add('(min-width: 861px)', () => {
+      const cards = G.utils.toArray(box.querySelectorAll('.stat'));
+      G.set(cards, { opacity: 1, y: 0 });
+      G.set(cards.slice(1), { yPercent: 115 });
+      const tl = G.timeline({ scrollTrigger: { trigger: box.closest('.band'), start: 'top top', end: () => '+=' + innerHeight * 1.6, pin: true, scrub: 0.8 } });
+      cards.slice(1).forEach((c, i) => {
+        tl.to(c, { yPercent: 0, ease: 'none' }, i)
+          .to(cards[i], { scale: 0.92, opacity: 0.45, filter: 'blur(2px)', ease: 'none' }, i);
       });
-    }
-    G.to('.hero__inner', { yPercent: -14, opacity: 0.3, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+    });
+  }
+
+  /* ---------------------------------------------------------------- the footer rises into place */
+  function footerReveal() {
+    const f = document.querySelector('.footer');
+    if (!f || !motion) return;
+    G.from(f.querySelector('.wrap'), { yPercent: 18, opacity: 0.2, ease: 'none', scrollTrigger: { trigger: f, start: 'top bottom', end: 'top 40%', scrub: true } });
+    G.from(f, { borderRadius: '80px', scale: 0.96, ease: 'none', scrollTrigger: { trigger: f, start: 'top bottom', end: 'top 50%', scrub: true } });
   }
 
   /* ---------------------------------------------------------------- text animations (SplitText) */
@@ -263,7 +266,7 @@
         G.from(el, { duration: 1.4, scrambleText: { text: '', chars: 'upperCase', speed: 0.5 }, delay: delay + 0.4, scrollTrigger: inHero ? undefined : enter(el, 'top 94%') });
       }
     });
-    ST.batch(G.utils.toArray('[data-rise]'), { start: 'top 90%', once: true, onEnter: (b) => G.to(b, { opacity: 1, y: 0, duration: 1.1, ease: 'expo.out', stagger: 0.09 }) });
+    ST.batch(G.utils.toArray('[data-rise]').filter((el) => !el.closest('.hero')), { start: 'top 90%', once: true, onEnter: (b) => G.to(b, { opacity: 1, y: 0, duration: 1.1, ease: 'expo.out', stagger: 0.09 }) });
   }
 
   /* ---------------------------------------------------------------- SVG drawings, counters, ring, ticker */
@@ -515,12 +518,14 @@
   /* ---------------------------------------------------------------- go */
   const ready = () => {
     arrive();
-    morphLoop(document.querySelector('.hero__mark path'), document.querySelector('[data-mark-label]'));
-    morphLoop(document.querySelector('.footer__mark path'), null, 0.7);
     hero();
     textAnimations();
     graphics();
     chapters();
+    stack();
+    clips();
+    lean();
+    footerReveal();
     slider();
     processPath();
     people();

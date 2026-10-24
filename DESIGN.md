@@ -1,6 +1,6 @@
 # Design
 
-A gallery in daylight, in the rain: off-white walls, grey haze and soft blurred rain behind compact black type, with a faint thorn ring behind each hero. Everything below is the built system in `style.css` and `script.js`.
+A gallery in daylight: off-white walls and one slow grey fog behind compact black type. Nothing floats for its own sake; every move is tied to the scroll or to a click. Everything below is the built system in `style.css` and `script.js`.
 
 ## Colour
 | Token | Value | Job |
@@ -46,11 +46,12 @@ Archivo (Google Fonts, width 62–125, weight 400–800), one family. Headings a
 ## Background
 Vanta FOG 0.5.24 (three.js r134, in `vendor/`) in greys on the fixed `.atmos` layer, with three blurred grey orbs and a faint noise texture as the fallback.
 
-## Added in the rain pass
-- **Liquid-glass nav:** a backdrop blur plus an SVG displacement filter (`#liquid`) for refraction where supported, with a pointer-following highlight.
-- **Rain:** a canvas of thin grey drops at three depths, slightly blurred; wind follows the cursor.
-- **Thorn ring:** an original SVG of two interwoven vines with straight thorns, blurred, drawn in with DrawSVG and slowly rotating.
-- **Hero orbit:** seven subject icons travel an ellipse with MotionPath.
-- **Impact:** a black band of counters, a DrawSVG giving ring (the black arc is the ~10% to Swim Across America), and pinned "chapters" where one shape morphs (MorphSVG) while the word scrambles.
-- **Cards:** a cursor spotlight and a gradient rim follow the pointer. Buttons are magnetic, with a glint under the cursor.
-- **Footer:** a dark rounded close with a morphing mark; the large wordmark is gone.
+## Motion added in the restraint pass
+- **Hero:** one entrance (fog fades up, letters rise through masks, the finder and chips follow), then the hero recedes on scroll, scaling to 90% and blurring away.
+- **Stacked impact cards (desktop):** the band pins and each figure slides up over the last, which shrinks, dims and softens.
+- **Lean:** section headings, the subject track, card rows and plates skew up to 3° with scroll speed and settle when scrolling stops.
+- **Mask reveals:** subject drawings, slide art and the giving ring open from an inset rounded clip.
+- **Footer:** rises and squares off its corners as it comes into view.
+- **Liquid-glass nav:** blur plus SVG displacement (`#liquid`), with a pointer-following highlight. Buttons are magnetic; cards have a cursor spotlight.
+- **Kept:** pinned shape-to-word chapters (MorphSVG and ScrambleText), the giving ring (DrawSVG), counters, the pinned subject slider, SplitText headings and the shutter page transitions.
+- **Removed:** rain, grain, the thorn ring, orbiting icons, drifting orbs and the floating morph marks in the hero and footer.
