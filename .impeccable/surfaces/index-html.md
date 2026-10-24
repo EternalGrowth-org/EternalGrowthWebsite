@@ -11,16 +11,16 @@ Proof on hand: real officer and founder names, roles and bios; the subject list 
 
 ## Direction contract
 
-THESIS: A silversmith's catalogue for a student tutoring club: every section is a framed plate in a black vitrine, engraved, hairline-bordered and lit like jewellery. Growth is shown as geometry, a tree drawn in straight lines. Refuses the default hero, three icon cards and testimonial stack, and refuses scribbled organic motion.
+THESIS: A gallery in daylight: white walls, soft grey haze drifting behind black type, and words that move like a curated exhibition. Every idea arrives as text in motion. Refuses the default hero, icon cards and testimonial stack, and refuses ornament (no trees, no hairline engravings).
 
-OWN-WORLD: Black ground #070707, bone #eeece6 type, chrome silver #a9a8a3 for secondary marks, hairlines at 16% bone, one muted sap green #a7dcb8 used only for live states. Cinzel engraved capitals for display, Geist for reading, tracked uppercase micro-labels for navigation. Frames with corner ticks; no rounded corners.
+OWN-WORLD: Off-white ground #f4f4f2 under a fixed, slowly drifting grey fog (Vanta FOG in greys). Ink #0b0b0b, greys #5d5d59 and #8b8b86, hairlines at 10% ink. Host Grotesk only: light 300 at display size with tight tracking, regular for reading. White panels with a 20px radius and a whisper border; black pill buttons with a rolling label.
 
-STORY: Visitors meet the idea (students just ahead teach), browse the seven subjects on a slider, see the four steps, meet the officers as engraved plates, and send the request.
+STORY: Visitors meet the idea in one sentence, watch it fill word by word, browse the seven subjects on a pinned slider, follow a dot along the four-step path, meet the officers as monogram plates, read the questions, and send the request.
 
-FIRST VIEWPORT: Inset hairline frame around the viewport with corner ticks. Vanta NET in silver behind, a geometric straight-line tree drawing itself, the wordmark "ETERNAL GROWTH" in Cinzel rising letter by letter, a one-line description, and a framed subject finder with the primary action. Layers shift with the cursor.
+FIRST VIEWPORT: Grey fog on white. "Eternal Growth" set huge in light weight, characters rising through a mask; beside it a black mark that morphs between the seven subject shapes. One line of description, a pill finder with the primary action, a scrambled meta line.
 
-FORM: a user-pinned direction (luxury monochrome in the spirit of chromehearts.com, crisp borders, GSAP everything, straight-line animation, word animations, layered parallax, cursor tracking) beats the roll. seed: none (unavailable)
+FORM: a user-pinned direction (white with grey blur, black modern sans, luxury minimal, GSAP ScrollSmoother, SplitText, DrawSVG, MorphSVG, MotionPath, ScrambleText) beats the roll. seed: none (unavailable)
 
-Signature interaction: shutter page transitions (vertical bars close and open around the emblem), the pinned horizontal subject slider, and the manifesto lighting word by word.
+Signature interaction: the morphing subject mark, the manifesto filling word by word, the pinned subject slider, the dot travelling the process path, and shutter page transitions.
 
 FINISH: unreviewed and undocumented is unfinished; run the detector, review the renders at 1440 and 390, and update DESIGN.md from the built world.

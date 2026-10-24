@@ -15,6 +15,6 @@ python -m http.server
 Then open http://localhost:8000.
 
 ## Credits
-Animated background by [Vanta.js](https://www.vantajs.com) (MIT) with three.js. Motion by [GSAP](https://gsap.com). Typefaces: Cinzel and Geist.
+Animated background by [Vanta.js](https://www.vantajs.com) (MIT) with three.js. Motion by [GSAP](https://gsap.com) 3.13 and its plugins. Typeface: Host Grotesk.
 
 See `CLAUDE.md` for how the site is built and how to change it.
