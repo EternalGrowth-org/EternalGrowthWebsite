@@ -1,14 +1,18 @@
 # Eternal Growth
 
-> A student-run tutoring nonprofit on Long Island, New York. High school students, mostly from Syosset and Jericho, tutor elementary, middle and high school students one-on-one, in small groups and online. The club has raised more than $35,000, given about $3,500 to Swim Across America for cancer research, and subsidizes tutoring.
+> A student-run tutoring nonprofit on Long Island, New York. High school students, mostly from Syosset and Jericho, tutor elementary, middle and high school students one-on-one, in small groups and online. Eternal Growth has raised more than $35,000, given more than $3,500 to Swim Across America for cancer research, and subsidizes tutoring.
 
 ## Pages
 
-- [Home](https://eternalgrowth.org/): what the club does and how to request a tutor
+- [Home](https://eternalgrowth.org/): what Eternal Growth does and how to request a tutor
 - [Subjects](https://eternalgrowth.org/subjects): every subject, its topics and its tutors
-- [Impact](https://eternalgrowth.org/impact): money raised and where it went
-- [About](https://eternalgrowth.org/about): why the club started, values and questions
-- [Team](https://eternalgrowth.org/team): officers and founders
+- [Impact](https://eternalgrowth.org/impact): money raised, where it went, and projects such as the $10,000 Swim Across America drive
+- [About](https://eternalgrowth.org/about): why Eternal Growth started, values and questions
+- [Team](https://eternalgrowth.org/team): officers, founders and alumni
+
+## Projects
+
+- The Swim Across America drive: led by Victor Pan with Katherine Fei and Sue Nian, it raised $10,000 in three months, more than $3,500 of it for cancer research.
 
 ## Subjects
 

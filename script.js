@@ -69,7 +69,7 @@
     const clean = (path) => path.replace(/\.html$/, '').replace(/\/index$/, '/');
     const samePage = clean(url.pathname) === clean(location.pathname);
     if (samePage && url.search === location.search) {
-      if (url.hash) { e.preventDefault(); closeMenu(); scrollToEl(document.querySelector(url.hash)); }
+      if (url.hash) { e.preventDefault(); closeMenu(); const el = document.querySelector(url.hash); if (el && openTabFor) openTabFor(el); scrollToEl(el); }
       return;
     }
     if (/\.[a-z0-9]+$/i.test(url.pathname) && !/\.html$/.test(url.pathname)) return; // files such as PDFs open normally
@@ -131,6 +131,61 @@
     });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
   }
+  /* ---------------------------------------------------------------- team tabs */
+  var openTabFor = null;
+  const tabsRoot = document.querySelector('[data-tabs]');
+  if (tabsRoot) {
+    const tabs = [...tabsRoot.querySelectorAll('[role="tab"]')];
+    const panels = tabs.map((t) => document.getElementById(t.getAttribute('aria-controls')));
+    const pill = tabsRoot.querySelector('.tabs__pill');
+    let current = 0;
+    const place = (animate) => {
+      const t = tabs[current];
+      const to = { x: t.offsetLeft, width: t.offsetWidth };
+      if (G && animate && motion) G.to(pill, { ...to, duration: 0.7, ease: 'expo.out', overwrite: true });
+      else if (G) G.set(pill, to);
+      else { pill.style.transform = 'translateX(' + to.x + 'px)'; pill.style.width = to.width + 'px'; }
+    };
+    const select = (i, { focus = false, animate = true } = {}) => {
+      if (i === current && animate) return;
+      const prev = panels[current], next = panels[i];
+      current = i;
+      tabs.forEach((t, j) => { t.setAttribute('aria-selected', String(j === i)); t.tabIndex = j === i ? 0 : -1; });
+      if (focus) tabs[i].focus();
+      place(animate);
+      const show = () => {
+        panels.forEach((p) => { p.hidden = p !== next; });
+        if (G && motion && animate) {
+          G.fromTo(next.querySelectorAll('.tabs__head, .person, .alum'), { y: 32, opacity: 0, rotationX: -8, transformPerspective: 900 },
+            { y: 0, opacity: 1, rotationX: 0, duration: 0.9, ease: 'expo.out', stagger: 0.06, clearProps: 'transform' });
+        }
+        if (ST) ST.refresh();
+      };
+      if (G && motion && animate && prev !== next) {
+        G.killTweensOf(prev.querySelectorAll('.tabs__head, .person, .alum'));
+        G.to(prev, { opacity: 0, y: -10, duration: 0.22, ease: 'power2.in', onComplete: () => { G.set(prev, { clearProps: 'opacity,transform' }); show(); } });
+      } else show();
+    };
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => select(i));
+      t.addEventListener('keydown', (e) => {
+        const k = { ArrowRight: 1, ArrowLeft: -1, Home: -99, End: 99 }[e.key];
+        if (k === undefined) return;
+        e.preventDefault();
+        const n = k === -99 ? 0 : k === 99 ? tabs.length - 1 : (current + k + tabs.length) % tabs.length;
+        select(n, { focus: true });
+      });
+    });
+    openTabFor = (el) => { const i = panels.findIndex((p) => p === el || p.contains(el)); if (i > -1) select(i); };
+    // start on the tab that holds the #hash, if any
+    const target = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    const start = Math.max(0, panels.findIndex((p) => target && (p === target || p.contains(target))));
+    current = start;
+    select(start, { animate: false });
+    addEventListener('resize', () => place(false));
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => place(false));
+  }
+
   const here = location.pathname.split('/').pop().replace(/\.html$/, '') || './';
   document.querySelectorAll('.nav__links a').forEach((a) => { if (a.getAttribute('href') === here) a.setAttribute('aria-current', 'page'); });
   if (nav) {
@@ -220,7 +275,7 @@
       const cards = G.utils.toArray(box.querySelectorAll('.stat'));
       G.set(cards.slice(1), { yPercent: 105 });
       const mark = (i) => items.forEach((li, j) => li.classList.toggle('is-on', j === i));
-      const tl = G.timeline({ scrollTrigger: { trigger: band, start: 'top top', end: () => '+=' + innerHeight * 1.8, pin: true, scrub: 0.8,
+      const tl = G.timeline({ scrollTrigger: { trigger: band, start: 'top top', end: () => '+=' + innerHeight * 0.6 * cards.length, pin: true, scrub: 0.8,
         onUpdate: (self) => mark(Math.min(cards.length - 1, Math.floor(self.progress * cards.length * 0.999))) } });
       cards.slice(1).forEach((c, i) => {
         tl.to(c, { yPercent: 0, ease: 'power2.inOut' }, i)
@@ -228,6 +283,17 @@
       });
       tl.to({}, { duration: 0.4 });
       return () => { G.set(cards, { clearProps: 'all' }); };
+    });
+  }
+
+  /* ---------------------------------------------------------------- project timeline */
+  function projectTrack() {
+    document.querySelectorAll('[data-track]').forEach((t) => {
+      const bar = t.querySelector('.project__bar i');
+      const steps = [...t.querySelectorAll('li')];
+      if (!motion) { steps.forEach((s) => s.classList.add('is-on')); return; }
+      const mark = (p) => steps.forEach((s, i) => s.classList.toggle('is-on', p > 0.02 && p >= i / steps.length));
+      G.fromTo(bar, { scaleX: 0 }, { scaleX: 1, ease: 'none', scrollTrigger: { trigger: t.closest('.project') || t, start: 'top 70%', end: 'bottom 55%', scrub: 0.6, onUpdate: (self) => mark(self.progress) } });
     });
   }
 
@@ -307,7 +373,7 @@
       if (!motion) { el.textContent = fmt(end); return; }
       const o = { v: 0 };
       el.textContent = fmt(0);
-      G.to(o, { v: end, duration: 2.2, ease: 'expo.out', onUpdate: () => { el.textContent = fmt(o.v); }, scrollTrigger: { trigger: el, start: 'top 90%' } });
+      G.to(o, { v: end, duration: 2.2, ease: 'expo.out', onUpdate: () => { el.textContent = fmt(o.v); }, scrollTrigger: { trigger: el.closest('[data-stackband]') || el, start: 'top 90%' } });
     });
     // the giving ring: a tenth of everything raised went to Swim Across America
     const ring = document.querySelector('.ring');
@@ -552,6 +618,7 @@
     footerReveal();
     slider();
     processPath();
+    projectTrack();
     people();
     footer();
     if (ST) ST.refresh();

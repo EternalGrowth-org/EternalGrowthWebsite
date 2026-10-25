@@ -215,7 +215,7 @@ FOOT = f'''
         <div class="footer__col"><p class="micro">Explore</p><ul><li><a href="subjects">Subjects</a></li><li><a href="impact">Impact</a></li><li><a href="about">About</a></li><li><a href="team">Team</a></li></ul></div>
         <div class="footer__col"><p class="micro">Contact</p><ul><li><a href="mailto:info@eternalgrowth.org">info@eternalgrowth.org</a></li><li><a href="tel:+13478786615">(347) 878-6615</a></li></ul></div>
         <div class="footer__col"><p class="micro">Long Island, NY</p><p class="footer__clock" data-clock aria-label="Local time on Long Island">--:--:--</p></div>
-        <div class="footer__col"><p class="micro">The club</p><ul><li><a href="team#join">Tutor with us</a></li><li><a href="about#faq">Questions</a></li><li><a href="impact#giving">Where the money goes</a></li></ul></div>
+        <div class="footer__col"><p class="micro">Get involved</p><ul><li><a href="team#join">Tutor with us</a></li><li><a href="about#faq">Questions</a></li><li><a href="impact#giving">Where the money goes</a></li><li><a href="impact#projects">Projects</a></li></ul></div>
       </div>
       <div class="footer__base">
         <p class="small">© 2026 Eternal Growth, Inc. A student-run nonprofit on Long Island, New York. Background by <a href="https://www.vantajs.com">Vanta.js</a>.</p>
@@ -277,7 +277,7 @@ FAQ_LD = {'@context': 'https://schema.org', '@type': 'FAQPage', 'mainEntity': [
 def faq_list(items, prefix):
     return '<ul class="faq">' + ''.join(f'''<li data-rise><button type="button" aria-expanded="false" aria-controls="{prefix}-{i}" id="{prefix}-q-{i}">{q}<i aria-hidden="true"></i></button><div class="faq__a" id="{prefix}-{i}" role="region" aria-labelledby="{prefix}-q-{i}" hidden><p>{a}</p></div></li>''' for i, (q, a) in enumerate(items)) + '</ul>'
 
-IMPACT_CHIPS = '<ul class="chips" data-rise><li><b data-count="35000" data-prefix="$" data-suffix="+">$35,000+</b> raised</li><li><b data-count="3500" data-prefix="$">$3,500</b> to cancer research</li><li>Subsidized tutoring</li></ul>'
+IMPACT_CHIPS = '<ul class="chips" data-rise><li><b data-count="35000" data-prefix="$" data-suffix="+">$35,000+</b> raised</li><li><b data-count="3500" data-prefix="$" data-suffix="+">$3,500+</b> to cancer research</li><li>Subsidized tutoring</li></ul>'
 
 def card(icon_key, title, text, extra=''):
     return f'<div class="card" data-rise><span class="card__icon">{ico(icon_key)}</span><h3>{title}</h3><p>{text}</p>{extra}</div>'
@@ -299,7 +299,7 @@ HOME_CHAPTERS = [
     ('circle', 'Learn.', 'Every student starts with a question.'),
     ('book', 'Teach.', 'A tutor a few grades ahead explains it the way it clicked for them.'),
     ('star', 'Grow.', 'A plan for the term, steady sessions, confidence that compounds.'),
-    ('heart', 'Give back.', 'What the club raises goes back to causes that matter.'),
+    ('heart', 'Give back.', 'What we raise goes back to causes that matter.'),
 ]
 
 home = head('Eternal Growth | Student-run tutoring on Long Island, NY', 'Student-run tutoring nonprofit on Long Island. High school tutors from Syosset and Jericho teach math, English, science, coding and music, in person or online.', '', [ORG_LD, {'@context': 'https://schema.org', '@type': 'WebSite', 'name': 'Eternal Growth', 'url': SITE, 'publisher': {'@id': SITE + '#org'}}]) + f'''
@@ -327,19 +327,21 @@ home = head('Eternal Growth | Student-run tutoring on Long Island, NY', 'Student
       <div class="wrap band__grid">
         <div class="band__side">
           <p class="micro">Impact</p>
-          <h2 class="head" id="impact-title" data-anim="lines">Small club. Real impact.</h2>
-          <p class="lead" data-anim="blur">Everything a student-run club raised, and where it went.</p>
+          <h2 class="head" id="impact-title" data-anim="lines">Started local. Built to grow.</h2>
+          <p class="lead" data-anim="blur">What began on Long Island now runs like an organization: tutoring, fundraising and giving at scale.</p>
           <ol class="band__list" aria-hidden="true">
-            <li class="is-on"><span>01</span>Raised by the club</li>
+            <li class="is-on"><span>01</span>Raised so far</li>
             <li><span>02</span>Cancer research</li>
             <li><span>03</span>Subsidized tutoring</li>
+            <li><span>04</span>Three-month drive</li>
           </ol>
           {btn('See our impact', 'impact', 'btn btn--light', ' data-cursor="Open"')}
         </div>
         <div class="stats" data-stack>
           <div class="stat">{svg(I['coin'], sw='1.5').replace('<svg', '<svg class="stat__icon"', 1)}<span class="stat__label micro">01 · Raised</span><span class="stat__num" data-count="35000" data-prefix="$" data-suffix="+">$35,000+</span><p>Raised by a club of high school students.</p></div>
-          <div class="stat">{svg(I['wave'], sw='1.5').replace('<svg', '<svg class="stat__icon"', 1)}<span class="stat__label micro">02 · Given</span><span class="stat__num" data-count="3500" data-prefix="≈$">≈$3,500</span><p>To Swim Across America for cancer research.</p></div>
+          <div class="stat">{svg(I['wave'], sw='1.5').replace('<svg', '<svg class="stat__icon"', 1)}<span class="stat__label micro">02 · Given</span><span class="stat__num" data-count="3500" data-prefix="$" data-suffix="+">$3,500+</span><p>To Swim Across America for cancer research.</p></div>
           <div class="stat">{svg(I['book'], sw='1.5').replace('<svg', '<svg class="stat__icon"', 1)}<span class="stat__label micro">03 · Supported</span><span class="stat__num">Tutoring</span><p>Subsidized so more families can take part.</p></div>
+          <div class="stat">{svg(I['wave'], sw='1.5').replace('<svg', '<svg class="stat__icon"', 1)}<span class="stat__label micro">04 · Project</span><span class="stat__num" data-count="10000" data-prefix="$">$10,000</span><p>Raised in three months by one student-led drive.</p></div>
         </div>
       </div>
     </section>
@@ -447,20 +449,20 @@ home = head('Eternal Growth | Student-run tutoring on Long Island, NY', 'Student
 
 # ---------------------------------------------------------------- impact page
 IMPACT_CHAPTERS = [
-    ('coin', 'Raise.', 'Students raise money through the club.'),
+    ('coin', 'Raise.', 'Students raise money through Eternal Growth.'),
     ('check', 'Choose.', 'The treasurers decide where it can do the most good.'),
-    ('wave', 'Give.', 'About $3,500 went to Swim Across America for cancer research.'),
+    ('wave', 'Give.', 'More than $3,500 went to Swim Across America for cancer research.'),
     ('book', 'Teach.', 'More helps subsidize tutoring, so more families can take part.'),
 ]
-impact_page = head('Our impact: $35,000+ raised | Eternal Growth', 'Eternal Growth has raised more than $35,000, given about $3,500 to Swim Across America for cancer research, and subsidized tutoring on Long Island.', 'impact', [crumbs('Impact', 'impact')]) + f'''
-  <main id="main">{hero('Impact', 'What a student-run club raised, and where it went.', 'Raised by students · Given back', '', cls='hero page-hero', chips=IMPACT_CHIPS)}
+impact_page = head('Our impact: $35,000+ raised | Eternal Growth', 'Eternal Growth has raised more than $35,000, given more than $3,500 to Swim Across America for cancer research, and subsidized tutoring on Long Island.', 'impact', [crumbs('Impact', 'impact')]) + f'''
+  <main id="main">{hero('Impact', 'What a student-run nonprofit has raised, and where it went.', 'Raised by students · Given back', '', cls='hero page-hero', chips=IMPACT_CHIPS)}
     {ticker([('coin', 'Raised by students'), ('wave', 'Cancer research'), ('book', 'Subsidized tutoring'), ('given', 'Given back'), ('check', 'Chosen with care')])}
 
     <section class="section" id="giving" aria-labelledby="giving-title">
       <div class="wrap split">
         <div>
           <h2 class="head" id="giving-title" data-anim="lines">Thirty-five thousand, and counting.</h2>
-          <p class="lead" data-anim="blur">Raised by a club of high school students. About one tenth went to cancer research.</p>
+          <p class="lead" data-anim="blur">Raised by high school students across Long Island. About one tenth went to cancer research.</p>
           <div data-rise>{btn('Request a tutor', './#request')}</div>
         </div>
         <div data-rise>
@@ -468,7 +470,7 @@ impact_page = head('Our impact: $35,000+ raised | Eternal Growth', 'Eternal Grow
             <svg class="ring" viewBox="0 0 220 220" fill="none" aria-hidden="true"><circle class="ring__track" cx="110" cy="110" r="96"/><circle class="ring__all" cx="110" cy="110" r="96"/><circle class="ring__part" cx="110" cy="110" r="96"/></svg>
             <div class="ring-center"><span class="micro">Raised</span><span class="stat__num" style="font-size:clamp(2.4rem,1.4rem+3vw,4rem)" data-count="35000" data-prefix="$" data-suffix="+">$35,000+</span><span class="small">and counting</span></div>
           </div>
-          <ul class="legend"><li><i style="background:#0b0b0b"></i>≈$3,500 · Swim Across America</li><li><i style="background:#b4b4ae"></i>Everything else, including tutoring support</li></ul>
+          <ul class="legend"><li><i style="background:#0b0b0b"></i>$3,500+ · Swim Across America</li><li><i style="background:#b4b4ae"></i>Everything else, including tutoring support</li></ul>
         </div>
       </div>
     </section>
@@ -479,10 +481,39 @@ impact_page = head('Our impact: $35,000+ raised | Eternal Growth', 'Eternal Grow
       <div class="wrap">
         <div class="shead shead--center"><h2 class="head" id="where-title" data-anim="scale">Where it goes.</h2></div>
         <div class="cards">
-          {card('wave', 'Swim Across America', 'About $3,500 to a charity that funds cancer research through open-water swims.')}
+          {card('wave', 'Swim Across America', 'More than $3,500 to a charity that funds cancer research through open-water swims.')}
           {card('book', 'Subsidized tutoring', 'Help with the cost of tutoring, so more families can take part.')}
           {card('check', 'Chosen with care', 'The treasurers, Mike Lu and Alan Chen, evaluate every cause.')}
         </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects" aria-labelledby="projects-title">
+      <div class="wrap">
+        <div class="shead"><h2 class="head" id="projects-title" data-anim="lines">Projects.</h2><p class="lead" data-anim="blur">Student-led drives that start local and reach further.</p></div>
+        <article class="project" data-rise aria-labelledby="project-saa">
+          <div class="project__main">
+            <p class="micro">Project 01 · Fundraiser</p>
+            <h3 class="project__title" id="project-saa">The Swim Across America drive</h3>
+            <p class="project__text">Victor Pan led a three-month fundraising push with Katherine Fei and Sue Nian. Together they raised $10,000, and more than $3,500 of it went to Swim Across America to fund cancer research.</p>
+            <ul class="project__team" aria-label="Project team">
+              <li><b aria-hidden="true">VP</b><span>Victor Pan<small>Project lead</small></span></li>
+              <li><b aria-hidden="true">KF</b><span>Katherine Fei<small>Organizer</small></span></li>
+              <li><b aria-hidden="true">SN</b><span>Sue Nian<small>Organizer</small></span></li>
+            </ul>
+          </div>
+          <div class="project__figs">
+            <div class="project__big">
+              <span class="micro">Raised in three months</span>
+              <span class="stat__num" data-count="10000" data-prefix="$">$10,000</span>
+              <div class="project__track" data-track aria-hidden="true"><span class="project__bar"><i></i></span><ol><li>Month 1</li><li>Month 2</li><li>Month 3</li></ol></div>
+            </div>
+            <div class="project__given">
+              <span class="stat__num" data-count="3500" data-prefix="$" data-suffix="+">$3,500+</span>
+              <span class="small">To Swim Across America for cancer research.</span>
+            </div>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -490,8 +521,8 @@ impact_page = head('Our impact: $35,000+ raised | Eternal Growth', 'Eternal Grow
       <div class="wrap">
         <div class="shead"><h2 class="head" id="impact-numbers" data-anim="lines">The numbers.</h2></div>
         <div class="stats">
-          <div class="stat" data-rise><span class="stat__num" data-count="35000" data-prefix="$" data-suffix="+">$35,000+</span><p>Raised by the club.</p></div>
-          <div class="stat" data-rise><span class="stat__num" data-count="3500" data-prefix="≈$">≈$3,500</span><p>To Swim Across America.</p></div>
+          <div class="stat" data-rise><span class="stat__num" data-count="35000" data-prefix="$" data-suffix="+">$35,000+</span><p>Raised by our students.</p></div>
+          <div class="stat" data-rise><span class="stat__num" data-count="3500" data-prefix="$" data-suffix="+">$3,500+</span><p>To Swim Across America.</p></div>
           <div class="stat" data-rise><span class="stat__num" data-count="10" data-prefix="≈" data-suffix="%">≈10%</span><p>Of everything raised, to cancer research.</p></div>
         </div>
       </div>
@@ -529,34 +560,46 @@ subjects_page = head('Math, English, Science & Coding Tutoring | Eternal Growth'
 ''' + FOOT
 
 # ---------------------------------------------------------------- team page
-def person(pid, role, bio):
+def person(pid, role, bio, rise=True):
     cut = bio.find('. ')
     head_txt, rest = (bio[:cut + 1], bio[cut + 1:]) if 0 < cut < len(bio) - 2 else (bio, '')
     more = f'<span class="bio-more">{rest}</span>' if rest else ''
     toggle = f'<button class="bio-toggle" type="button" aria-expanded="false"><span>Read more</span>{CHEV}</button>' if rest else ''
-    return f'''        <article class="person" id="{pid}" data-rise>
+    r = ' data-rise' if rise else ''
+    return f'''        <article class="person" id="{pid}"{r}>
           {plate(pid)}
           <h3>{PEOPLE[pid]}</h3>
           <p class="micro">{role}</p>
           <p class="bio">{head_txt}{more}</p>
           {toggle}
         </article>'''
-team_page = head('Our team: officers and founders | Eternal Growth', 'Meet the high school officers and founders who run Eternal Growth, a student-run tutoring nonprofit on Long Island, New York.', 'team', [crumbs('Team', 'team'), TEAM_LD]) + f'''
-  <main id="main">{hero('The team', f'{COUNT.capitalize()} officers. Seven founders. All students.', 'Mostly from Syosset', btn('Tutor with us', '#join', 'btn btn--ghost'), cls='hero page-hero')}
+TAB_BUTTONS = ''.join(f'<button type="button" role="tab" id="tab-{k}" aria-controls="{k}" aria-selected="{str(i == 0).lower()}"{"" if i == 0 else " tabindex=" + chr(34) + "-1" + chr(34)}>{label}<span class="tabs__count">{n}</span></button>'
+                      for i, (k, label, n) in enumerate([('officers', 'Officers', len(OFFICERS)), ('founders', 'Founders', len(FOUNDERS)), ('alumni', 'Alumni', len(ALUMNI))]))
+ALUMNI_HTML = ''.join(f'<li class="alum" id="{pid}"><b aria-hidden="true">{initials(PEOPLE[pid])}</b><span>{PEOPLE[pid]}<small>Former {role}</small></span></li>' for pid, role in ALUMNI)
+team_page = head('Our team: officers, founders and alumni | Eternal Growth', 'Meet the high school officers, founders and alumni behind Eternal Growth, a student-run tutoring nonprofit on Long Island, New York.', 'team', [crumbs('Team', 'team'), TEAM_LD]) + f'''
+  <main id="main">{hero('The team', f'{COUNT.capitalize()} officers, seven founders, {WORDS[len(ALUMNI)]} alumni. All students.', 'Mostly from Syosset', btn('Tutor with us', '#join', 'btn btn--ghost'), cls='hero page-hero')}
     {ticker([('one', PEOPLE[p]) for p, _, _ in OFFICERS])}
-    <section class="section" id="officers" aria-labelledby="officers-title">
+    <section class="section" id="people" aria-labelledby="people-title">
       <div class="wrap">
-        <div class="shead"><h2 class="head" id="officers-title" data-anim="lines">Our officers.</h2><p class="lead" data-anim="blur">They tutor, and they run the club.</p></div>
-        <div class="people">
-{chr(10).join(person(*o) for o in OFFICERS)}
-        </div>
-      </div>
-    </section>
-    <section class="section" id="founders" aria-labelledby="founders-title" style="padding-top:0">
-      <div class="wrap">
-        <div class="shead"><h2 class="head" id="founders-title" data-anim="lines">Our founders.</h2><p class="lead" data-anim="blur">Seven students planted it.</p></div>
-        <div class="people">
-{chr(10).join(person(*f) for f in FOUNDERS)}
+        <div class="shead shead--center"><h2 class="head" id="people-title" data-anim="lines">The people.</h2><p class="lead" data-anim="blur">The officers who run it, the founders who started it, and the alumni who built it.</p></div>
+        <div class="tabs" data-tabs>
+          <div class="tabs__nav" data-rise><div class="tabs__bar" role="tablist" aria-label="Team"><span class="tabs__pill" aria-hidden="true"></span>{TAB_BUTTONS}</div></div>
+          <div class="tabs__panel" role="tabpanel" id="officers" aria-labelledby="tab-officers" tabindex="0">
+            <div class="tabs__head"><h3>Officers</h3><p>They tutor, and they run Eternal Growth.</p></div>
+            <div class="people">
+{chr(10).join(person(*o, rise=False) for o in OFFICERS)}
+            </div>
+          </div>
+          <div class="tabs__panel" role="tabpanel" id="founders" aria-labelledby="tab-founders" tabindex="0">
+            <div class="tabs__head"><h3>Founders</h3><p>Seven students from Syosset and Jericho planted it.</p></div>
+            <div class="people">
+{chr(10).join(person(*f, rise=False) for f in FOUNDERS)}
+            </div>
+          </div>
+          <div class="tabs__panel" role="tabpanel" id="alumni" aria-labelledby="tab-alumni" tabindex="0">
+            <div class="tabs__head"><h3>Alumni</h3><p>Former officers who built what Eternal Growth is today.</p></div>
+            <ul class="alumni">{ALUMNI_HTML}</ul>
+          </div>
         </div>
       </div>
     </section>
@@ -606,7 +649,7 @@ about_page = head('About Eternal Growth | Student-run tutoring nonprofit', 'Why 
     </section>
     <section class="band" aria-labelledby="money-title">
       <div class="wrap">
-        <div class="shead"><h2 class="head" id="money-title" data-anim="lines">Where the money goes.</h2><p class="lead" data-anim="blur">More than $35,000 raised; about $3,500 to cancer research; tutoring subsidized.</p></div>
+        <div class="shead"><h2 class="head" id="money-title" data-anim="lines">Where the money goes.</h2><p class="lead" data-anim="blur">More than $35,000 raised; more than $3,500 to cancer research; tutoring subsidized.</p></div>
         {btn('See our impact', 'impact', 'btn btn--light')}
       </div>
     </section>
@@ -635,10 +678,10 @@ open(f'{ROOT}/site.webmanifest', 'w', encoding='utf-8', newline='\n').write(_j.d
     'start_url': '/', 'scope': '/', 'display': 'standalone', 'background_color': '#f2f2ef', 'theme_color': '#f2f2ef',
     'icons': [{'src': 'icon-192.png', 'sizes': '192x192', 'type': 'image/png'}, {'src': 'icon-512.png', 'sizes': '512x512', 'type': 'image/png'},
               {'src': 'icon-maskable-512.png', 'sizes': '512x512', 'type': 'image/png', 'purpose': 'maskable'}]}, indent=2) + '\n')
-llms = ['# Eternal Growth', '', '> A student-run tutoring nonprofit on Long Island, New York. High school students, mostly from Syosset and Jericho, tutor elementary, middle and high school students one-on-one, in small groups and online. The club has raised more than $35,000, given about $3,500 to Swim Across America for cancer research, and subsidizes tutoring.', '',
-        '## Pages', '', f'- [Home]({SITE}): what the club does and how to request a tutor', f'- [Subjects]({SITE}subjects): every subject, its topics and its tutors',
-        f'- [Impact]({SITE}impact): money raised and where it went', f'- [About]({SITE}about): why the club started, values and questions', f'- [Team]({SITE}team): officers and founders', '',
-        '## Subjects', ''] + [f'- {x[1]}: {x[3]}' for x in SUBJECTS] + ['', '## Questions', ''] + [f'- {q} {re.sub("<[^>]+>", "", a)}' for q, a in FAQ] + ['', '## Contact', '', '- Email: info@eternalgrowth.org', f'- Request a tutor: {SITE}#request', '']
+llms = ['# Eternal Growth', '', '> A student-run tutoring nonprofit on Long Island, New York. High school students, mostly from Syosset and Jericho, tutor elementary, middle and high school students one-on-one, in small groups and online. Eternal Growth has raised more than $35,000, given more than $3,500 to Swim Across America for cancer research, and subsidizes tutoring.', '',
+        '## Pages', '', f'- [Home]({SITE}): what Eternal Growth does and how to request a tutor', f'- [Subjects]({SITE}subjects): every subject, its topics and its tutors',
+        f'- [Impact]({SITE}impact): money raised, where it went, and projects such as the $10,000 Swim Across America drive', f'- [About]({SITE}about): why Eternal Growth started, values and questions', f'- [Team]({SITE}team): officers, founders and alumni', '',
+        '## Projects', '', '- The Swim Across America drive: led by Victor Pan with Katherine Fei and Sue Nian, it raised $10,000 in three months, more than $3,500 of it for cancer research.', '', '## Subjects', ''] + [f'- {x[1]}: {x[3]}' for x in SUBJECTS] + ['', '## Questions', ''] + [f'- {q} {re.sub("<[^>]+>", "", a)}' for q, a in FAQ] + ['', '## Contact', '', '- Email: info@eternalgrowth.org', f'- Request a tutor: {SITE}#request', '']
 open(f'{ROOT}/llms.txt', 'w', encoding='utf-8', newline='\n').write('\n'.join(llms))
 for name, body in [('404.html', notfound), ('index.html', home), ('impact.html', impact_page), ('subjects.html', subjects_page), ('team.html', team_page), ('about.html', about_page)]:
     open(f'{ROOT}/{name}', 'w', encoding='utf-8', newline='\n').write(body)

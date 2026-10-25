@@ -1,6 +1,9 @@
 PEOPLE = {
     'leon': 'Leon Zhang', 'victor': 'Victor Pan', 'lucille': 'Lucille Lin', 'mike': 'Mike Lu', 'alan': 'Alan Chen', 'kehan': 'Kehan Ying',
     'gary': 'Gary Han', 'albert': 'Albert Zhang', 'andrew': 'Andrew Liu',
+    # alumni
+    'katherine': 'Katherine Fei', 'jack': 'Jack Li', 'eliot': 'Eliot Bih', 'robert': 'Robert Liu Meng', 'sue': 'Sue Nian',
+    'vincent': 'Vincent Yang', 'sam': 'Sam Moon', 'isaac': 'Isaac Tsui', 'austin': 'Austin Ma',
 }
 def initials(n): return ''.join(w[0] for w in n.split()[:2])
 def first(pid): return PEOPLE[pid].split()[0]
@@ -31,7 +34,7 @@ SUBJECTS = [
 OPTIONS = ''.join(f'<option value="{s[0]}">{s[1]}</option>' for s in SUBJECTS)
 
 OFFICERS = [
-    ('leon', 'Co-President', 'Leon Zhang is a co-president of Eternal Growth.'),
+    ('leon', 'Co-President', 'Hello, I am Leon Zhang. I am a video game designer, and I believe that everything we learn, whether it is writing, drawing, composing or more, can be combined into an experience everybody across the world can enjoy.'),
     ('victor', 'Co-President', 'Victor Pan is a junior at Syosset High School with a passion for swimming and technology. He is an AI enthusiast who designs and codes AI applications, combining creativity with technical skill to explore the future of intelligent software.'),
     ('lucille', 'Secretary', 'Lucille Lin is the secretary of Eternal Growth.'),
     ('mike', 'Treasurer', 'Mike Lu is a treasurer of Eternal Growth.'),
@@ -44,3 +47,9 @@ FOUNDERS = [
     ('andrew', 'Founder', 'Andrew is a freshman at RPI studying aerospace engineering, and likes anything to do with flying or driving. At Syosset High School he helped create Eternal Growth and tutored math, reading and an introduction to computer-aided design. He hopes to work on helicopters or supersonic commercial travel.'),
 ]
 
+# former officers, shown on the Team page under Alumni
+ALUMNI = [
+    ('katherine', 'Vice President'), ('jack', 'Webmaster'), ('eliot', 'Director of STEM'), ('robert', 'Director of Humanities'),
+    ('sue', 'Director of Fine Arts'), ('vincent', 'Director of Sports'), ('sam', 'Secretary of Membership'),
+    ('isaac', 'Secretary of Outreach'), ('austin', 'Treasurer'),
+]

@@ -21,7 +21,9 @@ Static site for Eternal Growth, a Long Island nonprofit tutoring organization ru
 - Contact form posts to Formspree (`https://formspree.io/f/xqagapza`). Field names (`parentName`, `studentName`, `email`, `subject`, `grade`, `message`) are what Formspree receives; don't rename them.
 
 ## Updating content
-- Impact figures (more than $35,000 raised, about $3,500 to Swim Across America, subsidized tutoring) appear on the home page band, `impact.html` and the FAQ answer about money. Update all three together.
+- Impact figures (more than $35,000 raised, more than $3,500 to Swim Across America, subsidized tutoring, and the $10,000 three-month Swim Across America drive led by Victor Pan) appear on the home page band, `impact.html` (including the Projects section) and the FAQ answer about money. Update them together.
+- People: `OFFICERS`, `FOUNDERS` and `ALUMNI` in `content.py`. The Team page shows them in three tabs (`[data-tabs]` in `script.js`); a link such as `team#gary` opens the tab that holds that person. Officer and alumni counts in the copy are computed from these lists.
+- Voice: present Eternal Growth as an organization that started on Long Island and is growing, not as a small club.
 - Tutors per subject live in three places: the home page slider, `subjects.html`, and `BY_SUBJECT` in `script.js`. Keep them in step.
 - Animations are set in the markup:
   - `data-anim="chars|lines|blur|flip|fill|scramble"` for text;
