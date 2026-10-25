@@ -43,27 +43,30 @@
   /* ---------------------------------------------------------------- page transition */
   const shutter = document.querySelector('.shutter');
   const bars = shutter ? [...shutter.querySelectorAll('i')] : [];
-  const word = shutter && shutter.querySelector('.shutter__word');
+  const wordBox = shutter && shutter.querySelector('.shutter__word > span');
+  const setWord = (text) => { if (wordBox) wordBox.innerHTML = '<b>' + text + '</b>'; return wordBox && wordBox.firstChild; };
   function arrive() {
     if (!root.classList.contains('is-arriving')) return;
     if (!motion || !shutter) { root.classList.remove('is-arriving'); return; }
-    G.timeline({ onComplete: () => { root.classList.remove('is-arriving'); G.set(bars, { clearProps: 'transform' }); } })
+    // the arriving page starts exactly where the leaving page stopped: bars closed, word centred
+    const w = setWord(document.title.split(' — ')[0]);
+    G.timeline({ onComplete: () => { root.classList.remove('is-arriving'); G.set(bars, { clearProps: 'transform' }); setWord(''); } })
       .set(bars, { scaleY: 1, transformOrigin: 'top' })
-      .set(word, { opacity: 1, textContent: document.title.split(' — ')[0] })
-      .to(word, { opacity: 0, y: -30, duration: 0.5, ease: 'power2.in' }, 0.15)
-      .to(bars, { scaleY: 0, duration: 0.9, ease: 'expo.inOut', stagger: { each: 0.07, from: 'center' } }, 0.25);
+      .set(w, { yPercent: 0 })
+      .to(w, { yPercent: -115, duration: 0.7, ease: 'expo.in' }, 0.1)
+      .to(bars, { scaleY: 0, duration: 0.95, ease: 'expo.inOut', stagger: { each: 0.06, from: 'center' } }, 0.45);
   }
   function leave(href, label) {
     if (!motion || !shutter) { location.href = href; return; }
     try { sessionStorage.setItem('eg-arrive', '1'); } catch (e) { /* still navigates */ }
     shutter.style.visibility = 'visible';
-    const tl = G.timeline({ onComplete: () => { location.href = href; } });
-    tl.set(bars, { scaleY: 0, transformOrigin: 'bottom' })
-      .set(word, { opacity: 0, y: 30, textContent: '' })
+    const w = setWord(label);
+    G.timeline({ onComplete: () => { location.href = href; } })
+      .set(bars, { scaleY: 0, transformOrigin: 'bottom' })
+      .set(w, { yPercent: 115 })
       .to(bars, { scaleY: 1, duration: 0.75, ease: 'expo.inOut', stagger: { each: 0.06, from: 'edges' } })
-      .to(word, { opacity: 1, y: 0, duration: 0.5, ease: 'expo.out' }, 0.45);
-    if (has('ScrambleTextPlugin')) tl.to(word, { duration: 0.6, scrambleText: { text: label, chars: 'lowerCase', speed: 0.6 } }, 0.45);
-    else tl.set(word, { textContent: label }, 0.45);
+      .to(w, { yPercent: 0, duration: 0.8, ease: 'expo.out' }, 0.45)
+      .to({}, { duration: 0.15 });
   }
   const pageName = (url) => ({ 'index.html': 'Home', 'subjects.html': 'Subjects', 'impact.html': 'Impact', 'about.html': 'About', 'team.html': 'Team' }[url.pathname.split('/').pop() || 'index.html'] || 'Eternal Growth');
   document.addEventListener('click', (e) => {
@@ -217,18 +220,43 @@
 
   /* ---------------------------------------------------------------- impact cards stack as you scroll (desktop) */
   function stack() {
-    const box = document.querySelector('[data-stack]');
+    const band = document.querySelector('[data-stackband]');
+    const box = band && band.querySelector('[data-stack]');
     if (!box || !motion) return;
+    const items = [...band.querySelectorAll('.band__list li')];
     G.matchMedia().add('(min-width: 861px)', () => {
       const cards = G.utils.toArray(box.querySelectorAll('.stat'));
-      G.set(cards, { opacity: 1, y: 0 });
-      G.set(cards.slice(1), { yPercent: 115 });
-      const tl = G.timeline({ scrollTrigger: { trigger: box.closest('.band'), start: 'top top', end: () => '+=' + innerHeight * 1.6, pin: true, scrub: 0.8 } });
+      G.set(cards.slice(1), { yPercent: 105 });
+      const mark = (i) => items.forEach((li, j) => li.classList.toggle('is-on', j === i));
+      const tl = G.timeline({ scrollTrigger: { trigger: band, start: 'top top', end: () => '+=' + innerHeight * 1.8, pin: true, scrub: 0.8,
+        onUpdate: (self) => mark(Math.min(cards.length - 1, Math.floor(self.progress * cards.length * 0.999))) } });
       cards.slice(1).forEach((c, i) => {
-        tl.to(c, { yPercent: 0, ease: 'none' }, i)
-          .to(cards[i], { scale: 0.92, opacity: 0.45, filter: 'blur(2px)', ease: 'none' }, i);
+        tl.to(c, { yPercent: 0, ease: 'power2.inOut' }, i)
+          .to(cards[i], { scale: 0.9, yPercent: -6, opacity: 0.35, filter: 'blur(3px)', ease: 'power2.inOut' }, i);
       });
+      tl.to({}, { duration: 0.4 });
+      return () => { G.set(cards, { clearProps: 'all' }); };
     });
+  }
+
+  /* ---------------------------------------------------------------- scroll progress: which section you are in */
+  function progress() {
+    const el = document.querySelector('.progress');
+    if (!el || !ST) return;
+    const num = el.querySelector('.progress__num'), name = el.querySelector('.progress__name'), bar = el.querySelector('.progress__bar i');
+    const sections = [...document.querySelectorAll('main > section, main > .pin-spacer > section')].filter((sec) => sec.querySelector('h1, h2'));
+    const label = (sec) => (sec.querySelector('h1, h2').getAttribute('aria-label') || sec.querySelector('h1, h2').textContent).replace(/\s+/g, ' ').trim().split('.')[0].split(' ').slice(0, 4).join(' ');
+    let cur = -1;
+    const set = (i) => {
+      if (i === cur || i < 0) return;
+      cur = i;
+      num.textContent = String(i + 1).padStart(2, '0');
+      if (motion && window.ScrambleTextPlugin) G.to(name, { duration: 0.6, scrambleText: { text: label(sections[i]), chars: 'upperCase', speed: 0.8 }, overwrite: true });
+      else name.textContent = label(sections[i]);
+    };
+    sections.forEach((sec, i) => ST.create({ trigger: sec, start: 'top 55%', end: 'bottom 55%', onToggle: (self) => { if (self.isActive) set(i); } }));
+    ST.create({ start: 0, end: 'max', onUpdate: (self) => { bar.style.transform = `scaleY(${self.progress})`; el.classList.toggle('is-on', self.scroll() > innerHeight * 0.5); } });
+    set(0);
   }
 
   /* ---------------------------------------------------------------- the footer rises into place */
@@ -266,7 +294,9 @@
         G.from(el, { duration: 1.4, scrambleText: { text: '', chars: 'upperCase', speed: 0.5 }, delay: delay + 0.4, scrollTrigger: inHero ? undefined : enter(el, 'top 94%') });
       }
     });
-    ST.batch(G.utils.toArray('[data-rise]').filter((el) => !el.closest('.hero')), { start: 'top 90%', once: true, onEnter: (b) => G.to(b, { opacity: 1, y: 0, duration: 1.1, ease: 'expo.out', stagger: 0.09 }) });
+    // card rows tip up into place, one after another
+    ST.batch(G.utils.toArray('.cards > .card'), { start: 'top 88%', once: true, onEnter: (b) => G.fromTo(b, { opacity: 0, y: 70, rotationX: -28, transformOrigin: '50% 100%' }, { opacity: 1, y: 0, rotationX: 0, duration: 1.3, ease: 'expo.out', stagger: 0.12 }) });
+    ST.batch(G.utils.toArray('[data-rise]').filter((el) => !el.closest('.hero') && !el.matches('.cards > .card')), { start: 'top 90%', once: true, onEnter: (b) => G.to(b, { opacity: 1, y: 0, duration: 1.1, ease: 'expo.out', stagger: 0.09 }) });
   }
 
   /* ---------------------------------------------------------------- SVG drawings, counters, ring, ticker */
@@ -523,6 +553,7 @@
     graphics();
     chapters();
     stack();
+    progress();
     clips();
     lean();
     footerReveal();

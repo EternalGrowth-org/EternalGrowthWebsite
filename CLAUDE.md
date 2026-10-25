@@ -15,6 +15,7 @@ Static site for Eternal Growth, a Long Island nonprofit tutoring organization ru
 - `vendor/` — Vanta 0.5.24 (`vanta.fog`) and three.js r134, served locally. GSAP 3.13.0 and its plugins (ScrollTrigger, ScrollSmoother, SplitText, DrawSVG, MorphSVG, MotionPath, ScrambleText) load from jsDelivr.
 - `images/` — team photos, max 600px. They are not shown right now: people appear as monogram plates (`plate__face`). To bring a photo back, put an `<img>` inside that person's plate.
 - `PRODUCT.md`, `DESIGN.md`, `.impeccable/` — product facts, the design system, and the design brief.
+- `.build/` — not published (GitHub Pages skips dot-folders). `content.py` holds people, roles, bios and subjects; `python .build/build.py` regenerates all five HTML pages from it. `test.mjs`, `transition.mjs`, `sections.mjs` and `shots.mjs` are headless-Chrome checks against `python -m http.server 5500`. Edit `content.py` and rebuild rather than hand-editing the HTML.
 - Contact form posts to Formspree (`https://formspree.io/f/xqagapza`). Field names (`parentName`, `studentName`, `email`, `subject`, `grade`, `message`) are what Formspree receives; don't rename them.
 
 ## Updating content
