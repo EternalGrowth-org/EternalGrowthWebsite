@@ -5,10 +5,10 @@
 ## Pages
 
 - [Home](https://eternalgrowth.org/): what the club does and how to request a tutor
-- [Subjects](https://eternalgrowth.org/subjects.html): every subject, its topics and its tutors
-- [Impact](https://eternalgrowth.org/impact.html): money raised and where it went
-- [About](https://eternalgrowth.org/about.html): why the club started, values and questions
-- [Team](https://eternalgrowth.org/team.html): officers and founders
+- [Subjects](https://eternalgrowth.org/subjects): every subject, its topics and its tutors
+- [Impact](https://eternalgrowth.org/impact): money raised and where it went
+- [About](https://eternalgrowth.org/about): why the club started, values and questions
+- [Team](https://eternalgrowth.org/team): officers and founders
 
 ## Subjects
 

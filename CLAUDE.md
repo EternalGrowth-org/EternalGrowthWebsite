@@ -15,7 +15,7 @@ Static site for Eternal Growth, a Long Island nonprofit tutoring organization ru
 - `vendor/` — Vanta 0.5.24 (`vanta.fog`) and three.js r134, served locally. GSAP 3.13.0 and its plugins (ScrollTrigger, ScrollSmoother, SplitText, DrawSVG, MorphSVG, MotionPath, ScrambleText) load from jsDelivr.
 - `images/` — team photos, max 600px. They are not shown right now: people appear as monogram plates (`plate__face`). To bring a photo back, put an `<img>` inside that person's plate.
 - `PRODUCT.md`, `DESIGN.md`, `.impeccable/` — product facts, the design system, and the design brief.
-- `.build/` — not published (GitHub Pages skips dot-folders). `content.py` holds people, roles, bios and subjects; `python .build/build.py` regenerates all five HTML pages from it. `test.mjs`, `transition.mjs`, `sections.mjs` and `shots.mjs` are headless-Chrome checks against `python -m http.server 5500`. Edit `content.py` and rebuild rather than hand-editing the HTML.
+- `.build/` — not published (GitHub Pages skips dot-folders). `content.py` holds people, roles, bios and subjects; `python .build/build.py` regenerates all five HTML pages from it. `test.mjs`, `transition.mjs`, `sections.mjs` and `shots.mjs` are headless-Chrome checks against `python .build/serve.py` (port 5500). Edit `content.py` and rebuild rather than hand-editing the HTML.
 - `404.html`, `sitemap.xml`, `robots.txt`, `llms.txt`, `site.webmanifest` — written by `build.py`.
 - Icons and share image: `favicon.svg` is the brand mark (black disc, ring, dot). `favicon.ico`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`, `icon-maskable-512.png` and `og-image.png` (1200×630) are rendered from it by `node .build/icons.mjs` (sources in `.build/brand/`). Re-run it if the mark or the share card changes. Each page's title, meta description, canonical URL, Open Graph/Twitter tags and JSON-LD (organization on home, FAQPage on About, breadcrumbs elsewhere) are set in the `head(...)` calls in `build.py`.
 - Contact form posts to Formspree (`https://formspree.io/f/xqagapza`). Field names (`parentName`, `studentName`, `email`, `subject`, `grade`, `message`) are what Formspree receives; don't rename them.
@@ -32,4 +32,5 @@ Static site for Eternal Growth, a Long Island nonprofit tutoring organization ru
 
 ## Conventions
 - Breakpoint: `max-width: 860px` for phones and tablets (menu overlay, stacked columns, swipeable slider).
-- Test changes locally with `python -m http.server` and check desktop and ~390px phone width before pushing.
+- URLs are clean: links point to `about`, `subjects`, `impact`, `team` and `./` (home), never `*.html`. GitHub Pages serves `about.html` at `/about`; the `.html` addresses still work. Canonicals and the sitemap use the clean form.
+- Test changes locally with `python .build/serve.py` (serves `/about` like GitHub Pages; plain `python -m http.server` can't) and check desktop and ~390px phone width before pushing.

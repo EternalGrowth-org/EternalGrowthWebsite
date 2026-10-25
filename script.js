@@ -66,12 +66,13 @@
     if (a.target === '_blank' || a.hasAttribute('download')) return;
     const url = new URL(a.href, location.href);
     if (url.origin !== location.origin) return;
-    const samePage = url.pathname === location.pathname || (url.pathname.endsWith('/') && location.pathname.endsWith('index.html'));
+    const clean = (path) => path.replace(/\.html$/, '').replace(/\/index$/, '/');
+    const samePage = clean(url.pathname) === clean(location.pathname);
     if (samePage && url.search === location.search) {
       if (url.hash) { e.preventDefault(); closeMenu(); scrollToEl(document.querySelector(url.hash)); }
       return;
     }
-    if (!/\.html$|\/$/.test(url.pathname)) return;
+    if (/\.[a-z0-9]+$/i.test(url.pathname) && !/\.html$/.test(url.pathname)) return; // files such as PDFs open normally
     e.preventDefault();
     leave(url.href);
   });
@@ -130,7 +131,7 @@
     });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
   }
-  const here = location.pathname.split('/').pop() || 'index.html';
+  const here = location.pathname.split('/').pop().replace(/\.html$/, '') || './';
   document.querySelectorAll('.nav__links a').forEach((a) => { if (a.getAttribute('href') === here) a.setAttribute('aria-current', 'page'); });
   if (nav) {
     let last = 0;
