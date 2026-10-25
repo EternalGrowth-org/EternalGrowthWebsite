@@ -1,0 +1,35 @@
+# Eternal Growth
+
+> A student-run tutoring nonprofit on Long Island, New York. High school students, mostly from Syosset and Jericho, tutor elementary, middle and high school students one-on-one, in small groups and online. The club has raised more than $35,000, given about $3,500 to Swim Across America for cancer research, and subsidizes tutoring.
+
+## Pages
+
+- [Home](https://eternalgrowth.org/): what the club does and how to request a tutor
+- [Subjects](https://eternalgrowth.org/subjects.html): every subject, its topics and its tutors
+- [Impact](https://eternalgrowth.org/impact.html): money raised and where it went
+- [About](https://eternalgrowth.org/about.html): why the club started, values and questions
+- [Team](https://eternalgrowth.org/team.html): officers and founders
+
+## Subjects
+
+- Mathematics: From times tables to derivatives, with the problem-solving habits that make the next unit easier.
+- English and Writing: Reading closely and writing clearly, from a first book report to a college essay.
+- Science: Biology, chemistry and physics, with the lab work and the writing that go with them.
+- Coding: How to think like a computer scientist, by building apps, games and small tools.
+- Music: Lessons and theory from officers who have played for years, from first notes to a recital.
+- Social Studies: History, geography and civics: the stories behind how the world got this way.
+- Beyond the Classroom: Skills that help in every class, and a few that go past school altogether.
+
+## Questions
+
+- Who are the tutors? High school students, most from Syosset and Jericho, who know their subject and remember learning it.
+- Which grades do you work with? Elementary through high school. College students can ask too.
+- Where do sessions happen? In person around Long Island, or online over video.
+- How is a tutor chosen? By subject, grade and how your student learns. Tell us what has worked before.
+- Where does the money go? To causes across Long Island and beyond, including cancer research through Swim Across America, and to help subsidize tutoring.
+- How do I become a tutor? Email info@eternalgrowth.org with the subject you know best.
+
+## Contact
+
+- Email: info@eternalgrowth.org
+- Request a tutor: https://eternalgrowth.org/#request
