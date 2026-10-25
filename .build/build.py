@@ -97,39 +97,61 @@ def thorns_svg():
 
 # ---------------------------------------------------------------- shell
 GS = 'https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/'
-NAV_LINKS = [('subjects.html', 'Subjects'), ('impact.html', 'Impact'), ('about.html', 'About'), ('team.html', 'Team')]
+NAV_LINKS = [('subjects', 'Subjects'), ('impact', 'Impact'), ('about', 'About'), ('team', 'Team')]
 SITE = 'https://eternalgrowth.org/'
 ORG_LD = {
     '@context': 'https://schema.org', '@type': ['EducationalOrganization', 'NGO'], '@id': SITE + '#org',
-    'name': 'Eternal Growth', 'legalName': 'Eternal Growth, Inc.', 'url': SITE, 'logo': SITE + 'favicon.png',
+    'name': 'Eternal Growth', 'legalName': 'Eternal Growth, Inc.', 'url': SITE, 'logo': {'@type': 'ImageObject', 'url': SITE + 'icon-512.png', 'width': 512, 'height': 512}, 'image': SITE + 'og-image.png',
     'email': 'info@eternalgrowth.org',
     'description': 'A student-run nonprofit on Long Island, New York. High school students tutor younger kids in math, English, science, coding, music and more.',
-    'areaServed': {'@type': 'Place', 'name': 'Long Island, New York'},
+    'areaServed': [{'@type': 'Place', 'name': 'Long Island, New York'}, {'@type': 'City', 'name': 'Syosset, NY'}, {'@type': 'City', 'name': 'Jericho, NY'}],
+    'knowsAbout': ['Math tutoring', 'English tutoring', 'Science tutoring', 'Coding tutoring', 'Music lessons', 'Social studies tutoring', 'SAT prep', 'AMC math competition', 'USACO'],
+    'contactPoint': {'@type': 'ContactPoint', 'contactType': 'customer support', 'email': 'info@eternalgrowth.org', 'areaServed': 'US-NY', 'availableLanguage': 'English'},
     'address': {'@type': 'PostalAddress', 'addressRegion': 'NY', 'addressCountry': 'US'},
 }
+SUBJECTS_LD = {'@context': 'https://schema.org', '@type': 'ItemList', 'name': 'Tutoring subjects', 'itemListElement': [
+    {'@type': 'ListItem', 'position': i + 1, 'item': {'@type': 'Service', 'name': f'{x[1]} tutoring', 'serviceType': 'Tutoring', 'description': x[3],
+     'provider': {'@id': SITE + '#org'}, 'areaServed': 'Long Island, New York', 'audience': {'@type': 'EducationalAudience', 'educationalRole': 'student'},
+     'url': SITE + 'subjects#' + x[0]}} for i, x in enumerate(SUBJECTS)]}
+TEAM_LD = {'@context': 'https://schema.org', '@type': 'ItemList', 'name': 'Eternal Growth officers and founders', 'itemListElement': [
+    {'@type': 'ListItem', 'position': i + 1, 'item': {'@type': 'Person', 'name': PEOPLE[pid], 'jobTitle': role, 'memberOf': {'@id': SITE + '#org'}}}
+    for i, (pid, role, *_) in enumerate(list(OFFICERS) + list(FOUNDERS))]}
 def ld(obj):
     return '\n  <script type="application/ld+json">' + json.dumps(obj, ensure_ascii=False).replace('</', '<\\/') + '</script>'
 def crumbs(name, path):
     return {'@context': 'https://schema.org', '@type': 'BreadcrumbList', 'itemListElement': [
         {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': SITE},
         {'@type': 'ListItem', 'position': 2, 'name': name, 'item': SITE + path}]}
-def head(title, desc, path='', extra=()):
+WORDS = 'zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen'.split()
+COUNT = WORDS[len(OFFICERS)] if len(OFFICERS) < len(WORDS) else str(len(OFFICERS))
+def head(title, desc, path='', extra=(), kind='WebPage', index=True):
     url = SITE + path
+    page_ld = {'@context': 'https://schema.org', '@type': kind, '@id': url + '#page', 'url': url, 'name': title, 'description': desc, 'inLanguage': 'en-US',
+               'isPartOf': {'@type': 'WebSite', '@id': SITE + '#site', 'name': 'Eternal Growth', 'url': SITE}, 'about': {'@id': SITE + '#org'},
+               'primaryImageOfPage': SITE + 'og-image.png'}
+    extra = list(extra) + ([page_ld] if index else [])
     t, d = html.escape(title), html.escape(desc)
     seo = f'''
   <link rel="canonical" href="{url}">
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="{"index, follow, max-image-preview:large" if index else "noindex"}">
+  <meta name="author" content="Eternal Growth">
+  <meta name="geo.region" content="US-NY">
+  <meta name="geo.placename" content="Long Island, New York">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Eternal Growth">
   <meta property="og:locale" content="en_US">
   <meta property="og:title" content="{t}">
   <meta property="og:description" content="{d}">
   <meta property="og:url" content="{url}">
-  <meta property="og:image" content="{SITE}favicon.png">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:image" content="{SITE}og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Eternal Growth: student-run tutoring on Long Island">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{t}">
   <meta name="twitter:description" content="{d}">
-  <meta name="twitter:image" content="{SITE}favicon.png">''' + ''.join(ld(x) for x in extra)
+  <meta name="twitter:image" content="{SITE}og-image.png">
+  <meta name="twitter:image:alt" content="Eternal Growth: student-run tutoring on Long Island">''' + ''.join(ld(x) for x in extra)
     plugins = ''.join(f'\n  <script src="{GS}{p}.min.js" defer></script>' for p in ['gsap', 'ScrollTrigger', 'ScrollSmoother', 'SplitText', 'DrawSVGPlugin', 'MorphSVGPlugin', 'MotionPathPlugin', 'ScrambleTextPlugin'])
     links = ''.join(f'<li><a href="{h}">{n}</a></li>' for h, n in NAV_LINKS)
     return f'''<!DOCTYPE html>
@@ -150,8 +172,10 @@ def head(title, desc, path='', extra=()):
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="apple-touch-icon" href="favicon.png">{plugins}
+  <link rel="icon" href="favicon.ico" sizes="32x32">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">{plugins}
   <script src="vendor/three.r134.min.js" defer></script>
   <script src="vendor/vanta.fog.min.js" defer></script>
   <script src="script.js" defer></script>
@@ -166,11 +190,11 @@ def head(title, desc, path='', extra=()):
   <header class="nav">
     <span class="nav__glass" aria-hidden="true"></span>
     <nav aria-label="Main">
-      <ul class="nav__links" id="nav-links">{links}<li class="menu-cta">{btn('Request a tutor', 'index.html#request')}</li></ul>
+      <ul class="nav__links" id="nav-links">{links}<li class="menu-cta">{btn('Request a tutor', './#request')}</li></ul>
     </nav>
-    <a class="brand" href="index.html" aria-label="Eternal Growth, home">{BRAND}<span>Eternal Growth</span></a>
+    <a class="brand" href="./" aria-label="Eternal Growth, home">{BRAND}<span>Eternal Growth</span></a>
     <div class="nav__end">
-      {btn('Request a tutor', 'index.html#request', 'btn btn--small')}
+      {btn('Request a tutor', './#request', 'btn btn--small')}
       <button class="nav__menu" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menu"><span></span><span></span></button>
     </div>
   </header>
@@ -184,14 +208,14 @@ FOOT = f'''
         <div>
           <h2 class="head" data-anim="lines">Grow with us.</h2>
           <p class="lead">Tell us the subject and the grade. We will match a tutor who was in your student’s seat a few years ago.</p>
-          {btn('Request a tutor', 'index.html#request', 'btn btn--light', ' data-cursor="Begin"')}
+          {btn('Request a tutor', './#request', 'btn btn--light', ' data-cursor="Begin"')}
         </div>
       </div>
       <div class="footer__grid">
-        <div class="footer__col"><p class="micro">Explore</p><ul><li><a href="subjects.html">Subjects</a></li><li><a href="impact.html">Impact</a></li><li><a href="about.html">About</a></li><li><a href="team.html">Team</a></li></ul></div>
+        <div class="footer__col"><p class="micro">Explore</p><ul><li><a href="subjects">Subjects</a></li><li><a href="impact">Impact</a></li><li><a href="about">About</a></li><li><a href="team">Team</a></li></ul></div>
         <div class="footer__col"><p class="micro">Contact</p><ul><li><a href="mailto:info@eternalgrowth.org">info@eternalgrowth.org</a></li><li><a href="tel:+13478786615">(347) 878-6615</a></li></ul></div>
         <div class="footer__col"><p class="micro">Long Island, NY</p><p class="footer__clock" data-clock aria-label="Local time on Long Island">--:--:--</p></div>
-        <div class="footer__col"><p class="micro">The club</p><ul><li><a href="team.html#join">Tutor with us</a></li><li><a href="about.html#faq">Questions</a></li><li><a href="impact.html#giving">Where the money goes</a></li></ul></div>
+        <div class="footer__col"><p class="micro">The club</p><ul><li><a href="team#join">Tutor with us</a></li><li><a href="about#faq">Questions</a></li><li><a href="impact#giving">Where the money goes</a></li></ul></div>
       </div>
       <div class="footer__base">
         <p class="small">© 2026 Eternal Growth, Inc. A student-run nonprofit on Long Island, New York. Background by <a href="https://www.vantajs.com">Vanta.js</a>.</p>
@@ -264,12 +288,12 @@ slides = '\n'.join(f'''          <article class="slide" aria-label="{name}" data
             <div class="slide__body">
               <h3>{name}</h3>
               <ul class="tags">{''.join(f'<li>{t}</li>' for t in topics[:3])}</ul>
-              <div class="slide__by">{monos(tutors[:4])}<span class="small">{', '.join(first(p) for p in tutors[:3])}{' +' if len(tutors) > 3 else ''}</span></div>
-              <a class="link-arrow" href="subjects.html#{sid}">Explore {ARROW}</a>
+              {f'<div class="slide__by">{monos(tutors[:4])}<span class="small">{", ".join(first(p) for p in tutors[:3])}{" +" if len(tutors) > 3 else ""}</span></div>' if tutors else ''}
+              <a class="link-arrow" href="subjects#{sid}">Explore {ARROW}</a>
             </div>
           </article>''' for i, (sid, name, short, lead, detail, topics, tutors) in enumerate(SUBJECTS))
 
-team_plates = ''.join(f'''<a class="plate" href="team.html#{pid}" data-rise data-cursor="View">{plate(pid)}<span class="plate__name">{PEOPLE[pid]}</span><span class="plate__role micro">{role}</span></a>''' for pid, role, _ in OFFICERS[:8])
+team_plates = ''.join(f'''<a class="plate" href="team#{pid}" data-rise data-cursor="View">{plate(pid)}<span class="plate__name">{PEOPLE[pid]}</span><span class="plate__role micro">{role}</span></a>''' for pid, role, _ in OFFICERS[:8])
 
 HOME_CHAPTERS = [
     ('circle', 'Learn.', 'Every student starts with a question.'),
@@ -278,7 +302,7 @@ HOME_CHAPTERS = [
     ('heart', 'Give back.', 'What the club raises goes back to causes that matter.'),
 ]
 
-home = head('Eternal Growth | Student-run tutoring on Long Island, NY', 'Eternal Growth is a student-run tutoring nonprofit on Long Island. High school tutors from Syosset and Jericho teach math, English, science, coding and music, in person or online.', '', [ORG_LD, {'@context': 'https://schema.org', '@type': 'WebSite', 'name': 'Eternal Growth', 'url': SITE, 'publisher': {'@id': SITE + '#org'}}]) + f'''
+home = head('Eternal Growth | Student-run tutoring on Long Island, NY', 'Student-run tutoring nonprofit on Long Island. High school tutors from Syosset and Jericho teach math, English, science, coding and music, in person or online.', '', [ORG_LD, {'@context': 'https://schema.org', '@type': 'WebSite', 'name': 'Eternal Growth', 'url': SITE, 'publisher': {'@id': SITE + '#org'}}]) + f'''
   <main id="main">{hero('Eternal Growth', 'Tutoring by Long Island high schoolers, for the kids a few grades behind them.', 'Student-run nonprofit · Long Island, New York',
   f"""<form class="finder" id="finder" action="#request" data-rise>
           <label><span class="visually-hidden">Subject</span><select aria-label="Choose a subject"><option value="">What do you want to learn?</option>{OPTIONS}</select>{CHEV}</label>
@@ -310,7 +334,7 @@ home = head('Eternal Growth | Student-run tutoring on Long Island, NY', 'Eternal
             <li><span>02</span>Cancer research</li>
             <li><span>03</span>Subsidized tutoring</li>
           </ol>
-          {btn('See our impact', 'impact.html', 'btn btn--light', ' data-cursor="Open"')}
+          {btn('See our impact', 'impact', 'btn btn--light', ' data-cursor="Open"')}
         </div>
         <div class="stats" data-stack>
           <div class="stat">{svg(I['coin'], sw='1.5').replace('<svg', '<svg class="stat__icon"', 1)}<span class="stat__label micro">01 · Raised</span><span class="stat__num" data-count="35000" data-prefix="$" data-suffix="+">$35,000+</span><p>Raised by a club of high school students.</p></div>
@@ -377,14 +401,14 @@ home = head('Eternal Growth | Student-run tutoring on Long Island, NY', 'Eternal
 
     <section class="section section--screen" id="people" aria-labelledby="people-title" style="padding-top:0">
       <div class="wrap">
-        <div class="shead"><h2 class="head" id="people-title" data-anim="lines">The people behind it.</h2><a class="link-arrow" href="team.html" data-rise>Meet all ten officers {ARROW}</a></div>
+        <div class="shead"><h2 class="head" id="people-title" data-anim="lines">The people behind it.</h2><a class="link-arrow" href="team" data-rise>Meet all {COUNT} officers {ARROW}</a></div>
         <div class="plates">{team_plates}</div>
       </div>
     </section>
 
     <section class="section" id="questions" aria-labelledby="questions-title">
       <div class="wrap faq-wrap">
-        <div><h2 class="head" id="questions-title" data-anim="chars">Questions.</h2><a class="link-arrow" href="about.html#faq" data-rise>All questions {ARROW}</a></div>
+        <div><h2 class="head" id="questions-title" data-anim="chars">Questions.</h2><a class="link-arrow" href="about#faq" data-rise>All questions {ARROW}</a></div>
         {faq_list(FAQ[:4], 'hq')}
       </div>
     </section>
@@ -428,7 +452,7 @@ IMPACT_CHAPTERS = [
     ('wave', 'Give.', 'About $3,500 went to Swim Across America for cancer research.'),
     ('book', 'Teach.', 'More helps subsidize tutoring, so more families can take part.'),
 ]
-impact_page = head('Our impact: $35,000+ raised | Eternal Growth', 'A student-run tutoring club that has raised more than $35,000, given about $3,500 to Swim Across America for cancer research, and helped subsidize tutoring on Long Island.', 'impact.html', [crumbs('Impact', 'impact.html')]) + f'''
+impact_page = head('Our impact: $35,000+ raised | Eternal Growth', 'Eternal Growth has raised more than $35,000, given about $3,500 to Swim Across America for cancer research, and subsidized tutoring on Long Island.', 'impact', [crumbs('Impact', 'impact')]) + f'''
   <main id="main">{hero('Impact', 'What a student-run club raised, and where it went.', 'Raised by students · Given back', '', cls='hero page-hero', chips=IMPACT_CHIPS)}
     {ticker([('coin', 'Raised by students'), ('wave', 'Cancer research'), ('book', 'Subsidized tutoring'), ('given', 'Given back'), ('check', 'Chosen with care')])}
 
@@ -437,7 +461,7 @@ impact_page = head('Our impact: $35,000+ raised | Eternal Growth', 'A student-ru
         <div>
           <h2 class="head" id="giving-title" data-anim="lines">Thirty-five thousand, and counting.</h2>
           <p class="lead" data-anim="blur">Raised by a club of high school students. About one tenth went to cancer research.</p>
-          <div data-rise>{btn('Request a tutor', 'index.html#request')}</div>
+          <div data-rise>{btn('Request a tutor', './#request')}</div>
         </div>
         <div data-rise>
           <div class="ring-wrap" data-clip>
@@ -457,7 +481,7 @@ impact_page = head('Our impact: $35,000+ raised | Eternal Growth', 'A student-ru
         <div class="cards">
           {card('wave', 'Swim Across America', 'About $3,500 to a charity that funds cancer research through open-water swims.')}
           {card('book', 'Subsidized tutoring', 'Help with the cost of tutoring, so more families can take part.')}
-          {card('check', 'Chosen with care', 'The treasurers, Austin Ma and Mike Lu, evaluate every cause.')}
+          {card('check', 'Chosen with care', 'The treasurers, Mike Lu and Alan Chen, evaluate every cause.')}
         </div>
       </div>
     </section>
@@ -477,7 +501,7 @@ impact_page = head('Our impact: $35,000+ raised | Eternal Growth', 'A student-ru
       <div class="wrap shead shead--center" style="margin-bottom:0">
         <h2 class="head" id="help-title" data-anim="chars">Help it grow.</h2>
         <p class="lead" data-anim="blur">Request a tutor, or join us as one.</p>
-        <div data-rise style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center">{btn('Request a tutor', 'index.html#request')}{btn('Tutor with us', 'team.html#join', 'btn btn--ghost')}</div>
+        <div data-rise style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center">{btn('Request a tutor', './#request')}{btn('Tutor with us', 'team#join', 'btn btn--ghost')}</div>
       </div>
     </section>
   </main>
@@ -491,11 +515,11 @@ subj_sections = '\n'.join(f'''      <article class="subject" id="{sid}" aria-lab
           <h2 class="head" id="{sid}-title" data-anim="lines">{name}</h2>
           <p class="lead" data-anim="blur">{lead}</p>
           <ul class="tags" data-rise>{''.join(f'<li>{t}</li>' for t in topics)}</ul>
-          <div class="by" data-rise>{''.join(f'<a href="team.html#{p}"><b aria-hidden="true">{initials(PEOPLE[p])}</b>{PEOPLE[p]}</a>' for p in tutors)}</div>
-          <div data-rise>{btn(f"Request {short.lower() if sid != 'beyond' else 'this'} tutoring", f'index.html?subject={sid}#request')}</div>
+          {('<div class="by" data-rise>' + ''.join(f'<a href="team#{p}"><b aria-hidden="true">{initials(PEOPLE[p])}</b>{PEOPLE[p]}</a>' for p in tutors) + '</div>') if tutors else ''}
+          <div data-rise>{btn(f"Request {short.lower() if sid != 'beyond' else 'this'} tutoring", f'./?subject={sid}#request')}</div>
         </div>
       </article>''' for i, (sid, name, short, lead, detail, topics, tutors) in enumerate(SUBJECTS))
-subjects_page = head('Tutoring subjects: math, English, science, coding, music | Eternal Growth', 'One-on-one and small-group tutoring in math, English, science, coding, music and social studies, taught by Long Island high school students for elementary to high school kids.', 'subjects.html', [crumbs('Subjects', 'subjects.html')]) + f'''
+subjects_page = head('Math, English, Science & Coding Tutoring | Eternal Growth', 'One-on-one and small-group tutoring in math, English, science, coding, music and social studies from Long Island high school students.', 'subjects', [crumbs('Subjects', 'subjects'), SUBJECTS_LD], 'CollectionPage') + f'''
   <main id="main">{hero('Subjects', 'Seven subjects, taught by officers who study, play or compete in them.', 'Elementary to high school', jump, cls='hero page-hero', orbit=True)}
     {ticker([(SUBJ_ICON[s[0]], s[1]) for s in SUBJECTS])}
     <div class="wrap">
@@ -517,8 +541,8 @@ def person(pid, role, bio):
           <p class="bio">{head_txt}{more}</p>
           {toggle}
         </article>'''
-team_page = head('Our team: officers and founders | Eternal Growth', 'Meet the high school officers and founders who run Eternal Growth, a student-run tutoring nonprofit on Long Island, New York.', 'team.html', [crumbs('Team', 'team.html')]) + f'''
-  <main id="main">{hero('The team', 'Ten officers. Seven founders. All students.', 'Mostly from Syosset', btn('Tutor with us', '#join', 'btn btn--ghost'), cls='hero page-hero')}
+team_page = head('Our team: officers and founders | Eternal Growth', 'Meet the high school officers and founders who run Eternal Growth, a student-run tutoring nonprofit on Long Island, New York.', 'team', [crumbs('Team', 'team'), TEAM_LD]) + f'''
+  <main id="main">{hero('The team', f'{COUNT.capitalize()} officers. Seven founders. All students.', 'Mostly from Syosset', btn('Tutor with us', '#join', 'btn btn--ghost'), cls='hero page-hero')}
     {ticker([('one', PEOPLE[p]) for p, _, _ in OFFICERS])}
     <section class="section" id="officers" aria-labelledby="officers-title">
       <div class="wrap">
@@ -551,7 +575,7 @@ team_page = head('Our team: officers and founders | Eternal Growth', 'Meet the h
 ''' + FOOT
 
 # ---------------------------------------------------------------- about page
-about_page = head('About Eternal Growth | Student-run tutoring nonprofit', 'Why seven Long Island high school students started Eternal Growth, how tutors are matched, where sessions happen and where the money goes.', 'about.html', [crumbs('About', 'about.html'), FAQ_LD]) + f'''
+about_page = head('About Eternal Growth | Student-run tutoring nonprofit', 'Why seven Long Island high school students started Eternal Growth, how tutors are matched, where sessions happen and where the money goes.', 'about', [crumbs('About', 'about'), FAQ_LD], 'AboutPage') + f'''
   <main id="main">{hero('About', 'A nonprofit making education easier to reach, run by Long Island high schoolers.', 'Founded by seven students', '', cls='hero page-hero')}
     {ticker([('one', 'Students teaching students'), ('given', 'Giving back'), ('run', 'Run by students'), ('seed', 'Since day one, growing')])}
     <section class="section" id="story" aria-labelledby="story-title">
@@ -583,7 +607,7 @@ about_page = head('About Eternal Growth | Student-run tutoring nonprofit', 'Why 
     <section class="band" aria-labelledby="money-title">
       <div class="wrap">
         <div class="shead"><h2 class="head" id="money-title" data-anim="lines">Where the money goes.</h2><p class="lead" data-anim="blur">More than $35,000 raised; about $3,500 to cancer research; tutoring subsidized.</p></div>
-        {btn('See our impact', 'impact.html', 'btn btn--light')}
+        {btn('See our impact', 'impact', 'btn btn--light')}
       </div>
     </section>
     <section class="section" id="faq" aria-labelledby="faq-title">
@@ -597,9 +621,25 @@ about_page = head('About Eternal Growth | Student-run tutoring nonprofit', 'Why 
 
 import datetime
 today = datetime.date.today().isoformat()
-urls = [('', '1.0'), ('subjects.html', '0.9'), ('impact.html', '0.8'), ('about.html', '0.8'), ('team.html', '0.6')]
+urls = [('', '1.0'), ('subjects', '0.9'), ('impact', '0.8'), ('about', '0.8'), ('team', '0.6')]
 open(f'{ROOT}/sitemap.xml', 'w', encoding='utf-8', newline='\n').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(f'  <url><loc>{SITE}{u}</loc><lastmod>{today}</lastmod><priority>{pr}</priority></url>\n' for u, pr in urls) + '</urlset>\n')
 open(f'{ROOT}/robots.txt', 'w', encoding='utf-8', newline='\n').write(f'User-agent: *\nAllow: /\n\nSitemap: {SITE}sitemap.xml\n')
-for name, body in [('index.html', home), ('impact.html', impact_page), ('subjects.html', subjects_page), ('team.html', team_page), ('about.html', about_page)]:
+notfound = head('Page not found | Eternal Growth', 'This page does not exist. Find tutoring subjects, our impact and the team at Eternal Growth.', '404.html', index=False) + f'''
+  <main id="main">{hero('Not found', 'That page is not here. Try one of these instead.', '404', '<div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center">' + btn('Back to home', './') + btn('See subjects', 'subjects', 'btn btn--ghost') + '</div>', cls='hero page-hero')}
+  </main>
+''' + FOOT
+notfound = notfound.replace('<head>', '<head>\n  <base href="/">', 1)
+import json as _j
+open(f'{ROOT}/site.webmanifest', 'w', encoding='utf-8', newline='\n').write(_j.dumps({
+    'name': 'Eternal Growth', 'short_name': 'Eternal Growth', 'description': 'Student-run tutoring on Long Island.',
+    'start_url': '/', 'scope': '/', 'display': 'standalone', 'background_color': '#f2f2ef', 'theme_color': '#f2f2ef',
+    'icons': [{'src': 'icon-192.png', 'sizes': '192x192', 'type': 'image/png'}, {'src': 'icon-512.png', 'sizes': '512x512', 'type': 'image/png'},
+              {'src': 'icon-maskable-512.png', 'sizes': '512x512', 'type': 'image/png', 'purpose': 'maskable'}]}, indent=2) + '\n')
+llms = ['# Eternal Growth', '', '> A student-run tutoring nonprofit on Long Island, New York. High school students, mostly from Syosset and Jericho, tutor elementary, middle and high school students one-on-one, in small groups and online. The club has raised more than $35,000, given about $3,500 to Swim Across America for cancer research, and subsidizes tutoring.', '',
+        '## Pages', '', f'- [Home]({SITE}): what the club does and how to request a tutor', f'- [Subjects]({SITE}subjects): every subject, its topics and its tutors',
+        f'- [Impact]({SITE}impact): money raised and where it went', f'- [About]({SITE}about): why the club started, values and questions', f'- [Team]({SITE}team): officers and founders', '',
+        '## Subjects', ''] + [f'- {x[1]}: {x[3]}' for x in SUBJECTS] + ['', '## Questions', ''] + [f'- {q} {re.sub("<[^>]+>", "", a)}' for q, a in FAQ] + ['', '## Contact', '', '- Email: info@eternalgrowth.org', f'- Request a tutor: {SITE}#request', '']
+open(f'{ROOT}/llms.txt', 'w', encoding='utf-8', newline='\n').write('\n'.join(llms))
+for name, body in [('404.html', notfound), ('index.html', home), ('impact.html', impact_page), ('subjects.html', subjects_page), ('team.html', team_page), ('about.html', about_page)]:
     open(f'{ROOT}/{name}', 'w', encoding='utf-8', newline='\n').write(body)
     print('wrote', name)

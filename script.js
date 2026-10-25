@@ -66,12 +66,13 @@
     if (a.target === '_blank' || a.hasAttribute('download')) return;
     const url = new URL(a.href, location.href);
     if (url.origin !== location.origin) return;
-    const samePage = url.pathname === location.pathname || (url.pathname.endsWith('/') && location.pathname.endsWith('index.html'));
+    const clean = (path) => path.replace(/\.html$/, '').replace(/\/index$/, '/');
+    const samePage = clean(url.pathname) === clean(location.pathname);
     if (samePage && url.search === location.search) {
       if (url.hash) { e.preventDefault(); closeMenu(); scrollToEl(document.querySelector(url.hash)); }
       return;
     }
-    if (!/\.html$|\/$/.test(url.pathname)) return;
+    if (/\.[a-z0-9]+$/i.test(url.pathname) && !/\.html$/.test(url.pathname)) return; // files such as PDFs open normally
     e.preventDefault();
     leave(url.href);
   });
@@ -130,7 +131,7 @@
     });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
   }
-  const here = location.pathname.split('/').pop() || 'index.html';
+  const here = location.pathname.split('/').pop().replace(/\.html$/, '') || './';
   document.querySelectorAll('.nav__links a').forEach((a) => { if (a.getAttribute('href') === here) a.setAttribute('aria-current', 'page'); });
   if (nav) {
     let last = 0;
@@ -484,8 +485,8 @@
   });
 
   /* ---------------------------------------------------------------- request form */
-  const TUTORS = { eliot: 'Eliot Bih', robert: 'Robert Liu Meng', sue: 'Sue Nian', vincent: 'Vincent Yang', sam: 'Sam Moon', isaac: 'Isaac Tsui', victor: 'Victor Pan', gary: 'Gary Han' };
-  const BY_SUBJECT = { math: ['sam', 'eliot'], english: ['robert'], science: ['eliot', 'gary', 'sue'], coding: ['victor'], music: ['sue', 'vincent', 'gary', 'sam'], 'social-studies': ['isaac', 'robert'], beyond: ['sue', 'sam'] };
+  const TUTORS = { gary: 'Gary Han', victor: 'Victor Pan' };
+  const BY_SUBJECT = { math: [], english: [], science: ['gary'], coding: ['victor'], music: ['gary'], 'social-studies': [], beyond: [] };
   const initials = (n) => n.split(' ').slice(0, 2).map((w) => w[0]).join('');
   const listNames = (l) => (l.length < 2 ? l.join('') : l.slice(0, -1).join(', ') + ' or ' + l[l.length - 1]);
   const form = document.getElementById('request-form');
@@ -498,7 +499,8 @@
     const monos = match.querySelector('.monos');
     monos.innerHTML = ids.map((id) => '<span aria-hidden="true">' + initials(TUTORS[id]) + '</span>').join('');
     const p = match.querySelector('p');
-    const text = 'You could learn with ' + listNames(ids.map((id) => TUTORS[id].split(' ')[0])) + '.';
+    const label = subject.options[subject.selectedIndex] ? subject.options[subject.selectedIndex].text.toLowerCase() : 'this subject';
+    const text = ids.length ? 'You could learn with ' + listNames(ids.map((id) => TUTORS[id].split(' ')[0])) + '.' : 'We will match you with a student tutor for ' + label + '.';
     match.hidden = false;
     if (motion && has('ScrambleTextPlugin')) G.to(p, { duration: 0.8, scrambleText: { text, chars: 'lowerCase', speed: 0.8 } }); else p.textContent = text;
     if (motion) G.from(monos.children, { scale: 0, duration: 0.6, ease: 'back.out(2)', stagger: 0.07 });

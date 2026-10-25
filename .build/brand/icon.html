@@ -1,0 +1,8 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>
+html,body{margin:0;width:100vw;height:100vh;overflow:hidden;background:transparent}
+body{display:grid;place-items:center}
+body.tile{background:#f2f2ef}
+img{width:calc(var(--s,100) * 1vmin);height:auto;display:block}
+</style></head><body><img src="../../favicon.svg" alt=""><script>
+const q=new URLSearchParams(location.search);if(q.get('tile'))document.body.classList.add('tile');document.documentElement.style.setProperty('--s',q.get('s')||100);
+</script></body></html>
