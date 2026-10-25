@@ -122,6 +122,8 @@ def crumbs(name, path):
     return {'@context': 'https://schema.org', '@type': 'BreadcrumbList', 'itemListElement': [
         {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': SITE},
         {'@type': 'ListItem', 'position': 2, 'name': name, 'item': SITE + path}]}
+WORDS = 'zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen'.split()
+COUNT = WORDS[len(OFFICERS)] if len(OFFICERS) < len(WORDS) else str(len(OFFICERS))
 def head(title, desc, path='', extra=(), kind='WebPage', index=True):
     url = SITE + path
     page_ld = {'@context': 'https://schema.org', '@type': kind, '@id': url + '#page', 'url': url, 'name': title, 'description': desc, 'inLanguage': 'en-US',
@@ -286,7 +288,7 @@ slides = '\n'.join(f'''          <article class="slide" aria-label="{name}" data
             <div class="slide__body">
               <h3>{name}</h3>
               <ul class="tags">{''.join(f'<li>{t}</li>' for t in topics[:3])}</ul>
-              <div class="slide__by">{monos(tutors[:4])}<span class="small">{', '.join(first(p) for p in tutors[:3])}{' +' if len(tutors) > 3 else ''}</span></div>
+              {f'<div class="slide__by">{monos(tutors[:4])}<span class="small">{", ".join(first(p) for p in tutors[:3])}{" +" if len(tutors) > 3 else ""}</span></div>' if tutors else ''}
               <a class="link-arrow" href="subjects#{sid}">Explore {ARROW}</a>
             </div>
           </article>''' for i, (sid, name, short, lead, detail, topics, tutors) in enumerate(SUBJECTS))
@@ -399,7 +401,7 @@ home = head('Eternal Growth | Student-run tutoring on Long Island, NY', 'Student
 
     <section class="section section--screen" id="people" aria-labelledby="people-title" style="padding-top:0">
       <div class="wrap">
-        <div class="shead"><h2 class="head" id="people-title" data-anim="lines">The people behind it.</h2><a class="link-arrow" href="team" data-rise>Meet all ten officers {ARROW}</a></div>
+        <div class="shead"><h2 class="head" id="people-title" data-anim="lines">The people behind it.</h2><a class="link-arrow" href="team" data-rise>Meet all {COUNT} officers {ARROW}</a></div>
         <div class="plates">{team_plates}</div>
       </div>
     </section>
@@ -479,7 +481,7 @@ impact_page = head('Our impact: $35,000+ raised | Eternal Growth', 'Eternal Grow
         <div class="cards">
           {card('wave', 'Swim Across America', 'About $3,500 to a charity that funds cancer research through open-water swims.')}
           {card('book', 'Subsidized tutoring', 'Help with the cost of tutoring, so more families can take part.')}
-          {card('check', 'Chosen with care', 'The treasurers, Austin Ma and Mike Lu, evaluate every cause.')}
+          {card('check', 'Chosen with care', 'The treasurers, Mike Lu and Alan Chen, evaluate every cause.')}
         </div>
       </div>
     </section>
@@ -513,7 +515,7 @@ subj_sections = '\n'.join(f'''      <article class="subject" id="{sid}" aria-lab
           <h2 class="head" id="{sid}-title" data-anim="lines">{name}</h2>
           <p class="lead" data-anim="blur">{lead}</p>
           <ul class="tags" data-rise>{''.join(f'<li>{t}</li>' for t in topics)}</ul>
-          <div class="by" data-rise>{''.join(f'<a href="team#{p}"><b aria-hidden="true">{initials(PEOPLE[p])}</b>{PEOPLE[p]}</a>' for p in tutors)}</div>
+          {('<div class="by" data-rise>' + ''.join(f'<a href="team#{p}"><b aria-hidden="true">{initials(PEOPLE[p])}</b>{PEOPLE[p]}</a>' for p in tutors) + '</div>') if tutors else ''}
           <div data-rise>{btn(f"Request {short.lower() if sid != 'beyond' else 'this'} tutoring", f'./?subject={sid}#request')}</div>
         </div>
       </article>''' for i, (sid, name, short, lead, detail, topics, tutors) in enumerate(SUBJECTS))
@@ -540,7 +542,7 @@ def person(pid, role, bio):
           {toggle}
         </article>'''
 team_page = head('Our team: officers and founders | Eternal Growth', 'Meet the high school officers and founders who run Eternal Growth, a student-run tutoring nonprofit on Long Island, New York.', 'team', [crumbs('Team', 'team'), TEAM_LD]) + f'''
-  <main id="main">{hero('The team', 'Ten officers. Seven founders. All students.', 'Mostly from Syosset', btn('Tutor with us', '#join', 'btn btn--ghost'), cls='hero page-hero')}
+  <main id="main">{hero('The team', f'{COUNT.capitalize()} officers. Seven founders. All students.', 'Mostly from Syosset', btn('Tutor with us', '#join', 'btn btn--ghost'), cls='hero page-hero')}
     {ticker([('one', PEOPLE[p]) for p, _, _ in OFFICERS])}
     <section class="section" id="officers" aria-labelledby="officers-title">
       <div class="wrap">
