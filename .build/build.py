@@ -591,7 +591,6 @@ def lead_card(pid, role, bio):
              if len(roles) > 1 else role)
     text, toggle = bio_parts(bio, 260)
     return f'''          <article class="lead-card" id="{pid}" data-rise data-layers>
-            <span class="lead-card__ghost" aria-hidden="true" data-speed="0.82"><span data-layer="0.6">{initials(PEOPLE[pid])}</span></span>
             <div class="lead-card__plate" data-layer="0.25">{plate(pid)}</div>
             <div class="lead-card__body" data-layer="0.1">
               <p class="micro lead-card__role">{label}</p>
