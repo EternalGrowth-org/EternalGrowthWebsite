@@ -71,7 +71,20 @@ def monos(ids):
 def role_of(pid, role):
     return ' · '.join([role] + EXTRA_ROLES.get(pid, []))
 
+# headshots: images/<id>_bio.<ext>; people without one keep their monogram
+PHOTOS = {f.split('_bio.')[0]: 'images/' + f for f in sorted(os.listdir(os.path.join(ROOT, 'images'))) if '_bio.' in f}
+
+def photo(pid, cls='plate__photo', eager=False):
+    return f'<span class="{cls}"><img src="{PHOTOS[pid]}" alt="{PEOPLE[pid]}" width="600" height="600" loading="{"eager" if eager else "lazy"}" decoding="async"></span>'
+
+def team_face(pid):
+    if pid in PHOTOS:
+        return f'<b class="alum__photo" aria-hidden="true"><img src="{PHOTOS[pid]}" alt="" width="76" height="76" loading="lazy" decoding="async"></b>'
+    return f'<b aria-hidden="true">{initials(PEOPLE[pid])}</b>'
+
 def plate(pid):
+    if pid in PHOTOS:
+        return f'<div class="plate__face plate__face--photo">{photo(pid)}<span class="plate__shine"></span></div>'
     return f'<div class="plate__face"><span class="plate__mono" aria-hidden="true">{initials(PEOPLE[pid])}</span><span class="plate__shine"></span></div>'
 
 def thorns_svg():
@@ -500,9 +513,9 @@ impact_page = head('Our impact: $35,000+ raised | Eternal Growth', 'Eternal Grow
             <h3 class="project__title" id="project-saa">The Swim Across America drive</h3>
             <p class="project__text">Victor Pan led a three-month fundraising push with Katherine Fei and Sue Nian. Together they raised $10,000, and more than $3,500 of it went to Swim Across America to fund cancer research.</p>
             <ul class="project__team" aria-label="Project team">
-              <li><b aria-hidden="true">VP</b><span>Victor Pan<small>Project lead</small></span></li>
-              <li><b aria-hidden="true">KF</b><span>Katherine Fei<small>Organizer</small></span></li>
-              <li><b aria-hidden="true">SN</b><span>Sue Nian<small>Organizer</small></span></li>
+              <li>{team_face('victor')}<span>Victor Pan<small>Project lead</small></span></li>
+              <li>{team_face('katherine')}<span>Katherine Fei<small>Organizer</small></span></li>
+              <li>{team_face('sue')}<span>Sue Nian<small>Organizer</small></span></li>
             </ul>
           </div>
           <div class="project__figs">
@@ -614,7 +627,8 @@ def founder_card(i, pid, role, bio):
 
 def alum_chip(pid, role, real=True):
     ident = f' id="{pid}"' if real else ''
-    return f'<li class="alum"{ident}><b aria-hidden="true">{initials(PEOPLE[pid])}</b><span>{PEOPLE[pid]}<small>Former {role}</small></span></li>'
+    face = f'<b class="alum__photo"><img src="{PHOTOS[pid]}" alt="" width="96" height="96" loading="lazy" decoding="async"></b>' if pid in PHOTOS else f'<b aria-hidden="true">{initials(PEOPLE[pid])}</b>'
+    return f'<li class="alum"{ident}>{face}<span>{PEOPLE[pid]}<small>Former {role}</small></span></li>'
 
 def alumni_row(items, reverse=False):
     real = ''.join(alum_chip(*x) for x in items)
