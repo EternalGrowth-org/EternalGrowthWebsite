@@ -1,6 +1,7 @@
 PEOPLE = {
     'leon': 'Leon Zhang', 'victor': 'Victor Pan', 'lucille': 'Lucille Lin', 'mike': 'Mike Lu', 'alan': 'Alan Chen', 'kehan': 'Kehan Ying',
     'daniel': 'Daniel Chen', 'gary': 'Gary Han', 'albert': 'Albert Zhang', 'andrew': 'Andrew Liu',
+    'leo': 'Leo Dai', 'michael': 'Michael Ren',
     # alumni
     'katherine': 'Katherine Fei', 'jack': 'Jack Li', 'eliot': 'Eliot Bih', 'robert': 'Robert Liu Meng', 'sue': 'Sue Nian',
     'vincent': 'Vincent Yang', 'sam': 'Sam Moon', 'isaac': 'Isaac Tsui', 'austin': 'Austin Ma',
@@ -42,10 +43,13 @@ OFFICERS = [
     ('kehan', 'Social Media Manager', 'Kehan Ying runs social media for Eternal Growth.'),
 ]
 FOUNDERS = [
-    ('daniel', 'Founder', 'Daniel is a violinist and varsity diver from Syosset. As a shortlisted writer for the John Locke Global Essay Competition, a classical violin student at the Manhattan School of Music Precollege Program, and a county-level diver, Daniel is passionate about academics, arts and sports.'),
     ('gary', 'Founder', 'Gary Han is a researcher, violist and community leader from Syosset, NY. A 2025 Regeneron ISEF Grand Award winner and YoungArts National Winner in Classical Music, he has discovered new exocomets with deep learning, performed as principal violist at Juilliard Pre-College, and founded nonprofits bringing STEM and music education to underserved students.'),
+    ('daniel', 'Founder', 'Daniel is a violinist and varsity diver from Syosset. As a shortlisted writer for the John Locke Global Essay Competition, a classical violin student at the Manhattan School of Music Precollege Program, and a county-level diver, Daniel is passionate about academics, arts and sports.'),
+    ('jack', 'Founder', 'Jack Li is a programmer and tutor from Jericho, NY. As an AIME qualifier and USACO Gold division competitor, Jack enjoys passing on his knowledge of math and programming to young students and developing their love of STEM.'),
     ('albert', 'Founder', 'Albert is studying Business Administration at the Tepper School of Business at Carnegie Mellon University, class of 2029. At Syosset High School he was an active member of the DECA club.'),
     ('andrew', 'Founder', 'Andrew is a freshman at RPI studying aerospace engineering, and likes anything to do with flying or driving. At Syosset High School he helped create Eternal Growth and tutored math, reading and an introduction to computer-aided design. He hopes to work on helicopters or supersonic commercial travel.'),
+    ('leo', 'Founder', 'Leo Dai is one of the seven students who founded Eternal Growth.'),
+    ('michael', 'Founder', 'Michael Ren is one of the seven students who founded Eternal Growth.'),
 ]
 
 # former officers, shown on the Team page under Alumni

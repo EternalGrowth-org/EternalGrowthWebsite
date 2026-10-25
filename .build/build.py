@@ -656,7 +656,7 @@ def founder_card(i, pid, role, bio):
           </article>'''
 
 def alum_chip(pid, role, real=True):
-    ident = f' id="{pid}"' if real else ''
+    ident = f' id="{pid}"' if real and pid not in {f[0] for f in FOUNDERS} else ''
     face = f'<b class="alum__photo">{img_tag(pid, "")}</b>' if pid in PHOTOS else f'<b aria-hidden="true">{initials(PEOPLE[pid])}</b>'
     return f'<li class="alum"{ident}>{face}<span>{PEOPLE[pid]}<small>Former {role}</small></span></li>'
 
@@ -692,7 +692,7 @@ team_page = head('Our team: officers, founders and alumni | Eternal Growth', 'Me
 
     <section class="band team-founders" id="founders" aria-labelledby="founders-title">
       <div class="wrap">
-        <div class="shead"><div class="shead__kicker"><p class="micro" data-anim="scramble">02 · Founders</p><h2 class="head" id="founders-title" data-anim="lines">Where it started.</h2></div><p class="lead" data-anim="blur">Seven students from Syosset and Jericho planted Eternal Growth. Meet {WORDS[len(FOUNDERS)]} of them.</p></div>
+        <div class="shead"><div class="shead__kicker"><p class="micro" data-anim="scramble">02 · Founders</p><h2 class="head" id="founders-title" data-anim="lines">Where it started.</h2></div><p class="lead" data-anim="blur">Seven students from Syosset and Jericho planted Eternal Growth. {'Here are all seven.' if len(FOUNDERS) == 7 else 'Meet ' + WORDS[len(FOUNDERS)] + ' of them.'}</p></div>
         <div class="founders">
 {chr(10).join(founder_card(i, *f) for i, f in enumerate(FOUNDERS))}
           <aside class="founders__stat" data-rise aria-label="Eternal Growth by the numbers">
@@ -700,7 +700,7 @@ team_page = head('Our team: officers, founders and alumni | Eternal Growth', 'Me
             <p class="founders__big"><span class="stat__num" data-count="35000" data-prefix="$" data-suffix="+">$35,000+</span></p>
             <p class="founders__cap">Raised by students since seven founders started Eternal Growth.</p>
             <ul class="founders__mini">
-              <li><b data-count="7">7</b><span>Founders</span></li>
+              <li><b data-count="{len(FOUNDERS)}">{len(FOUNDERS)}</b><span>Founders</span></li>
               <li><b data-count="{len(SUBJECTS)}">{len(SUBJECTS)}</b><span>Subject areas</span></li>
               <li><b data-count="{len(OFFICERS) + len(ALUMNI)}">{len(OFFICERS) + len(ALUMNI)}</b><span>Officers, past and present</span></li>
             </ul>
