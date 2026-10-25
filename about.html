@@ -1,127 +1,128 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>About — Eternal Growth</title>
   <meta name="description" content="Eternal Growth is a nonprofit run by Long Island high school students to make good tutoring easier to reach.">
-  <meta name="theme-color" content="#f2f4ec">
-  <script>document.documentElement.classList.add('js')</script>
-  <link rel="preconnect" href="https://api.fontshare.com">
-  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
-  <link href="https://api.fontshare.com/v2/css?f[]=erode@400,500,600&display=swap" rel="stylesheet">
+  <meta name="theme-color" content="#f2f2ef">
+  <script>
+    (function () {
+      var d = document.documentElement; d.classList.remove('no-js'); d.classList.add('js');
+      try { if (sessionStorage.getItem('eg-arrive')) { sessionStorage.removeItem('eg-arrive'); if (!matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('is-arriving'); } } catch (e) {}
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollSmoother.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/DrawSVGPlugin.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/MorphSVGPlugin.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/MotionPathPlugin.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrambleTextPlugin.min.js" defer></script>
+  <script src="vendor/three.r134.min.js" defer></script>
+  <script src="vendor/vanta.fog.min.js" defer></script>
+  <script src="script.js" defer></script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
-
-  <header class="site-header">
-    <a class="wordmark" href="index.html">Eternal Growth</a>
-    <nav class="nav" aria-label="Main">
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
-      <ul id="nav-links">
-        <li><a href="subjects.html">Subjects</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="team.html">Team</a></li>
-      </ul>
-      <a class="button" href="index.html#contact">Request a tutor</a>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="liquid" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.012 0.018" numOctaves="2" seed="7" result="n"/><feGaussianBlur in="n" stdDeviation="2" result="b"/><feDisplacementMap in="SourceGraphic" in2="b" scale="26" xChannelSelector="R" yChannelSelector="G"/></filter></svg>
+  <div class="atmos" aria-hidden="true"><span class="atmos__orb"></span><span class="atmos__orb"></span><span class="atmos__orb"></span></div>
+  <div class="shutter" aria-hidden="true"><i></i><i></i><i></i><i></i><span class="shutter__word"><span></span></span></div>
+  <div class="progress" aria-hidden="true"><span class="progress__num">01</span><span class="progress__bar"><i></i></span><span class="progress__name">Home</span></div>
+  <div class="cursor" aria-hidden="true"><span></span></div>
+  <header class="nav">
+    <span class="nav__glass" aria-hidden="true"></span>
+    <nav aria-label="Main">
+      <ul class="nav__links" id="nav-links"><li><a href="subjects.html">Subjects</a></li><li><a href="impact.html">Impact</a></li><li><a href="about.html">About</a></li><li><a href="team.html">Team</a></li><li class="menu-cta"><a class="btn" href="index.html#request"><span class="roll"><span>Request a tutor</span><span aria-hidden="true">Request a tutor</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li></ul>
     </nav>
+    <a class="brand" href="index.html" aria-label="Eternal Growth, home"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#0b0b0b"/><circle cx="12" cy="12" r="6.5" fill="none" stroke="#f2f2ef" stroke-width="1.2"/><circle cx="12" cy="12" r="2.2" fill="#f2f2ef"/></svg><span>Eternal Growth</span></a>
+    <div class="nav__end">
+      <a class="btn btn--small" href="index.html#request"><span class="roll"><span>Request a tutor</span><span aria-hidden="true">Request a tutor</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <button class="nav__menu" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menu"><span></span><span></span></button>
+    </div>
   </header>
+  <div id="smooth-wrapper"><div id="smooth-content">
 
   <main id="main">
-
-    <section class="page-hero" data-ink="#17200f" data-ground="#f2f4ec" aria-labelledby="page-title">
-      <h1 id="page-title" data-reveal>About Eternal Growth</h1>
-      <p class="lead" data-reveal style="--i:1">A nonprofit dedicated to increasing the accessibility of education, run by Long Island high school students.</p>
-      <figure class="wide-map" data-open>
-        <img src="assets/long-island-1882.jpg" width="1600" height="672" alt="An 1882 map of Long Island showing the railroad lines in red">
-        <figcaption class="small soft">Long Island in 1882. Our tutors cover the whole island today, in person around Syosset and online everywhere else.</figcaption>
-      </figure>
-    </section>
-
-    <section class="chapter chapter--paper wrap" data-ink="#17200f" data-ground="#f2f4ec" aria-labelledby="why-title">
-      <div class="grid">
-        <div class="split-text">
-          <h2 class="head" id="why-title" data-reveal>Students teaching students</h2>
-          <p class="lead" data-reveal style="--i:1">Seven students from Syosset and Jericho founded Eternal Growth to make good tutoring easier to reach.</p>
-          <p data-reveal style="--i:2">Gary Han, Daniel Chen, Jack Li, Albert Zhang, Andrew Liu, Leo Dai and Michael Ren set out to do it in the most direct way they knew: older students teaching younger ones, in the subjects they know best. A high schooler remembers what made algebra click, because it happened a few years ago.</p>
-          <p data-reveal style="--i:3">Our officers are students too. Alongside their own classes they match tutors with families, run outreach and keep the club’s books. <a class="link" href="team.html">Meet them</a>.</p>
-        </div>
-        <figure class="split-media" data-open style="--i:1">
-          <img src="assets/syosset-street.jpg" width="480" height="600" alt="Houses, shops and the Long Island Rail Road tracks in Syosset, seen from above" style="aspect-ratio:4/5">
-          <figcaption class="small soft">Syosset, home to most of our officers, by the rail line.</figcaption>
-        </figure>
+    <section class="hero page-hero" aria-labelledby="page-title">
+      <div class="hero__inner">
+        <p class="micro" data-anim="scramble">Founded by seven students</p>
+        <h1 class="display" id="page-title" data-anim="chars">About</h1>
+        <p class="lead" data-anim="blur">A nonprofit making education easier to reach, run by Long Island high schoolers.</p>
+        
+        
       </div>
+      <span class="scroll-hint" aria-hidden="true"></span>
     </section>
-
-    <section class="chapter chapter--mint wrap" data-ink="#17200f" data-ground="#a8e6cf" aria-labelledby="money-title">
-      <div class="grid">
-        <figure class="split-media money-portrait" data-open>
-          <img src="images/austin_bio.jpg" width="600" height="600" alt="Austin Ma, treasurer" style="aspect-ratio:4/3;object-position:50% 90%">
-          <figcaption class="small">Austin Ma, one of our two treasurers.</figcaption>
-        </figure>
-        <div class="split-text money-text">
-          <h2 class="head" id="money-title" data-reveal>Where the money goes</h2>
-          <p class="lead" data-reveal style="--i:1">What the club raises, we give away to local organizations.</p>
-          <p data-reveal style="--i:2">Our treasurers choose which organizations receive our donations. They evaluate each one so that the money goes to causes with a direct and meaningful effect on our community.</p>
+    <div class="ticker" aria-hidden="true"><div class="ticker__track"><span class="ticker__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c.8-3.6 3.6-5.5 7-5.5s6.2 1.9 7 5.5"/></svg>Students teaching students</span><span class="ticker__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.3-7-9.5A4 4 0 0 1 12 8a4 4 0 0 1 7 2.5C19 15.7 12 20 12 20z"/></svg>Giving back</span><span class="ticker__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="11" height="11" rx="2"/><rect x="10" y="10" width="11" height="11" rx="2"/></svg>Run by students</span><span class="ticker__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="14" r="5"/><path d="M12 9V4"/></svg>Since day one, growing</span></div></div>
+    <section class="section" id="story" aria-labelledby="story-title">
+      <div class="wrap columns2">
+        <div><h2 class="head" id="story-title" data-anim="chars">Why we started.</h2></div>
+        <div>
+          <p class="lead" data-anim="blur">Seven students from Syosset and Jericho wanted good tutoring to be easier to reach.</p>
+          <p data-rise>Gary Han, Daniel Chen, Jack Li, Albert Zhang, Andrew Liu, Leo Dai and Michael Ren did it the direct way: older students teaching younger ones.</p>
+          <p data-rise>A high schooler remembers what made algebra click. That memory is the method.</p>
         </div>
       </div>
     </section>
-
-    <section class="chapter chapter--paper wrap" data-ink="#17200f" data-ground="#f2f4ec" aria-labelledby="values-title">
-      <div class="grid">
-        <div class="values-side">
-          <h2 class="head" id="values-title" data-reveal>What we hold to</h2>
-          <figure data-open style="--i:1">
-            <img src="assets/oyster-bay-1900.jpg" width="1000" height="1302" alt="1900 survey map of the Oyster Bay area, including Syosset">
-            <figcaption class="small soft">The Oyster Bay area in 1900, where the club began.</figcaption>
-          </figure>
-        </div>
-        <ul class="values">
-          <li class="value" data-reveal><h3>Teach it well</h3><p>Every student deserves a tutor who knows the subject and takes the time to explain it properly.</p></li>
-          <li class="value" data-reveal><h3>Open to everyone</h3><p>Learning should be within reach of every student, whatever their background or the way they learn.</p></li>
-          <li class="value" data-reveal><h3>Make it stick</h3><p>We use games, projects and real examples, because what is enjoyed is remembered.</p></li>
-        </ul>
+    <section class="section" aria-labelledby="m-title" style="padding-top:0">
+      <div class="wrap manifesto">
+        <h2 class="micro" id="m-title" data-anim="scramble">In one sentence</h2>
+        <p class="manifesto__text" data-anim="fill">Good teaching should not depend on who you know or what you can pay.</p>
       </div>
     </section>
-
-    <section class="chapter chapter--forest wrap" data-ink="#f2f4ec" data-ground="#4a5d23" aria-labelledby="join-title">
-      <div class="grid">
-        <div class="split-text">
-          <h2 class="head" id="join-title" data-reveal>Want to tutor?</h2>
-          <p class="lead" data-reveal style="--i:1">If you are a high schooler who loves a subject and likes explaining it, we would like to hear from you.</p>
+    <section class="section section--screen" id="values" aria-labelledby="values-title">
+      <div class="wrap">
+        <div class="shead shead--center"><h2 class="head" id="values-title" data-anim="flip">What we hold to.</h2></div>
+        <div class="cards">
+          <div class="card" data-rise><span class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19V6h16v13M4 19h16M8 10h8M8 14h5"/></svg></span><h3>Teach it well</h3><p>A tutor who knows it and takes the time.</p></div>
+          <div class="card" data-rise><span class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v8M8 12h8"/></svg></span><h3>Open to everyone</h3><p>Whatever the background, whatever the pace.</p></div>
+          <div class="card" data-rise><span class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19 12 5l7 14M8 14h8"/></svg></span><h3>Make it stick</h3><p>Games, projects, real examples.</p></div>
         </div>
-        <div class="split-media join-actions" data-reveal style="--i:2">
-          <a class="button" href="mailto:info@eternalgrowth.org?subject=I%20want%20to%20tutor%20with%20Eternal%20Growth">Write to us <span class="arrow" aria-hidden="true">→</span></a>
-          <a class="link" href="team.html#join">What we look for</a>
-        </div>
+      </div>
+    </section>
+    <section class="band" aria-labelledby="money-title">
+      <div class="wrap">
+        <div class="shead"><h2 class="head" id="money-title" data-anim="lines">Where the money goes.</h2><p class="lead" data-anim="blur">More than $35,000 raised; about $3,500 to cancer research; tutoring subsidized.</p></div>
+        <a class="btn btn--light" href="impact.html"><span class="roll"><span>See our impact</span><span aria-hidden="true">See our impact</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </section>
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="wrap faq-wrap">
+        <div><h2 class="head" id="faq-title" data-anim="chars">Questions.</h2><p class="lead" data-anim="blur">Anything else: <a href="mailto:info@eternalgrowth.org" style="color:var(--ink);text-decoration:underline;text-underline-offset:0.2em">info@eternalgrowth.org</a></p></div>
+        <ul class="faq"><li data-rise><button type="button" aria-expanded="false" aria-controls="aq-0" id="aq-q-0">Who are the tutors?<i aria-hidden="true"></i></button><div class="faq__a" id="aq-0" role="region" aria-labelledby="aq-q-0" hidden><p>High school students, most from Syosset and Jericho, who know their subject and remember learning it.</p></div></li><li data-rise><button type="button" aria-expanded="false" aria-controls="aq-1" id="aq-q-1">Which grades do you work with?<i aria-hidden="true"></i></button><div class="faq__a" id="aq-1" role="region" aria-labelledby="aq-q-1" hidden><p>Elementary through high school. College students can ask too.</p></div></li><li data-rise><button type="button" aria-expanded="false" aria-controls="aq-2" id="aq-q-2">Where do sessions happen?<i aria-hidden="true"></i></button><div class="faq__a" id="aq-2" role="region" aria-labelledby="aq-q-2" hidden><p>In person around Long Island, or online over video.</p></div></li><li data-rise><button type="button" aria-expanded="false" aria-controls="aq-3" id="aq-q-3">How is a tutor chosen?<i aria-hidden="true"></i></button><div class="faq__a" id="aq-3" role="region" aria-labelledby="aq-q-3" hidden><p>By subject, grade and how your student learns. Tell us what has worked before.</p></div></li><li data-rise><button type="button" aria-expanded="false" aria-controls="aq-4" id="aq-q-4">Where does the money go?<i aria-hidden="true"></i></button><div class="faq__a" id="aq-4" role="region" aria-labelledby="aq-q-4" hidden><p>To causes across Long Island and beyond, including cancer research through Swim Across America, and to help subsidize tutoring.</p></div></li><li data-rise><button type="button" aria-expanded="false" aria-controls="aq-5" id="aq-q-5">How do I become a tutor?<i aria-hidden="true"></i></button><div class="faq__a" id="aq-5" role="region" aria-labelledby="aq-q-5" hidden><p>Email info@eternalgrowth.org with the subject you know best.</p></div></li></ul>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer" data-ink="#f2f4ec" data-ground="#17200f">
-    <div class="grid footer-top">
-      <div class="footer-invite">
-        <h2>Learning never stops.</h2>
-        <a class="button" href="index.html#contact">Request a tutor <span class="arrow" aria-hidden="true">→</span></a>
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer__cta">
+        <div>
+          <h2 class="head" data-anim="lines">Grow with us.</h2>
+          <p class="lead">Tell us the subject and the grade. We will match a tutor who was in your student’s seat a few years ago.</p>
+          <a class="btn btn--light" href="index.html#request" data-cursor="Begin"><span class="roll"><span>Request a tutor</span><span aria-hidden="true">Request a tutor</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
       </div>
-      <ul class="footer-links">
-        <li><a href="subjects.html">Subjects</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="team.html">Team</a></li>
-        <li><a href="mailto:info@eternalgrowth.org">info@eternalgrowth.org</a></li>
-        <li><a href="tel:+13478786615">(347) 878-6615</a></li>
-      </ul>
+      <div class="footer__grid">
+        <div class="footer__col"><p class="micro">Explore</p><ul><li><a href="subjects.html">Subjects</a></li><li><a href="impact.html">Impact</a></li><li><a href="about.html">About</a></li><li><a href="team.html">Team</a></li></ul></div>
+        <div class="footer__col"><p class="micro">Contact</p><ul><li><a href="mailto:info@eternalgrowth.org">info@eternalgrowth.org</a></li><li><a href="tel:+13478786615">(347) 878-6615</a></li></ul></div>
+        <div class="footer__col"><p class="micro">Long Island, NY</p><p class="footer__clock" data-clock aria-label="Local time on Long Island">--:--:--</p></div>
+        <div class="footer__col"><p class="micro">The club</p><ul><li><a href="team.html#join">Tutor with us</a></li><li><a href="about.html#faq">Questions</a></li><li><a href="impact.html#giving">Where the money goes</a></li></ul></div>
+      </div>
+      <div class="footer__base">
+        <p class="small">© 2026 Eternal Growth, Inc. A student-run nonprofit on Long Island, New York. Background by <a href="https://www.vantajs.com">Vanta.js</a>.</p>
+        <button class="to-top" type="button" data-top>Back to top <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
+      </div>
     </div>
-    <div class="footer-legal">
-      <p>Pictures: <a href="https://commons.wikimedia.org/wiki/File:Syosset,_New_York,_USA.jpg">“Syosset, New York, USA”</a> by Quintin Soloviev, <a href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0</a>; seedling time-lapse from <a href="https://commons.wikimedia.org/wiki/File:Daily-Changes-in-Temperature-Not-the-Circadian-Clock-Regulate-Growth-Rate-in-Brachypodium-distachyon-pone.0100072.s018.ogv">Matos, Cole, Whitney, MacKinnon, Kay and Hazen</a>, <a href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Map_of_Long_Island_showing_the_Long_Island_Railroad_and_its_leased_lines._LOC_98688698.jpg">Map of Long Island</a> (1882, Library of Congress) and <a href="https://commons.wikimedia.org/wiki/File:1900_U.S.G.S._Map_of_Oyster_Bay,_Long_Island,_New_York_-_Geographicus_-_OysterBay-uscs-1925.jpg">Oyster Bay quadrangle</a> (USGS, 1900), public domain; all via Wikimedia Commons.</p>
-      <p>© 2026 Eternal Growth, Inc.</p>
-    </div>
-    <p class="footer-name" aria-hidden="true" data-reveal>Eternal Growth</p>
   </footer>
-
-  <script src="script.js"></script>
+  </div></div>
 </body>
 </html>

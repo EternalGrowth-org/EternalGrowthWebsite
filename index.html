@@ -1,242 +1,298 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Eternal Growth — student-run tutoring on Long Island</title>
-  <meta name="description" content="Eternal Growth is a student-run nonprofit on Long Island. High school students tutor younger kids in math, English, science, coding, music and social studies.">
-  <meta name="theme-color" content="#f2f4ec">
-  <script>document.documentElement.classList.add('js')</script>
-  <link rel="preconnect" href="https://api.fontshare.com">
-  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
-  <link href="https://api.fontshare.com/v2/css?f[]=erode@400,500,600&display=swap" rel="stylesheet">
+  <meta name="description" content="Eternal Growth is a student-run nonprofit on Long Island. High school students tutor younger kids, and the club has raised more than $35,000 for good causes.">
+  <meta name="theme-color" content="#f2f2ef">
+  <script>
+    (function () {
+      var d = document.documentElement; d.classList.remove('no-js'); d.classList.add('js');
+      try { if (sessionStorage.getItem('eg-arrive')) { sessionStorage.removeItem('eg-arrive'); if (!matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('is-arriving'); } } catch (e) {}
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollSmoother.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/DrawSVGPlugin.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/MorphSVGPlugin.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/MotionPathPlugin.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrambleTextPlugin.min.js" defer></script>
+  <script src="vendor/three.r134.min.js" defer></script>
+  <script src="vendor/vanta.fog.min.js" defer></script>
+  <script src="script.js" defer></script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
-
-  <header class="site-header">
-    <a class="wordmark" href="index.html">Eternal Growth</a>
-    <nav class="nav" aria-label="Main">
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
-      <ul id="nav-links">
-        <li><a href="subjects.html">Subjects</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="team.html">Team</a></li>
-      </ul>
-      <a class="button" href="#contact">Request a tutor</a>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="liquid" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.012 0.018" numOctaves="2" seed="7" result="n"/><feGaussianBlur in="n" stdDeviation="2" result="b"/><feDisplacementMap in="SourceGraphic" in2="b" scale="26" xChannelSelector="R" yChannelSelector="G"/></filter></svg>
+  <div class="atmos" aria-hidden="true"><span class="atmos__orb"></span><span class="atmos__orb"></span><span class="atmos__orb"></span></div>
+  <div class="shutter" aria-hidden="true"><i></i><i></i><i></i><i></i><span class="shutter__word"><span></span></span></div>
+  <div class="progress" aria-hidden="true"><span class="progress__num">01</span><span class="progress__bar"><i></i></span><span class="progress__name">Home</span></div>
+  <div class="cursor" aria-hidden="true"><span></span></div>
+  <header class="nav">
+    <span class="nav__glass" aria-hidden="true"></span>
+    <nav aria-label="Main">
+      <ul class="nav__links" id="nav-links"><li><a href="subjects.html">Subjects</a></li><li><a href="impact.html">Impact</a></li><li><a href="about.html">About</a></li><li><a href="team.html">Team</a></li><li class="menu-cta"><a class="btn" href="index.html#request"><span class="roll"><span>Request a tutor</span><span aria-hidden="true">Request a tutor</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li></ul>
     </nav>
+    <a class="brand" href="index.html" aria-label="Eternal Growth, home"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#0b0b0b"/><circle cx="12" cy="12" r="6.5" fill="none" stroke="#f2f2ef" stroke-width="1.2"/><circle cx="12" cy="12" r="2.2" fill="#f2f2ef"/></svg><span>Eternal Growth</span></a>
+    <div class="nav__end">
+      <a class="btn btn--small" href="index.html#request"><span class="roll"><span>Request a tutor</span><span aria-hidden="true">Request a tutor</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <button class="nav__menu" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menu"><span></span><span></span></button>
+    </div>
   </header>
+  <div id="smooth-wrapper"><div id="smooth-content">
 
   <main id="main">
-    <section class="hero" data-ink="#17200f" data-ground="#f2f4ec" aria-labelledby="hero-title">
-      <div class="hero__layer hero__layer--paper">
-        <h1 class="hero__name" id="hero-title"><span style="--i:0">Eternal</span> <span style="--i:1">Growth</span></h1>
+    <section class="hero" aria-labelledby="page-title">
+      <div class="hero__inner">
+        <p class="micro" data-anim="scramble">Student-run nonprofit · Long Island, New York</p>
+        <h1 class="display" id="page-title" data-anim="chars">Eternal Growth</h1>
+        <p class="lead" data-anim="blur">Tutoring by Long Island high schoolers, for the kids a few grades behind them.</p>
+        <form class="finder" id="finder" action="#request" data-rise>
+          <label><span class="visually-hidden">Subject</span><select aria-label="Choose a subject"><option value="">What do you want to learn?</option><option value="math">Mathematics</option><option value="english">English and Writing</option><option value="science">Science</option><option value="coding">Coding</option><option value="music">Music</option><option value="social-studies">Social Studies</option><option value="beyond">Beyond the Classroom</option></select><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></label>
+          <button class="btn" type="submit"><span class="roll"><span>Find a tutor</span><span aria-hidden="true">Find a tutor</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </form>
+        <ul class="chips" data-rise><li><b data-count="35000" data-prefix="$" data-suffix="+">$35,000+</b> raised</li><li><b data-count="3500" data-prefix="$">$3,500</b> to cancer research</li><li>Subsidized tutoring</li></ul>
       </div>
-      <div class="hero__layer hero__layer--field" aria-hidden="true">
-        <p class="hero__name"><span>Eternal</span> <span>Growth</span></p>
+      <span class="scroll-hint" aria-hidden="true"></span>
+    </section>
+
+    <div class="ticker" aria-hidden="true"><div class="ticker__track"><span class="ticker__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6H6l6 6-6 6h12"/></svg>Mathematics</span><span class="ticker__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6c-2-1.3-5-1.6-8-1v13c3-.6 6-.3 8 1 2-1.3 5-1.6 8-1V5c-3-.6-6-.3-8 1zM12 6v13"/></svg>English</span><span class="ticker__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3M7.5 14h9"/></svg>Science</span><span class="ticker__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 5l-4 14"/></svg>Coding</span><span class="ticker__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></svg>Music</span><span class="ticker__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3.5 3.5 3.5 14.5 0 18M12 3c-3.5 3.5-3.5 14.5 0 18"/></svg>Social studies</span><span class="ticker__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9 12 4l10 5-10 5z"/><path d="M6 11v5c4 2.5 8 2.5 12 0v-5M22 9v6"/></svg>College planning</span><span class="ticker__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.3-7-9.5A4 4 0 0 1 12 8a4 4 0 0 1 7 2.5C19 15.7 12 20 12 20z"/></svg>Giving back</span></div></div>
+
+    <section class="section section--screen" id="idea" aria-labelledby="idea-title">
+      <div class="wrap manifesto">
+        <h2 class="micro" id="idea-title" data-anim="scramble">The idea</h2>
+        <p class="manifesto__text" data-anim="fill">Students teach the kids a few grades behind them, and give back what they raise.</p>
       </div>
-      <div class="hero__foot">
-        <p style="--i:0">A student-run nonprofit on Long Island. High schoolers tutor younger kids one-on-one, in small groups and online.</p>
+      <div class="wrap cards" style="margin-top:clamp(48px,6vw,88px)">
+        <div class="card" data-rise><span class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20h5v-5h5v-5h5V5"/><path d="M15 5h3v3"/></svg></span><h3>Just ahead</h3><p>Tutors still remember learning the same unit.</p></div>
+        <div class="card" data-rise><span class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="11" height="11" rx="2"/><rect x="10" y="10" width="11" height="11" rx="2"/></svg></span><h3>Run by students</h3><p>Matching, outreach and the books, all handled by officers.</p></div>
+        <div class="card" data-rise><span class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.3-7-9.5A4 4 0 0 1 12 8a4 4 0 0 1 7 2.5C19 15.7 12 20 12 20z"/></svg></span><h3>Given back</h3><p>Funds go to cancer research and subsidized tutoring.</p></div>
       </div>
     </section>
 
-    <section class="chapter chapter--paper intro wrap" data-ink="#17200f" data-ground="#f2f4ec" aria-labelledby="intro-title">
-      <h2 class="visually-hidden" id="intro-title">Who teaches</h2>
-      <p class="statement">
-        Our tutors
-        <span class="face" data-reveal style="--i:0"><img src="images/daniel_bio.png" width="600" height="600" alt="Daniel Chen" style="object-position:50% 30%"></span><span class="face" data-reveal style="--i:1"><img src="images/katherine_bio.jpg" width="457" height="600" alt="Katherine Fei" style="object-position:50% 35%"></span><span class="face" data-reveal style="--i:2"><img src="images/eliot_bio.png" width="600" height="600" alt="Eliot Bih" style="object-position:50% 30%"></span>
-        are high schoolers from Syosset and Jericho who sat where your kid sits a few years ago.
-      </p>
-    </section>
-
-    <section class="chapter chapter--paper wrap" id="subjects" data-ink="#17200f" data-ground="#f2f4ec" aria-labelledby="subjects-title" style="padding-top:0">
-      <div class="grid">
-        <div class="subjects-head">
-          <h2 class="head" id="subjects-title" data-reveal><span class="indent">What we teach,</span><br>and who teaches it</h2>
-          <p class="soft" data-reveal style="--i:1">Seven subjects, each taught by officers who study it, play it or compete in it. Pick one to start a request.</p>
+    <section class="band band--pin" aria-labelledby="impact-title" data-stackband>
+      <div class="wrap band__grid">
+        <div class="band__side">
+          <p class="micro">Impact</p>
+          <h2 class="head" id="impact-title" data-anim="lines">Small club. Real impact.</h2>
+          <p class="lead" data-anim="blur">Everything a student-run club raised, and where it went.</p>
+          <ol class="band__list" aria-hidden="true">
+            <li class="is-on"><span>01</span>Raised by the club</li>
+            <li><span>02</span>Cancer research</li>
+            <li><span>03</span>Subsidized tutoring</li>
+          </ol>
+          <a class="btn btn--light" href="impact.html" data-cursor="Open"><span class="roll"><span>See our impact</span><span aria-hidden="true">See our impact</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
-        <figure class="subjects-photo" data-open>
-          <img src="assets/syosset-street.jpg" width="480" height="600" alt="Houses, shops and the Long Island Rail Road tracks in Syosset, seen from above">
-          <figcaption class="small soft">Syosset, where most of our officers go to school.</figcaption>
-        </figure>
-        <ul class="subjects-table">
-          <li data-reveal style="--i:0"><a class="row" href="#contact" data-subject="math"><span class="row__name">Math</span><span class="row__what">Arithmetic to calculus, SAT and AMC prep</span><span class="row__who">Jack, Sam, Eliot<span class="arrow" aria-hidden="true">→</span></span></a></li>
-          <li data-reveal style="--i:1"><a class="row" href="#contact" data-subject="english"><span class="row__name">English and writing</span><span class="row__what">Essays, reading, grammar, public speaking</span><span class="row__who">Robert, Daniel<span class="arrow" aria-hidden="true">→</span></span></a></li>
-          <li data-reveal style="--i:2"><a class="row" href="#contact" data-subject="science"><span class="row__name">Science</span><span class="row__what">Biology, chemistry, physics, lab reports</span><span class="row__who">Eliot, Gary, Sue<span class="arrow" aria-hidden="true">→</span></span></a></li>
-          <li data-reveal style="--i:3"><a class="row" href="#contact" data-subject="coding"><span class="row__name">Coding</span><span class="row__what">Python, Java, the web, USACO prep</span><span class="row__who">Jack, Victor<span class="arrow" aria-hidden="true">→</span></span></a></li>
-          <li data-reveal style="--i:4"><a class="row" href="#contact" data-subject="music"><span class="row__name">Music</span><span class="row__what">Piano, violin, flute, guitar, theory</span><span class="row__who">Sue, Vincent, Daniel<span class="arrow" aria-hidden="true">→</span></span></a></li>
-          <li data-reveal style="--i:5"><a class="row" href="#contact" data-subject="social-studies"><span class="row__name">Social studies</span><span class="row__what">US and world history, civics, geography</span><span class="row__who">Isaac, Robert<span class="arrow" aria-hidden="true">→</span></span></a></li>
-          <li data-reveal style="--i:6"><a class="row" href="#contact" data-subject="beyond"><span class="row__name">Beyond the classroom</span><span class="row__what">Study skills, art, chess, college planning</span><span class="row__who">Sue, Sam, Katherine<span class="arrow" aria-hidden="true">→</span></span></a></li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="chapter chapter--forest wrap" data-ink="#f2f4ec" data-ground="#4a5d23" aria-labelledby="steps-title">
-      <h2 class="visually-hidden" id="steps-title">How it works</h2>
-      <ol class="steps grid">
-        <li class="step" data-reveal style="--i:0">
-          <p class="step__line">First, tell us what you need.</p>
-          <p class="soft">The form below asks for the subject, the grade and what is getting in the way.</p>
-        </li>
-        <li class="step" data-reveal style="--i:1">
-          <p class="step__line">Then we match a tutor.</p>
-          <p class="soft">Someone who knows the subject well and suits the way your student learns.</p>
-        </li>
-        <li class="step" data-reveal style="--i:2">
-          <p class="step__line">Together they make a plan.</p>
-          <p class="soft">Goals for the term, at a pace that follows what the school is teaching.</p>
-        </li>
-        <li class="step" data-reveal style="--i:3">
-          <p class="step__line">Then it grows.<span class="clip" aria-hidden="true"><video autoplay muted loop playsinline preload="metadata" poster="assets/seedlings-poster.jpg" width="854" height="480"><source src="assets/seedlings.webm" type="video/webm"></video></span></p>
-          <p class="soft">Regular sessions, steady progress, and a student who starts asking the next question.</p>
-        </li>
-      </ol>
-    </section>
-
-    <section class="chapter chapter--paper wrap" id="ways" data-ink="#17200f" data-ground="#f2f4ec" aria-labelledby="ways-title">
-      <div class="grid">
-        <div class="ways-head">
-          <h2 class="head" id="ways-title" data-reveal>Three ways to learn</h2>
-          <p class="soft" data-reveal style="--i:1">Every student starts with a tutor of their own. Some stay one-on-one; some join a group; some meet online.</p>
-        </div>
-        <figure class="ways-side" data-open>
-          <img src="assets/oyster-bay-1900.jpg" width="1000" height="1302" alt="1900 survey map of the Oyster Bay area of Long Island, with Syosset near the lower right">
-          <figcaption class="small soft">Syosset and its neighbours on the 1900 survey map of Oyster Bay.</figcaption>
-        </figure>
-        <article class="way way--a">
-          <div class="way__text">
-            <h3 data-reveal>One-on-one</h3>
-            <p data-reveal style="--i:1">One tutor and one student for the whole session. The best fit for catching up after a hard unit, or racing ahead of one.</p>
-          </div>
-        </article>
-        <article class="way way--b">
-          <div class="way__text">
-            <h3 data-reveal>Small groups</h3>
-            <p data-reveal style="--i:1">A few students working through the same unit together. They learn from the tutor and from each other.</p>
-          </div>
-        </article>
-        <article class="way way--c">
-          <div class="way__text">
-            <h3 data-reveal>Online</h3>
-            <p data-reveal style="--i:1">Video sessions from anywhere on Long Island, for the weeks when the calendar is already full.</p>
-          </div>
-          <figure data-open style="--i:2">
-            <img src="assets/long-island-1882.jpg" width="1600" height="672" alt="An 1882 map of the whole of Long Island with the railroad lines in red">
-            <figcaption class="small soft">Long Island in 1882, rail lines in red.</figcaption>
-          </figure>
-        </article>
-      </div>
-    </section>
-
-    <section class="chapter chapter--mint wrap" data-ink="#17200f" data-ground="#a8e6cf" aria-labelledby="story-title">
-      <div class="grid">
-        <ul class="story-facts">
-          <li data-reveal><strong>Where</strong>Syosset and Jericho, Long Island</li>
-          <li data-reveal style="--i:1"><strong>Run by</strong>High school students</li>
-          <li data-reveal style="--i:2"><strong>Write to</strong><a class="link" href="mailto:info@eternalgrowth.org">info@eternalgrowth.org</a></li>
-        </ul>
-        <div class="story">
-          <h2 class="head" id="story-title" data-reveal>Started by seven students</h2>
-          <p data-reveal style="--i:1"><img class="portrait" src="images/gary_bio.png" width="600" height="600" alt="Gary Han playing the viola">Gary Han, Daniel Chen, Jack Li, Albert Zhang, Andrew Liu, Leo Dai and Michael Ren founded Eternal Growth to make good tutoring easier to reach for kids across Long Island.</p>
-          <p class="soft" data-reveal style="--i:2">Two founders have since left for Carnegie Mellon and RPI. Today eleven officers run the club, from tutor matching to outreach. What the club raises, our treasurers give to local organizations they choose for their direct effect on the community. <a class="link" href="team.html" style="color:var(--ink)">Meet the team</a>.</p>
+        <div class="stats" data-stack>
+          <div class="stat"><svg class="stat__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v8M9.5 10h3.5a1.5 1.5 0 0 1 0 3h-2a1.5 1.5 0 0 0 0 3H14"/></svg><span class="stat__label micro">01 · Raised</span><span class="stat__num" data-count="35000" data-prefix="$" data-suffix="+">$35,000+</span><p>Raised by a club of high school students.</p></div>
+          <div class="stat"><svg class="stat__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 15c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/><path d="M3 10c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/></svg><span class="stat__label micro">02 · Given</span><span class="stat__num" data-count="3500" data-prefix="≈$">≈$3,500</span><p>To Swim Across America for cancer research.</p></div>
+          <div class="stat"><svg class="stat__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6c-2-1.3-5-1.6-8-1v13c3-.6 6-.3 8 1 2-1.3 5-1.6 8-1V5c-3-.6-6-.3-8 1zM12 6v13"/></svg><span class="stat__label micro">03 · Supported</span><span class="stat__num">Tutoring</span><p>Subsidized so more families can take part.</p></div>
         </div>
       </div>
     </section>
 
-    <section class="chapter chapter--paper wrap" id="contact" data-ink="#17200f" data-ground="#f2f4ec" aria-labelledby="contact-title">
-      <div class="grid">
-        <div class="contact-text">
-          <h2 class="head" id="contact-title" data-reveal>Request a tutor</h2>
-          <p class="lead" data-reveal style="--i:1">Tell us the subject and the grade. We will match a tutor and write back by email.</p>
-          <dl data-reveal style="--i:2">
-            <div><dt>Call or text</dt><dd><a class="link" href="tel:+13478786615">(347) 878-6615</a></dd></div>
-            <div><dt>Email</dt><dd><a class="link" href="mailto:info@eternalgrowth.org">info@eternalgrowth.org</a></dd></div>
-            <div><dt>Where</dt><dd>Anywhere on Long Island, in person or online</dd></div>
-          </dl>
-        </div>
+    
+    <section class="chapters" data-chapters aria-labelledby="ch-title">
+      <h2 class="visually-hidden" id="ch-title">Learn, teach, grow, give back</h2>
+      <div class="chapters__stage">
+        <svg class="chapters__mark" viewBox="0 0 200 200" aria-hidden="true"><path d="M100 14A86 86 0 1 1 99.9 14Z"/></svg>
+        <p class="chapter__word" aria-hidden="true">Learn.</p>
+        <p class="chapters__text" aria-hidden="true">Every student starts with a question.</p>
+        <div class="chapters__dots" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+      </div>
+      <ul class="visually-hidden"><li data-chapter data-shape="circle" data-word="Learn." data-text="Every student starts with a question."><b>Learn.</b> Every student starts with a question.</li><li data-chapter data-shape="book" data-word="Teach." data-text="A tutor a few grades ahead explains it the way it clicked for them."><b>Teach.</b> A tutor a few grades ahead explains it the way it clicked for them.</li><li data-chapter data-shape="star" data-word="Grow." data-text="A plan for the term, steady sessions, confidence that compounds."><b>Grow.</b> A plan for the term, steady sessions, confidence that compounds.</li><li data-chapter data-shape="heart" data-word="Give back." data-text="What the club raises goes back to causes that matter."><b>Give back.</b> What the club raises goes back to causes that matter.</li></ul>
+    </section>
 
-        <form class="form" id="request-form" action="https://formspree.io/f/xqagapza" method="POST" data-reveal style="--i:1">
+    <section class="slider section" id="subjects" data-slider aria-labelledby="subjects-title">
+      <div class="wrap shead">
+        <h2 class="head" id="subjects-title" data-anim="lines">Seven subjects. One standard.</h2>
+        <div class="slider__controls">
+          <span class="slider__count" aria-live="polite">01 / 07</span>
+          <button class="slider__btn" type="button" data-prev aria-label="Previous subject"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+          <button class="slider__btn" type="button" data-next aria-label="Next subject"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </div>
+      </div>
+      <div class="slider__viewport" tabindex="0" aria-label="Subjects, scroll sideways"><div class="slider__track">
+          <article class="slide" aria-label="Mathematics" data-cursor="Drag">
+            <div class="slide__art" data-clip><span class="slide__num micro">01</span><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-draw><path d="M30 170h150M30 170V20"/><path d="M30 140 180 30"/><path d="M60 170l55-95 55 95z"/><circle cx="115" cy="122" r="26"/></svg></div>
+            <div class="slide__body">
+              <h3>Mathematics</h3>
+              <ul class="tags"><li>Algebra through calculus</li><li>SAT and ACT math</li><li>AMC competition math</li></ul>
+              <div class="slide__by"><span class="monos"><span aria-hidden="true">JL</span><span aria-hidden="true">SM</span><span aria-hidden="true">EB</span></span><span class="small">Jack, Sam, Eliot</span></div>
+              <a class="link-arrow" href="subjects.html#math">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div>
+          </article>
+          <article class="slide" aria-label="English and Writing" data-cursor="Drag">
+            <div class="slide__art" data-clip><span class="slide__num micro">02</span><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-draw><path d="M100 50v120M100 50c-20-10-48-12-70-6v120c22-6 50-4 70 6M100 50c20-10 48-12 70-6v120c-22-6-50-4-70 6"/><path d="M44 80h40M44 100h40M44 120h28M116 80h40M116 100h40M116 120h28"/></svg></div>
+            <div class="slide__body">
+              <h3>English and Writing</h3>
+              <ul class="tags"><li>Essay writing and structure</li><li>Reading comprehension</li><li>Grammar and vocabulary</li></ul>
+              <div class="slide__by"><span class="monos"><span aria-hidden="true">RL</span><span aria-hidden="true">DC</span></span><span class="small">Robert, Daniel</span></div>
+              <a class="link-arrow" href="subjects.html#english">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div>
+          </article>
+          <article class="slide" aria-label="Science" data-cursor="Drag">
+            <div class="slide__art" data-clip><span class="slide__num micro">03</span><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-draw><path d="M100 40l52 30v60l-52 30-52-30V70z"/><circle cx="100" cy="100" r="22"/><path d="M100 40V16M152 70l20-12M48 130l-20 12"/></svg></div>
+            <div class="slide__body">
+              <h3>Science</h3>
+              <ul class="tags"><li>Biology and chemistry</li><li>Physics fundamentals</li><li>Lab report writing</li></ul>
+              <div class="slide__by"><span class="monos"><span aria-hidden="true">EB</span><span aria-hidden="true">GH</span><span aria-hidden="true">SN</span></span><span class="small">Eliot, Gary, Sue</span></div>
+              <a class="link-arrow" href="subjects.html#science">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div>
+          </article>
+          <article class="slide" aria-label="Coding" data-cursor="Drag">
+            <div class="slide__art" data-clip><span class="slide__num micro">04</span><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-draw><path d="M70 60 30 100l40 40M130 60l40 40-40 40M112 46 88 154"/></svg></div>
+            <div class="slide__body">
+              <h3>Coding</h3>
+              <ul class="tags"><li>Python, Java and C++</li><li>HTML, CSS and JavaScript</li><li>Algorithmic thinking</li></ul>
+              <div class="slide__by"><span class="monos"><span aria-hidden="true">JL</span><span aria-hidden="true">VP</span></span><span class="small">Jack, Victor</span></div>
+              <a class="link-arrow" href="subjects.html#coding">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div>
+          </article>
+          <article class="slide" aria-label="Music" data-cursor="Drag">
+            <div class="slide__art" data-clip><span class="slide__num micro">05</span><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-draw><path d="M20 64h160M20 84h160M20 104h160M20 124h160M20 144h160"/><path d="M70 134V54M120 114V34M160 144V64"/><circle cx="60" cy="134" r="10"/><circle cx="110" cy="114" r="10"/><circle cx="150" cy="144" r="10"/></svg></div>
+            <div class="slide__body">
+              <h3>Music</h3>
+              <ul class="tags"><li>Piano and keyboard</li><li>Violin, viola and flute</li><li>Guitar, acoustic and electric</li></ul>
+              <div class="slide__by"><span class="monos"><span aria-hidden="true">SN</span><span aria-hidden="true">VY</span><span aria-hidden="true">DC</span><span aria-hidden="true">KF</span></span><span class="small">Sue, Vincent, Daniel +</span></div>
+              <a class="link-arrow" href="subjects.html#music">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div>
+          </article>
+          <article class="slide" aria-label="Social Studies" data-cursor="Drag">
+            <div class="slide__art" data-clip><span class="slide__num micro">06</span><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-draw><circle cx="100" cy="100" r="72"/><ellipse cx="100" cy="100" rx="30" ry="72"/><path d="M28 100h144M40 64h120M40 136h120"/></svg></div>
+            <div class="slide__body">
+              <h3>Social Studies</h3>
+              <ul class="tags"><li>US and world history</li><li>Geography and cultures</li><li>Government and civics</li></ul>
+              <div class="slide__by"><span class="monos"><span aria-hidden="true">IT</span><span aria-hidden="true">RL</span></span><span class="small">Isaac, Robert</span></div>
+              <a class="link-arrow" href="subjects.html#social-studies">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div>
+          </article>
+          <article class="slide" aria-label="Beyond the Classroom" data-cursor="Drag">
+            <div class="slide__art" data-clip><span class="slide__num micro">07</span><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-draw><rect x="40" y="40" width="120" height="120" rx="6"/><path d="M70 40v120M100 40v120M130 40v120M40 70h120M40 100h120M40 130h120"/></svg></div>
+            <div class="slide__body">
+              <h3>Beyond the Classroom</h3>
+              <ul class="tags"><li>Study skills and organization</li><li>Digital art and design</li><li>Chess</li></ul>
+              <div class="slide__by"><span class="monos"><span aria-hidden="true">SN</span><span aria-hidden="true">SM</span><span aria-hidden="true">KF</span></span><span class="small">Sue, Sam, Katherine</span></div>
+              <a class="link-arrow" href="subjects.html#beyond">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div>
+          </article>
+      </div></div>
+      <div class="slider__progress" aria-hidden="true"><span></span></div>
+    </section>
+
+    <section class="section section--screen" id="stages" aria-labelledby="stages-title">
+      <div class="wrap">
+        <div class="shead shead--center"><h2 class="head" id="stages-title" data-anim="scale">For every stage.</h2></div>
+        <div class="cards">
+          <div class="card" data-rise><span class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="14" r="5"/><path d="M12 9V4"/></svg></span><h3>Elementary</h3><p>Number sense, reading, first science projects.</p></div>
+          <div class="card" data-rise><span class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10 12 5l9 5-9 5z"/><path d="M7 12.5V17c3 2 7 2 10 0v-4.5"/></svg></span><h3>Middle school</h3><p>Algebra, essays, first programs, lab reports.</p></div>
+          <div class="card" data-rise><span class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9 12 4l10 5-10 5z"/><path d="M6 11v5c4 2.5 8 2.5 12 0v-5M22 9v6"/></svg></span><h3>High school</h3><p>Calculus, SAT and AMC, USACO, college planning.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="how" aria-labelledby="how-title">
+      <div class="wrap">
+        <div class="shead"><h2 class="head" id="how-title" data-anim="chars">From request to progress.</h2><p class="lead" data-anim="blur">Four steps. The first takes a minute.</p></div>
+        <div class="path">
+          <svg class="path__svg" aria-hidden="true"></svg>
+          <span class="path__dot" aria-hidden="true"></span>
+          <ol class="steps">
+            <li class="step" data-rise><span class="step__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg></span><span class="step__num">STEP 1</span><h3>Tell us what you need</h3><p>Subject, grade, what is getting in the way.</p></li>
+            <li class="step" data-rise><span class="step__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="9" r="3"/><circle cx="16" cy="9" r="3"/><path d="M3 19c.8-2.6 2.8-4 5-4s4.2 1.4 5 4M11 19c.8-2.6 2.8-4 5-4s4.2 1.4 5 4"/></svg></span><span class="step__num">STEP 2</span><h3>We match a tutor</h3><p>Someone who knows it and fits how your student learns.</p></li>
+            <li class="step" data-rise><span class="step__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg></span><span class="step__num">STEP 3</span><h3>Make a plan</h3><p>Goals for the term, paced with school.</p></li>
+            <li class="step" data-rise><span class="step__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20V10M12 10c0-3 2-5 6-5 0 4-2 6-6 6zM12 13c0-2.5-1.7-4.5-5-4.5 0 3.3 1.7 5 5 5"/></svg></span><span class="step__num">STEP 4</span><h3>Then it grows</h3><p>Steady sessions, steady progress.</p></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--screen" id="ways" aria-labelledby="ways-title" style="padding-top:0">
+      <div class="wrap">
+        <div class="shead shead--center"><h2 class="head" id="ways-title" data-anim="flip">Three ways to learn.</h2></div>
+        <div class="cards">
+          <div class="card" data-rise><span class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c.8-3.6 3.6-5.5 7-5.5s6.2 1.9 7 5.5"/></svg></span><h3>One-on-one</h3><p>One tutor, one student, the whole session.</p></div>
+          <div class="card" data-rise><span class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="9" r="3"/><circle cx="16.5" cy="9.5" r="2.5"/><path d="M2.5 19.5c.6-3 2.8-4.7 5.5-4.7s4.9 1.7 5.5 4.7M14 15.2c.8-.3 1.6-.4 2.5-.4 2.3 0 4.2 1.4 4.8 4.2"/></svg></span><h3>Small groups</h3><p>A few students, the same unit, together.</p></div>
+          <div class="card" data-rise><span class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2"/><path d="M8.5 20h7M12 16.5V20"/></svg></span><h3>Online</h3><p>Video sessions from anywhere on Long Island.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--screen" id="people" aria-labelledby="people-title" style="padding-top:0">
+      <div class="wrap">
+        <div class="shead"><h2 class="head" id="people-title" data-anim="lines">The people behind it.</h2><a class="link-arrow" href="team.html" data-rise>Meet all twelve officers <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+        <div class="plates"><a class="plate" href="team.html#leon" data-rise data-cursor="View"><div class="plate__face"><span class="plate__mono" aria-hidden="true">LZ</span><span class="plate__shine"></span></div><span class="plate__name">Leon Zhang</span><span class="plate__role micro">Co-President</span></a><a class="plate" href="team.html#victor" data-rise data-cursor="View"><div class="plate__face"><span class="plate__mono" aria-hidden="true">VP</span><span class="plate__shine"></span></div><span class="plate__name">Victor Pan</span><span class="plate__role micro">Co-President</span></a><a class="plate" href="team.html#katherine" data-rise data-cursor="View"><div class="plate__face"><span class="plate__mono" aria-hidden="true">KF</span><span class="plate__shine"></span></div><span class="plate__name">Katherine Fei</span><span class="plate__role micro">Vice President</span></a><a class="plate" href="team.html#jack" data-rise data-cursor="View"><div class="plate__face"><span class="plate__mono" aria-hidden="true">JL</span><span class="plate__shine"></span></div><span class="plate__name">Jack Li</span><span class="plate__role micro">Webmaster</span></a><a class="plate" href="team.html#eliot" data-rise data-cursor="View"><div class="plate__face"><span class="plate__mono" aria-hidden="true">EB</span><span class="plate__shine"></span></div><span class="plate__name">Eliot Bih</span><span class="plate__role micro">Director of STEM</span></a><a class="plate" href="team.html#robert" data-rise data-cursor="View"><div class="plate__face"><span class="plate__mono" aria-hidden="true">RL</span><span class="plate__shine"></span></div><span class="plate__name">Robert Liu Meng</span><span class="plate__role micro">Director of Humanities</span></a><a class="plate" href="team.html#sue" data-rise data-cursor="View"><div class="plate__face"><span class="plate__mono" aria-hidden="true">SN</span><span class="plate__shine"></span></div><span class="plate__name">Sue Nian</span><span class="plate__role micro">Director of Fine Arts</span></a><a class="plate" href="team.html#vincent" data-rise data-cursor="View"><div class="plate__face"><span class="plate__mono" aria-hidden="true">VY</span><span class="plate__shine"></span></div><span class="plate__name">Vincent Yang</span><span class="plate__role micro">Director of Sports</span></a></div>
+      </div>
+    </section>
+
+    <section class="section" id="questions" aria-labelledby="questions-title">
+      <div class="wrap faq-wrap">
+        <div><h2 class="head" id="questions-title" data-anim="chars">Questions.</h2><a class="link-arrow" href="about.html#faq" data-rise>All questions <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+        <ul class="faq"><li data-rise><button type="button" aria-expanded="false" aria-controls="hq-0" id="hq-q-0">Who are the tutors?<i aria-hidden="true"></i></button><div class="faq__a" id="hq-0" role="region" aria-labelledby="hq-q-0" hidden><p>High school students, most from Syosset and Jericho, who know their subject and remember learning it.</p></div></li><li data-rise><button type="button" aria-expanded="false" aria-controls="hq-1" id="hq-q-1">Which grades do you work with?<i aria-hidden="true"></i></button><div class="faq__a" id="hq-1" role="region" aria-labelledby="hq-q-1" hidden><p>Elementary through high school. College students can ask too.</p></div></li><li data-rise><button type="button" aria-expanded="false" aria-controls="hq-2" id="hq-q-2">Where do sessions happen?<i aria-hidden="true"></i></button><div class="faq__a" id="hq-2" role="region" aria-labelledby="hq-q-2" hidden><p>In person around Long Island, or online over video.</p></div></li><li data-rise><button type="button" aria-expanded="false" aria-controls="hq-3" id="hq-q-3">How is a tutor chosen?<i aria-hidden="true"></i></button><div class="faq__a" id="hq-3" role="region" aria-labelledby="hq-q-3" hidden><p>By subject, grade and how your student learns. Tell us what has worked before.</p></div></li></ul>
+      </div>
+    </section>
+
+    <section class="section" id="request" aria-labelledby="request-title">
+      <div class="wrap request">
+        <div class="request__side">
+          <h2 class="head" id="request-title" data-anim="chars">Request a tutor.</h2>
+          <p class="lead" data-anim="blur">Subject and grade. We match a tutor and write back.</p>
+          <ul class="contact" data-rise>
+            <li><span class="micro">Call or text</span><a href="tel:+13478786615">(347) 878-6615</a></li>
+            <li><span class="micro">Email</span><a href="mailto:info@eternalgrowth.org">info@eternalgrowth.org</a></li>
+            <li><span class="micro">Where</span><span>Long Island, in person or online</span></li>
+          </ul>
+        </div>
+        <form class="form" id="request-form" action="https://formspree.io/f/xqagapza" method="POST" data-rise>
           <h3>Your request</h3>
-          <div class="field-pair">
-            <div class="field">
-              <label for="parentName">Parent or guardian</label>
-              <input type="text" name="parentName" id="parentName" autocomplete="name" required>
-            </div>
-            <div class="field">
-              <label for="studentName">Student</label>
-              <input type="text" name="studentName" id="studentName" required>
-            </div>
+          <div class="row2">
+            <div class="field"><label for="parentName">Parent or guardian</label><input type="text" name="parentName" id="parentName" autocomplete="name" required></div>
+            <div class="field"><label for="studentName">Student</label><input type="text" name="studentName" id="studentName" required></div>
           </div>
-          <div class="field">
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email" autocomplete="email" required>
+          <div class="field"><label for="email">Email</label><input type="email" name="email" id="email" autocomplete="email" required></div>
+          <div class="row2">
+            <div class="field"><label for="subject">Subject</label><select name="subject" id="subject" required><option value="">Choose a subject</option><option value="math">Mathematics</option><option value="english">English and Writing</option><option value="science">Science</option><option value="coding">Coding</option><option value="music">Music</option><option value="social-studies">Social Studies</option><option value="beyond">Beyond the Classroom</option><option value="multiple">More than one</option><option value="other">Something else</option></select></div>
+            <div class="field"><label for="grade">Grade</label><select name="grade" id="grade" required><option value="">Choose a grade</option><option value="elementary">Elementary (K–5)</option><option value="middle">Middle school (6–8)</option><option value="high">High school (9–12)</option><option value="college">College</option></select></div>
           </div>
-          <div class="field-pair">
-            <div class="field">
-              <label for="subject">Subject</label>
-              <select name="subject" id="subject" required>
-                <option value="">Choose a subject</option>
-                <option value="math">Math</option>
-                <option value="english">English and writing</option>
-                <option value="science">Science</option>
-                <option value="coding">Coding</option>
-                <option value="music">Music</option>
-                <option value="social-studies">Social studies</option>
-                <option value="beyond">Beyond the classroom</option>
-                <option value="multiple">More than one</option>
-                <option value="other">Something else</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="grade">Grade</label>
-              <select name="grade" id="grade" required>
-                <option value="">Choose a grade</option>
-                <option value="elementary">Elementary (K–5)</option>
-                <option value="middle">Middle school (6–8)</option>
-                <option value="high">High school (9–12)</option>
-                <option value="college">College</option>
-              </select>
-            </div>
-          </div>
-          <div class="match" aria-live="polite" hidden>
-            <div class="match__faces"></div>
-            <p class="match__text"></p>
-          </div>
-          <div class="field">
-            <label for="message">What should the tutor know?</label>
-            <textarea name="message" id="message" rows="4" placeholder="Goals, upcoming tests, what has or hasn't worked"></textarea>
-          </div>
-          <button type="submit" class="button">Send request <span class="arrow" aria-hidden="true">→</span></button>
-          <p class="form-status small" role="status"></p>
+          <div class="match" aria-live="polite" hidden><span class="monos"></span><p></p></div>
+          <div class="field"><label for="message">What should the tutor know?</label><textarea name="message" id="message" rows="4" placeholder="Goals, upcoming tests, what has or hasn’t worked"></textarea></div>
+          <button class="btn" type="submit"><span class="roll"><span>Send request</span><span aria-hidden="true">Send request</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          <p class="status" role="status"></p>
         </form>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer" data-ink="#f2f4ec" data-ground="#17200f">
-    <div class="grid footer-top">
-      <div class="footer-invite">
-        <h2>Learning never stops.</h2>
-        <a class="button" href="index.html#contact">Request a tutor <span class="arrow" aria-hidden="true">→</span></a>
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer__cta">
+        <div>
+          <h2 class="head" data-anim="lines">Grow with us.</h2>
+          <p class="lead">Tell us the subject and the grade. We will match a tutor who was in your student’s seat a few years ago.</p>
+          <a class="btn btn--light" href="index.html#request" data-cursor="Begin"><span class="roll"><span>Request a tutor</span><span aria-hidden="true">Request a tutor</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
       </div>
-      <ul class="footer-links">
-        <li><a href="subjects.html">Subjects</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="team.html">Team</a></li>
-        <li><a href="mailto:info@eternalgrowth.org">info@eternalgrowth.org</a></li>
-        <li><a href="tel:+13478786615">(347) 878-6615</a></li>
-      </ul>
+      <div class="footer__grid">
+        <div class="footer__col"><p class="micro">Explore</p><ul><li><a href="subjects.html">Subjects</a></li><li><a href="impact.html">Impact</a></li><li><a href="about.html">About</a></li><li><a href="team.html">Team</a></li></ul></div>
+        <div class="footer__col"><p class="micro">Contact</p><ul><li><a href="mailto:info@eternalgrowth.org">info@eternalgrowth.org</a></li><li><a href="tel:+13478786615">(347) 878-6615</a></li></ul></div>
+        <div class="footer__col"><p class="micro">Long Island, NY</p><p class="footer__clock" data-clock aria-label="Local time on Long Island">--:--:--</p></div>
+        <div class="footer__col"><p class="micro">The club</p><ul><li><a href="team.html#join">Tutor with us</a></li><li><a href="about.html#faq">Questions</a></li><li><a href="impact.html#giving">Where the money goes</a></li></ul></div>
+      </div>
+      <div class="footer__base">
+        <p class="small">© 2026 Eternal Growth, Inc. A student-run nonprofit on Long Island, New York. Background by <a href="https://www.vantajs.com">Vanta.js</a>.</p>
+        <button class="to-top" type="button" data-top>Back to top <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
+      </div>
     </div>
-    <div class="footer-legal">
-      <p>Pictures: <a href="https://commons.wikimedia.org/wiki/File:Syosset,_New_York,_USA.jpg">“Syosset, New York, USA”</a> by Quintin Soloviev, <a href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0</a>; seedling time-lapse from <a href="https://commons.wikimedia.org/wiki/File:Daily-Changes-in-Temperature-Not-the-Circadian-Clock-Regulate-Growth-Rate-in-Brachypodium-distachyon-pone.0100072.s018.ogv">Matos, Cole, Whitney, MacKinnon, Kay and Hazen</a>, <a href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Map_of_Long_Island_showing_the_Long_Island_Railroad_and_its_leased_lines._LOC_98688698.jpg">Map of Long Island</a> (1882, Library of Congress) and <a href="https://commons.wikimedia.org/wiki/File:1900_U.S.G.S._Map_of_Oyster_Bay,_Long_Island,_New_York_-_Geographicus_-_OysterBay-uscs-1925.jpg">Oyster Bay quadrangle</a> (USGS, 1900), public domain; all via Wikimedia Commons.</p>
-      <p>© 2026 Eternal Growth, Inc.</p>
-    </div>
-    <p class="footer-name" aria-hidden="true" data-reveal>Eternal Growth</p>
   </footer>
-
-  <script src="script.js"></script>
+  </div></div>
 </body>
 </html>

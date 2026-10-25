@@ -1,6 +1,6 @@
 # Eternal Growth website
 
-Static site for Eternal Growth, a Long Island nonprofit tutoring organization run by high school students. Live at https://eternalgrowth.org.
+Static site for Eternal Growth, a Long Island nonprofit tutoring organization run by high school students. Light, minimal design: compact Archivo type in black on off-white, with a slow grey fog and GSAP 3.13 motion throughout. Live at https://eternalgrowth.org.
 
 ## Stack and hosting
 - Plain HTML, CSS and JavaScript. No build step, no framework, no package manager.
@@ -9,23 +9,25 @@ Static site for Eternal Growth, a Long Island nonprofit tutoring organization ru
 - Domain registered at Squarespace; DNS points to GitHub Pages. Email runs on Google Workspace, so never touch MX, SPF, DKIM or the googlehosted records.
 
 ## Files
-- `index.html`, `subjects.html`, `about.html`, `team.html` — the four pages. Each links `style.css` and `script.js` and loads the Erode typeface from Fontshare. The header and footer are the same on every page; change them in all four.
-- `style.css` — all styles. Design tokens are on `:root`: colours (`--paper`, `--ink`, `--forest`, `--mint`, `--sprout` for buttons, `--night` for the footer), five type steps (`--step-small` … `--step-display`), margins and motion easings.
-- `script.js` — mobile menu, reveal-on-scroll, header colour by chapter, the hero field rising on scroll, and the request form (sends to Formspree in the background and shows which tutors teach the chosen subject).
-- `images/` — team bio photos, max 600px. Keep new photos at that size.
-- `assets/` — archive pictures and the seedling clip, with their credits in the footer of every page. Keep the credits if you keep the pictures.
-- Contact form posts to Formspree (`https://formspree.io/f/xqagapza`); no backend. Field names (`parentName`, `studentName`, `email`, `subject`, `grade`, `message`) are what Formspree receives; don't rename them.
-
-## How the design works
-- Each section is a "chapter" with one flat background: `chapter--paper`, `--mint`, `--forest` or `--night`. Give each a `data-ink` and `data-ground` (its text and background colours) so the fixed header can match it.
-- Hero: two stacked copies of the name, one on the paper layer and one on the green field layer. The field's top edge is `--seam` (animated on load) minus `--lift` (set by `script.js` on scroll).
-- Motion: add `data-reveal` to anything that should rise in when scrolled into view, and `data-open` to a `figure` whose picture should open from a mask. Use `style="--i:1"` etc. to stagger. Everything stays visible without JavaScript and with reduced motion.
-- No emoji, gradients, drop shadows, or icon cards; separate surfaces with a flat colour step instead.
+- `index.html`, `subjects.html`, `impact.html`, `about.html`, `team.html` — the five pages. The header (nav, shutter overlay, cursor, fog layer) and footer are identical on every page; change them in all five. Page content sits inside `#smooth-wrapper > #smooth-content` for ScrollSmoother; fixed elements stay outside it.
+- `style.css` — all styles. Tokens on `:root` (colours `--ground`, `--ink`, greys, `--line`, type steps). See `DESIGN.md` for the system.
+- `script.js` — ScrollSmoother, SplitText and ScrambleText text effects, MorphSVG marks, DrawSVG line art, the MotionPath process dot, the pinned subject slider, shutter page transitions, cursor, nav, plate tilt, footer clock, FAQ, the Vanta fog, the hero finder and the request form (Formspree, sent in the background, shows matching tutors).
+- `vendor/` — Vanta 0.5.24 (`vanta.fog`) and three.js r134, served locally. GSAP 3.13.0 and its plugins (ScrollTrigger, ScrollSmoother, SplitText, DrawSVG, MorphSVG, MotionPath, ScrambleText) load from jsDelivr.
+- `images/` — team photos, max 600px. They are not shown right now: people appear as monogram plates (`plate__face`). To bring a photo back, put an `<img>` inside that person's plate.
+- `PRODUCT.md`, `DESIGN.md`, `.impeccable/` — product facts, the design system, and the design brief.
+- `.build/` — not published (GitHub Pages skips dot-folders). `content.py` holds people, roles, bios and subjects; `python .build/build.py` regenerates all five HTML pages from it. `test.mjs`, `transition.mjs`, `sections.mjs` and `shots.mjs` are headless-Chrome checks against `python -m http.server 5500`. Edit `content.py` and rebuild rather than hand-editing the HTML.
+- Contact form posts to Formspree (`https://formspree.io/f/xqagapza`). Field names (`parentName`, `studentName`, `email`, `subject`, `grade`, `message`) are what Formspree receives; don't rename them.
 
 ## Updating content
-- Tutors per subject live in three places: the home page subjects table, `subjects.html`, and the `BY_SUBJECT` map in `script.js`. Keep them in step.
-- Team bios are in `team.html` (`#officers` and `#founders`). Robert Liu Meng has no photo yet; his card shows initials until one is added to `images/`.
+- Impact figures (more than $35,000 raised, about $3,500 to Swim Across America, subsidized tutoring) appear on the home page band, `impact.html` and the FAQ answer about money. Update all three together.
+- Tutors per subject live in three places: the home page slider, `subjects.html`, and `BY_SUBJECT` in `script.js`. Keep them in step.
+- Animations are set in the markup:
+  - `data-anim="chars|lines|blur|flip|fill|scramble"` for text;
+  - `data-draw` for SVG line art;
+  - `data-rise` for blocks;
+  - `data-speed` for parallax;
+  - `data-cursor="Label"` for a cursor label.
 
 ## Conventions
-- Breakpoint for phones is `max-width: 768px`.
+- Breakpoint: `max-width: 860px` for phones and tablets (menu overlay, stacked columns, swipeable slider).
 - Test changes locally with `python -m http.server` and check desktop and ~390px phone width before pushing.
