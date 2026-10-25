@@ -74,12 +74,40 @@ def role_of(pid, role):
 # headshots: images/<id>_bio.<ext>; people without one keep their monogram
 PHOTOS = {f.split('_bio.')[0]: 'images/' + f for f in sorted(os.listdir(os.path.join(ROOT, 'images'))) if '_bio.' in f}
 
+import struct
+def img_size(path):
+    d = open(os.path.join(ROOT, path), 'rb').read()
+    if d[:8] == b'\x89PNG\r\n\x1a\n':
+        return struct.unpack('>II', d[16:24])
+    if d[:4] == b'RIFF':
+        kind = d[12:16]
+        if kind == b'VP8X':
+            return int.from_bytes(d[24:27], 'little') + 1, int.from_bytes(d[27:30], 'little') + 1
+        if kind == b'VP8 ':
+            return struct.unpack('<H', d[26:28])[0] & 0x3fff, struct.unpack('<H', d[28:30])[0] & 0x3fff
+        v = int.from_bytes(d[21:25], 'little')
+        return (v & 0x3fff) + 1, ((v >> 14) & 0x3fff) + 1
+    i = 2
+    while i < len(d):
+        if d[i] != 0xFF:
+            i += 1; continue
+        if d[i + 1] in (0xC0, 0xC1, 0xC2):
+            h, w = struct.unpack('>HH', d[i + 5:i + 9]); return w, h
+        i += 2 + struct.unpack('>H', d[i + 2:i + 4])[0]
+    return 600, 600
+
+def img_tag(pid, alt, eager=False):
+    w, h = img_size(PHOTOS[pid])
+    z, pos, origin = PHOTO_FRAME.get(pid, (1, '50% 30%', '50% 50%'))
+    return (f'<img src="{PHOTOS[pid]}" alt="{alt}" width="{w}" height="{h}" loading="{"eager" if eager else "lazy"}" decoding="async" '
+            f'style="--z:{z};--pos:{pos};--o:{origin}">')
+
 def photo(pid, cls='plate__photo', eager=False):
-    return f'<span class="{cls}"><img src="{PHOTOS[pid]}" alt="{PEOPLE[pid]}" width="600" height="600" loading="{"eager" if eager else "lazy"}" decoding="async"></span>'
+    return f'<span class="{cls}">{img_tag(pid, PEOPLE[pid], eager)}</span>'
 
 def team_face(pid):
     if pid in PHOTOS:
-        return f'<b class="alum__photo" aria-hidden="true"><img src="{PHOTOS[pid]}" alt="" width="76" height="76" loading="lazy" decoding="async"></b>'
+        return f'<b class="alum__photo" aria-hidden="true">{img_tag(pid, "")}</b>'
     return f'<b aria-hidden="true">{initials(PEOPLE[pid])}</b>'
 
 def plate(pid):
@@ -140,6 +168,8 @@ def crumbs(name, path):
         {'@type': 'ListItem', 'position': 2, 'name': name, 'item': SITE + path}]}
 WORDS = 'zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen'.split()
 COUNT = WORDS[len(OFFICERS)] if len(OFFICERS) < len(WORDS) else str(len(OFFICERS))
+import hashlib
+ASSET_V = hashlib.md5(b''.join(open(os.path.join(ROOT, f), 'rb').read() for f in ('style.css', 'script.js'))).hexdigest()[:8]
 def head(title, desc, path='', extra=(), kind='WebPage', index=True):
     url = SITE + path
     page_ld = {'@context': 'https://schema.org', '@type': kind, '@id': url + '#page', 'url': url, 'name': title, 'description': desc, 'inLanguage': 'en-US',
@@ -187,14 +217,14 @@ def head(title, desc, path='', extra=(), kind='WebPage', index=True):
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v={ASSET_V}">
   <link rel="icon" href="favicon.ico" sizes="32x32">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">{plugins}
   <script src="vendor/three.r134.min.js" defer></script>
   <script src="vendor/vanta.fog.min.js" defer></script>
-  <script src="script.js" defer></script>
+  <script src="script.js?v={ASSET_V}" defer></script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -627,7 +657,7 @@ def founder_card(i, pid, role, bio):
 
 def alum_chip(pid, role, real=True):
     ident = f' id="{pid}"' if real else ''
-    face = f'<b class="alum__photo"><img src="{PHOTOS[pid]}" alt="" width="96" height="96" loading="lazy" decoding="async"></b>' if pid in PHOTOS else f'<b aria-hidden="true">{initials(PEOPLE[pid])}</b>'
+    face = f'<b class="alum__photo">{img_tag(pid, "")}</b>' if pid in PHOTOS else f'<b aria-hidden="true">{initials(PEOPLE[pid])}</b>'
     return f'<li class="alum"{ident}>{face}<span>{PEOPLE[pid]}<small>Former {role}</small></span></li>'
 
 def alumni_row(items, reverse=False):
@@ -665,6 +695,16 @@ team_page = head('Our team: officers, founders and alumni | Eternal Growth', 'Me
         <div class="shead"><div class="shead__kicker"><p class="micro" data-anim="scramble">02 · Founders</p><h2 class="head" id="founders-title" data-anim="lines">Where it started.</h2></div><p class="lead" data-anim="blur">Seven students from Syosset and Jericho planted Eternal Growth. Meet {WORDS[len(FOUNDERS)]} of them.</p></div>
         <div class="founders">
 {chr(10).join(founder_card(i, *f) for i, f in enumerate(FOUNDERS))}
+          <aside class="founders__stat" data-rise aria-label="Eternal Growth by the numbers">
+            <p class="micro">Since day one</p>
+            <p class="founders__big"><span class="stat__num" data-count="35000" data-prefix="$" data-suffix="+">$35,000+</span></p>
+            <p class="founders__cap">Raised by students since seven founders started Eternal Growth.</p>
+            <ul class="founders__mini">
+              <li><b data-count="7">7</b><span>Founders</span></li>
+              <li><b data-count="{len(SUBJECTS)}">{len(SUBJECTS)}</b><span>Subject areas</span></li>
+              <li><b data-count="{len(OFFICERS) + len(ALUMNI)}">{len(OFFICERS) + len(ALUMNI)}</b><span>Officers, past and present</span></li>
+            </ul>
+          </aside>
         </div>
       </div>
     </section>

@@ -57,3 +57,12 @@ ALUMNI = [
 
 # officers who hold a second role
 EXTRA_ROLES = {'victor': ['Webmaster']}
+
+# how each headshot sits in its circle: zoom, crop position, zoom centre (on the face)
+PHOTO_FRAME = {
+    'victor': (1.05, '50% 30%', '50% 45%'), 'andrew': (1.1, '50% 57%', '50% 50%'), 'austin': (2.2, '50% 50%', '49% 41%'),
+    'sue': (2.3, '50% 20%', '45% 50%'), 'vincent': (2.1, '50% 0%', '50% 38%'), 'isaac': (1.15, '50% 0%', '50% 50%'),
+    'jack': (1.3, '50% 50%', '49% 60%'), 'katherine': (1.2, '50% 0%', '49% 50%'), 'sam': (1.25, '50% 43%', '41% 50%'),
+    'albert': (2.4, '50% 50%', '47% 27%'), 'daniel': (1.05, '50% 50%', '45% 55%'), 'eliot': (1.25, '50% 50%', '46% 45%'),
+    'gary': (1.1, '50% 50%', '50% 50%'),
+}
