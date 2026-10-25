@@ -1,6 +1,6 @@
 """Writes the five pages (index, subjects, impact, about, team) from content.py.
 Run from the repo root: python .build/build.py"""
-import sys, html, math
+import re, json, sys, html, math
 
 ROOT = sys.argv[1] if len(sys.argv) > 1 else '.'
 import os
@@ -98,7 +98,38 @@ def thorns_svg():
 # ---------------------------------------------------------------- shell
 GS = 'https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/'
 NAV_LINKS = [('subjects.html', 'Subjects'), ('impact.html', 'Impact'), ('about.html', 'About'), ('team.html', 'Team')]
-def head(title, desc):
+SITE = 'https://eternalgrowth.org/'
+ORG_LD = {
+    '@context': 'https://schema.org', '@type': ['EducationalOrganization', 'NGO'], '@id': SITE + '#org',
+    'name': 'Eternal Growth', 'legalName': 'Eternal Growth, Inc.', 'url': SITE, 'logo': SITE + 'favicon.png',
+    'email': 'info@eternalgrowth.org',
+    'description': 'A student-run nonprofit on Long Island, New York. High school students tutor younger kids in math, English, science, coding, music and more.',
+    'areaServed': {'@type': 'Place', 'name': 'Long Island, New York'},
+    'address': {'@type': 'PostalAddress', 'addressRegion': 'NY', 'addressCountry': 'US'},
+}
+def ld(obj):
+    return '\n  <script type="application/ld+json">' + json.dumps(obj, ensure_ascii=False).replace('</', '<\\/') + '</script>'
+def crumbs(name, path):
+    return {'@context': 'https://schema.org', '@type': 'BreadcrumbList', 'itemListElement': [
+        {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': SITE},
+        {'@type': 'ListItem', 'position': 2, 'name': name, 'item': SITE + path}]}
+def head(title, desc, path='', extra=()):
+    url = SITE + path
+    t, d = html.escape(title), html.escape(desc)
+    seo = f'''
+  <link rel="canonical" href="{url}">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Eternal Growth">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="{t}">
+  <meta property="og:description" content="{d}">
+  <meta property="og:url" content="{url}">
+  <meta property="og:image" content="{SITE}favicon.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="{t}">
+  <meta name="twitter:description" content="{d}">
+  <meta name="twitter:image" content="{SITE}favicon.png">''' + ''.join(ld(x) for x in extra)
     plugins = ''.join(f'\n  <script src="{GS}{p}.min.js" defer></script>' for p in ['gsap', 'ScrollTrigger', 'ScrollSmoother', 'SplitText', 'DrawSVGPlugin', 'MorphSVGPlugin', 'MotionPathPlugin', 'ScrambleTextPlugin'])
     links = ''.join(f'<li><a href="{h}">{n}</a></li>' for h, n in NAV_LINKS)
     return f'''<!DOCTYPE html>
@@ -106,8 +137,8 @@ def head(title, desc):
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{title}</title>
-  <meta name="description" content="{html.escape(desc)}">
+  <title>{t}</title>
+  <meta name="description" content="{d}">{seo}
   <meta name="theme-color" content="#f2f2ef">
   <script>
     (function () {{
@@ -129,7 +160,7 @@ def head(title, desc):
   <a class="skip" href="#main">Skip to content</a>
   <svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="liquid" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.012 0.018" numOctaves="2" seed="7" result="n"/><feGaussianBlur in="n" stdDeviation="2" result="b"/><feDisplacementMap in="SourceGraphic" in2="b" scale="26" xChannelSelector="R" yChannelSelector="G"/></filter></svg>
   <div class="atmos" aria-hidden="true"><span class="atmos__orb"></span><span class="atmos__orb"></span><span class="atmos__orb"></span></div>
-  <div class="shutter" aria-hidden="true"><i></i><i></i><i></i><i></i><span class="shutter__word"><span></span></span></div>
+  <div class="shutter" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
   <div class="progress" aria-hidden="true"><span class="progress__num">01</span><span class="progress__bar"><i></i></span><span class="progress__name">Home</span></div>
   <div class="cursor" aria-hidden="true"><span></span></div>
   <header class="nav">
@@ -217,6 +248,8 @@ FAQ = [
     ('Where does the money go?', 'To causes across Long Island and beyond, including cancer research through Swim Across America, and to help subsidize tutoring.'),
     ('How do I become a tutor?', 'Email info@eternalgrowth.org with the subject you know best.'),
 ]
+FAQ_LD = {'@context': 'https://schema.org', '@type': 'FAQPage', 'mainEntity': [
+    {'@type': 'Question', 'name': q, 'acceptedAnswer': {'@type': 'Answer', 'text': re.sub('<[^>]+>', '', ans)}} for q, ans in FAQ]}
 def faq_list(items, prefix):
     return '<ul class="faq">' + ''.join(f'''<li data-rise><button type="button" aria-expanded="false" aria-controls="{prefix}-{i}" id="{prefix}-q-{i}">{q}<i aria-hidden="true"></i></button><div class="faq__a" id="{prefix}-{i}" role="region" aria-labelledby="{prefix}-q-{i}" hidden><p>{a}</p></div></li>''' for i, (q, a) in enumerate(items)) + '</ul>'
 
@@ -245,7 +278,7 @@ HOME_CHAPTERS = [
     ('heart', 'Give back.', 'What the club raises goes back to causes that matter.'),
 ]
 
-home = head('Eternal Growth — student-run tutoring on Long Island', 'Eternal Growth is a student-run nonprofit on Long Island. High school students tutor younger kids, and the club has raised more than $35,000 for good causes.') + f'''
+home = head('Eternal Growth | Student-run tutoring on Long Island, NY', 'Eternal Growth is a student-run tutoring nonprofit on Long Island. High school tutors from Syosset and Jericho teach math, English, science, coding and music, in person or online.', '', [ORG_LD, {'@context': 'https://schema.org', '@type': 'WebSite', 'name': 'Eternal Growth', 'url': SITE, 'publisher': {'@id': SITE + '#org'}}]) + f'''
   <main id="main">{hero('Eternal Growth', 'Tutoring by Long Island high schoolers, for the kids a few grades behind them.', 'Student-run nonprofit · Long Island, New York',
   f"""<form class="finder" id="finder" action="#request" data-rise>
           <label><span class="visually-hidden">Subject</span><select aria-label="Choose a subject"><option value="">What do you want to learn?</option>{OPTIONS}</select>{CHEV}</label>
@@ -344,7 +377,7 @@ home = head('Eternal Growth — student-run tutoring on Long Island', 'Eternal G
 
     <section class="section section--screen" id="people" aria-labelledby="people-title" style="padding-top:0">
       <div class="wrap">
-        <div class="shead"><h2 class="head" id="people-title" data-anim="lines">The people behind it.</h2><a class="link-arrow" href="team.html" data-rise>Meet all twelve officers {ARROW}</a></div>
+        <div class="shead"><h2 class="head" id="people-title" data-anim="lines">The people behind it.</h2><a class="link-arrow" href="team.html" data-rise>Meet all ten officers {ARROW}</a></div>
         <div class="plates">{team_plates}</div>
       </div>
     </section>
@@ -395,7 +428,7 @@ IMPACT_CHAPTERS = [
     ('wave', 'Give.', 'About $3,500 went to Swim Across America for cancer research.'),
     ('book', 'Teach.', 'More helps subsidize tutoring, so more families can take part.'),
 ]
-impact_page = head('Impact — Eternal Growth', 'Eternal Growth has raised more than $35,000, given about $3,500 to Swim Across America for cancer research, and helped subsidize tutoring.') + f'''
+impact_page = head('Our impact: $35,000+ raised | Eternal Growth', 'A student-run tutoring club that has raised more than $35,000, given about $3,500 to Swim Across America for cancer research, and helped subsidize tutoring on Long Island.', 'impact.html', [crumbs('Impact', 'impact.html')]) + f'''
   <main id="main">{hero('Impact', 'What a student-run club raised, and where it went.', 'Raised by students · Given back', '', cls='hero page-hero', chips=IMPACT_CHIPS)}
     {ticker([('coin', 'Raised by students'), ('wave', 'Cancer research'), ('book', 'Subsidized tutoring'), ('given', 'Given back'), ('check', 'Chosen with care')])}
 
@@ -462,7 +495,7 @@ subj_sections = '\n'.join(f'''      <article class="subject" id="{sid}" aria-lab
           <div data-rise>{btn(f"Request {short.lower() if sid != 'beyond' else 'this'} tutoring", f'index.html?subject={sid}#request')}</div>
         </div>
       </article>''' for i, (sid, name, short, lead, detail, topics, tutors) in enumerate(SUBJECTS))
-subjects_page = head('Subjects — Eternal Growth', 'Math, English, science, coding, music, social studies and more, taught by Long Island high school students.') + f'''
+subjects_page = head('Tutoring subjects: math, English, science, coding, music | Eternal Growth', 'One-on-one and small-group tutoring in math, English, science, coding, music and social studies, taught by Long Island high school students for elementary to high school kids.', 'subjects.html', [crumbs('Subjects', 'subjects.html')]) + f'''
   <main id="main">{hero('Subjects', 'Seven subjects, taught by officers who study, play or compete in them.', 'Elementary to high school', jump, cls='hero page-hero', orbit=True)}
     {ticker([(SUBJ_ICON[s[0]], s[1]) for s in SUBJECTS])}
     <div class="wrap">
@@ -484,8 +517,8 @@ def person(pid, role, bio):
           <p class="bio">{head_txt}{more}</p>
           {toggle}
         </article>'''
-team_page = head('Team — Eternal Growth', 'Meet the officers and founders of Eternal Growth, a student-run tutoring nonprofit on Long Island.') + f'''
-  <main id="main">{hero('The team', 'Twelve officers. Seven founders. All students.', 'Mostly from Syosset', btn('Tutor with us', '#join', 'btn btn--ghost'), cls='hero page-hero')}
+team_page = head('Our team: officers and founders | Eternal Growth', 'Meet the high school officers and founders who run Eternal Growth, a student-run tutoring nonprofit on Long Island, New York.', 'team.html', [crumbs('Team', 'team.html')]) + f'''
+  <main id="main">{hero('The team', 'Ten officers. Seven founders. All students.', 'Mostly from Syosset', btn('Tutor with us', '#join', 'btn btn--ghost'), cls='hero page-hero')}
     {ticker([('one', PEOPLE[p]) for p, _, _ in OFFICERS])}
     <section class="section" id="officers" aria-labelledby="officers-title">
       <div class="wrap">
@@ -497,7 +530,7 @@ team_page = head('Team — Eternal Growth', 'Meet the officers and founders of E
     </section>
     <section class="section" id="founders" aria-labelledby="founders-title" style="padding-top:0">
       <div class="wrap">
-        <div class="shead"><h2 class="head" id="founders-title" data-anim="lines">Our founders.</h2><p class="lead" data-anim="blur">Seven students planted it. Leo Dai and Michael Ren complete the seven.</p></div>
+        <div class="shead"><h2 class="head" id="founders-title" data-anim="lines">Our founders.</h2><p class="lead" data-anim="blur">Seven students planted it.</p></div>
         <div class="people">
 {chr(10).join(person(*f) for f in FOUNDERS)}
         </div>
@@ -518,7 +551,7 @@ team_page = head('Team — Eternal Growth', 'Meet the officers and founders of E
 ''' + FOOT
 
 # ---------------------------------------------------------------- about page
-about_page = head('About — Eternal Growth', 'Eternal Growth is a nonprofit run by Long Island high school students to make good tutoring easier to reach.') + f'''
+about_page = head('About Eternal Growth | Student-run tutoring nonprofit', 'Why seven Long Island high school students started Eternal Growth, how tutors are matched, where sessions happen and where the money goes.', 'about.html', [crumbs('About', 'about.html'), FAQ_LD]) + f'''
   <main id="main">{hero('About', 'A nonprofit making education easier to reach, run by Long Island high schoolers.', 'Founded by seven students', '', cls='hero page-hero')}
     {ticker([('one', 'Students teaching students'), ('given', 'Giving back'), ('run', 'Run by students'), ('seed', 'Since day one, growing')])}
     <section class="section" id="story" aria-labelledby="story-title">
@@ -526,7 +559,7 @@ about_page = head('About — Eternal Growth', 'Eternal Growth is a nonprofit run
         <div><h2 class="head" id="story-title" data-anim="chars">Why we started.</h2></div>
         <div>
           <p class="lead" data-anim="blur">Seven students from Syosset and Jericho wanted good tutoring to be easier to reach.</p>
-          <p data-rise>Gary Han, Daniel Chen, Jack Li, Albert Zhang, Andrew Liu, Leo Dai and Michael Ren did it the direct way: older students teaching younger ones.</p>
+          <p data-rise>They did it the direct way: older students teaching younger ones.</p>
           <p data-rise>A high schooler remembers what made algebra click. That memory is the method.</p>
         </div>
       </div>
@@ -537,7 +570,7 @@ about_page = head('About — Eternal Growth', 'Eternal Growth is a nonprofit run
         <p class="manifesto__text" data-anim="fill">Good teaching should not depend on who you know or what you can pay.</p>
       </div>
     </section>
-    <section class="section section--screen" id="values" aria-labelledby="values-title">
+    <section class="section" id="values" aria-labelledby="values-title">
       <div class="wrap">
         <div class="shead shead--center"><h2 class="head" id="values-title" data-anim="flip">What we hold to.</h2></div>
         <div class="cards">
@@ -562,6 +595,11 @@ about_page = head('About — Eternal Growth', 'Eternal Growth is a nonprofit run
   </main>
 ''' + FOOT
 
+import datetime
+today = datetime.date.today().isoformat()
+urls = [('', '1.0'), ('subjects.html', '0.9'), ('impact.html', '0.8'), ('about.html', '0.8'), ('team.html', '0.6')]
+open(f'{ROOT}/sitemap.xml', 'w', encoding='utf-8', newline='\n').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(f'  <url><loc>{SITE}{u}</loc><lastmod>{today}</lastmod><priority>{pr}</priority></url>\n' for u, pr in urls) + '</urlset>\n')
+open(f'{ROOT}/robots.txt', 'w', encoding='utf-8', newline='\n').write(f'User-agent: *\nAllow: /\n\nSitemap: {SITE}sitemap.xml\n')
 for name, body in [('index.html', home), ('impact.html', impact_page), ('subjects.html', subjects_page), ('team.html', team_page), ('about.html', about_page)]:
     open(f'{ROOT}/{name}', 'w', encoding='utf-8', newline='\n').write(body)
     print('wrote', name)

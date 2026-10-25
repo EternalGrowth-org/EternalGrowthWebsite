@@ -48,6 +48,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 .wrap { width: min(var(--max), 100% - 2 * var(--margin)); margin-inline: auto; }
 .section { position: relative; padding-block: var(--section); }
+.section:not(.section--screen) + .section:not(.section--screen) { padding-top: calc(var(--section) * 0.5); }
 
 /* type: compact, a little bold, never clipped */
 .display, .head, .stat__num, .chapter__word { font-stretch: 88%; font-weight: 600; }
@@ -186,15 +187,15 @@ a:hover .roll > span + span, button:hover .roll > span + span { transform: trans
 
 /* ------------------------------------------------------------------ cards with a cursor spotlight */
 .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(12px, 1.4vw, 20px); }
-.card { position: relative; border-radius: var(--radius); background: var(--panel); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); box-shadow: inset 0 0 0 1px var(--line); padding: clamp(24px, 2.8vw, 36px); display: flex; flex-direction: column; gap: 12px; min-height: clamp(240px, 34vh, 360px); overflow: hidden; isolation: isolate; transition: transform 600ms var(--ease); }
-.card .card__icon { margin-bottom: auto; }
+.card { position: relative; border-radius: var(--radius); background: var(--panel); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); box-shadow: inset 0 0 0 1px var(--line); padding: clamp(24px, 2.8vw, 36px); display: flex; flex-direction: column; gap: 12px; min-height: 0; overflow: hidden; isolation: isolate; transition: transform 600ms var(--ease); }
+.card .card__icon { margin-bottom: clamp(28px, 5vh, 56px); }
 .card::before { content: ''; position: absolute; inset: 0; z-index: -1; background: radial-gradient(360px circle at var(--mx, 50%) var(--my, -40%), rgba(255, 255, 255, 0.95), transparent 55%); opacity: 0; transition: opacity 400ms ease; }
 .card::after { content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px; background: radial-gradient(240px circle at var(--mx, 50%) var(--my, -40%), rgba(11, 11, 11, 0.45), transparent 60%); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity: 0; transition: opacity 400ms ease; pointer-events: none; }
 .card:hover { transform: translateY(-4px); }
 .card:hover::before, .card:hover::after { opacity: 1; }
 .card__icon { flex: none; width: 60px; height: 60px; border-radius: 18px; display: grid; place-items: center; background: var(--ink); color: var(--white); margin-bottom: 14px; }
 .card__icon svg { width: 28px; height: 28px; }
-.card h3 { margin-top: 28px; font-size: clamp(1.4rem, 1.1rem + 0.9vw, 1.9rem); font-weight: 600; font-stretch: 88%; letter-spacing: -0.02em; line-height: 1.1; }
+.card h3 { margin-top: 0; font-size: clamp(1.4rem, 1.1rem + 0.9vw, 1.9rem); font-weight: 600; font-stretch: 88%; letter-spacing: -0.02em; line-height: 1.1; }
 .card p { color: var(--gray-1); font-size: 0.98rem; }
 @media (max-width: 860px) { .cards { grid-template-columns: 1fr; } }
 
@@ -210,7 +211,7 @@ a:hover .roll > span + span, button:hover .roll > span + span { transform: trans
 .shead--center { flex-direction: column; align-items: center; text-align: center; }
 
 /* ------------------------------------------------------------------ impact band (home) */
-.band { position: relative; margin-inline: clamp(8px, 1.2vw, 16px); border-radius: clamp(24px, 3vw, 40px); background: var(--ink); color: var(--white); overflow: hidden; padding-block: clamp(72px, 8vw, 120px); isolation: isolate; }
+.band { position: relative; margin-inline: 0; border-radius: 0; background: var(--ink); color: var(--white); overflow: hidden; padding-block: clamp(72px, 8vw, 120px); isolation: isolate; }
 .band::before { content: ''; position: absolute; inset: -20%; z-index: -1; background: radial-gradient(40% 50% at 20% 20%, rgba(255, 255, 255, 0.14), transparent 70%), radial-gradient(35% 45% at 85% 80%, rgba(255, 255, 255, 0.1), transparent 70%); filter: blur(10px); }
 .band .head { color: var(--white); }
 .band .lead, .band .small { color: #b9b9b4; }
@@ -464,9 +465,6 @@ a:hover .roll > span + span, button:hover .roll > span + span { transform: trans
 /* ------------------------------------------------------------------ page transition */
 .shutter { position: fixed; inset: 0; z-index: 660; display: grid; grid-template-columns: repeat(4, 1fr); pointer-events: none; visibility: hidden; }
 .shutter i { background: var(--ink); transform: scaleY(0); transform-origin: bottom; }
-.shutter__word { position: absolute; inset: 0; display: grid; place-items: center; pointer-events: none; }
-.shutter__word > span { display: block; overflow: hidden; padding: 0.1em 0.06em 0.16em; color: var(--white); font-size: clamp(2.4rem, 1rem + 5vw, 5.4rem); font-weight: 600; font-stretch: 88%; letter-spacing: -0.03em; line-height: 1; white-space: nowrap; text-align: center; }
-.shutter__word > span > b { display: block; font-weight: inherit; transform: translateY(115%); }
 html.is-arriving .shutter { visibility: visible; }
 html.is-arriving .shutter i { transform: scaleY(1); }
 
