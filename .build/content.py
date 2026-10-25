@@ -53,3 +53,6 @@ ALUMNI = [
     ('sue', 'Director of Fine Arts'), ('vincent', 'Director of Sports'), ('sam', 'Secretary of Membership'),
     ('isaac', 'Secretary of Outreach'), ('austin', 'Treasurer'),
 ]
+
+# officers who hold a second role
+EXTRA_ROLES = {'victor': ['Webmaster']}

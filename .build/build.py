@@ -68,6 +68,9 @@ def ico(k):
 
 def monos(ids):
     return '<span class="monos">' + ''.join(f'<span aria-hidden="true">{initials(PEOPLE[p])}</span>' for p in ids) + '</span>'
+def role_of(pid, role):
+    return ' · '.join([role] + EXTRA_ROLES.get(pid, []))
+
 def plate(pid):
     return f'<div class="plate__face"><span class="plate__mono" aria-hidden="true">{initials(PEOPLE[pid])}</span><span class="plate__shine"></span></div>'
 
@@ -114,7 +117,7 @@ SUBJECTS_LD = {'@context': 'https://schema.org', '@type': 'ItemList', 'name': 'T
      'provider': {'@id': SITE + '#org'}, 'areaServed': 'Long Island, New York', 'audience': {'@type': 'EducationalAudience', 'educationalRole': 'student'},
      'url': SITE + 'subjects#' + x[0]}} for i, x in enumerate(SUBJECTS)]}
 TEAM_LD = {'@context': 'https://schema.org', '@type': 'ItemList', 'name': 'Eternal Growth officers and founders', 'itemListElement': [
-    {'@type': 'ListItem', 'position': i + 1, 'item': {'@type': 'Person', 'name': PEOPLE[pid], 'jobTitle': role, 'memberOf': {'@id': SITE + '#org'}}}
+    {'@type': 'ListItem', 'position': i + 1, 'item': {'@type': 'Person', 'name': PEOPLE[pid], 'jobTitle': role_of(pid, role).replace(' · ', ', '), 'memberOf': {'@id': SITE + '#org'}}}
     for i, (pid, role, *_) in enumerate(list(OFFICERS) + list(FOUNDERS))]}
 def ld(obj):
     return '\n  <script type="application/ld+json">' + json.dumps(obj, ensure_ascii=False).replace('</', '<\\/') + '</script>'
@@ -218,7 +221,7 @@ FOOT = f'''
         <div class="footer__col"><p class="micro">Get involved</p><ul><li><a href="team#join">Tutor with us</a></li><li><a href="about#faq">Questions</a></li><li><a href="impact#giving">Where the money goes</a></li><li><a href="impact#projects">Projects</a></li></ul></div>
       </div>
       <div class="footer__base">
-        <p class="small">© 2026 Eternal Growth, Inc. A student-run nonprofit on Long Island, New York. Background by <a href="https://www.vantajs.com">Vanta.js</a>.</p>
+        <p class="small">© 2026 Eternal Growth, Inc. A student-run nonprofit on Long Island, New York. Site by Victor Pan, Webmaster. Background by <a href="https://www.vantajs.com">Vanta.js</a>.</p>
         <button class="to-top" type="button" data-top>Back to top {UP}</button>
       </div>
     </div>
@@ -293,7 +296,7 @@ slides = '\n'.join(f'''          <article class="slide" aria-label="{name}" data
             </div>
           </article>''' for i, (sid, name, short, lead, detail, topics, tutors) in enumerate(SUBJECTS))
 
-team_plates = ''.join(f'''<a class="plate" href="team#{pid}" data-rise data-cursor="View">{plate(pid)}<span class="plate__name">{PEOPLE[pid]}</span><span class="plate__role micro">{role}</span></a>''' for pid, role, _ in OFFICERS[:8])
+team_plates = ''.join(f'''<a class="plate" href="team#{pid}" data-rise data-cursor="View">{plate(pid)}<span class="plate__name">{PEOPLE[pid]}</span><span class="plate__role micro">{role_of(pid, role)}</span></a>''' for pid, role, _ in OFFICERS[:8])
 
 HOME_CHAPTERS = [
     ('circle', 'Learn.', 'Every student starts with a question.'),
@@ -573,36 +576,96 @@ def person(pid, role, bio, rise=True):
           <p class="bio">{head_txt}{more}</p>
           {toggle}
         </article>'''
-TAB_BUTTONS = ''.join(f'<button type="button" role="tab" id="tab-{k}" aria-controls="{k}" aria-selected="{str(i == 0).lower()}"{"" if i == 0 else " tabindex=" + chr(34) + "-1" + chr(34)}>{label}<span class="tabs__count">{n}</span></button>'
-                      for i, (k, label, n) in enumerate([('officers', 'Officers', len(OFFICERS)), ('founders', 'Founders', len(FOUNDERS)), ('alumni', 'Alumni', len(ALUMNI))]))
-ALUMNI_HTML = ''.join(f'<li class="alum" id="{pid}"><b aria-hidden="true">{initials(PEOPLE[pid])}</b><span>{PEOPLE[pid]}<small>Former {role}</small></span></li>' for pid, role in ALUMNI)
+def bio_parts(bio, full_under=0):
+    if len(bio) <= full_under:
+        return f'<p class="bio">{bio}</p>', ''
+    cut = bio.find('. ')
+    head_txt, rest = (bio[:cut + 1], bio[cut + 1:]) if 0 < cut < len(bio) - 2 else (bio, '')
+    more = f'<span class="bio-more">{rest}</span>' if rest else ''
+    toggle = f'<button class="bio-toggle" type="button" aria-expanded="false"><span>Read more</span>{CHEV}</button>' if rest else ''
+    return f'<p class="bio">{head_txt}{more}</p>', toggle
+
+def lead_card(pid, role, bio):
+    roles = [role] + EXTRA_ROLES.get(pid, [])
+    label = (f'<span class="visually-hidden">{" and ".join(roles)}</span><span aria-hidden="true" data-roles="{"|".join(roles)}">{roles[0]}</span>'
+             if len(roles) > 1 else role)
+    text, toggle = bio_parts(bio, 260)
+    return f'''          <article class="lead-card" id="{pid}" data-rise data-layers>
+            <span class="lead-card__ghost" aria-hidden="true" data-speed="0.82"><span data-layer="0.6">{initials(PEOPLE[pid])}</span></span>
+            <div class="lead-card__plate" data-layer="0.25">{plate(pid)}</div>
+            <div class="lead-card__body" data-layer="0.1">
+              <p class="micro lead-card__role">{label}</p>
+              <h3>{PEOPLE[pid]}</h3>
+              {text}
+              {toggle}
+            </div>
+          </article>'''
+
+def founder_card(i, pid, role, bio):
+    text, toggle = bio_parts(bio)
+    speed = ['0.86', '0.78', '0.9'][i % 3]
+    return f'''          <article class="founder" id="{pid}" data-rise>
+            <span class="founder__num" aria-hidden="true" data-speed="{speed}">{i + 1:02d}</span>
+            {plate(pid)}
+            <h3>{PEOPLE[pid]}</h3>
+            <p class="micro">{role}</p>
+            {text}
+            {toggle}
+          </article>'''
+
+def alum_chip(pid, role, real=True):
+    ident = f' id="{pid}"' if real else ''
+    return f'<li class="alum"{ident}><b aria-hidden="true">{initials(PEOPLE[pid])}</b><span>{PEOPLE[pid]}<small>Former {role}</small></span></li>'
+
+def alumni_row(items, reverse=False):
+    real = ''.join(alum_chip(*x) for x in items)
+    dup = ''.join(alum_chip(*x, real=False) for x in items)
+    rev = ' data-reverse' if reverse else ''
+    return f'<div class="marquee__row"{rev}><ul class="marquee__track">{real}</ul><ul class="marquee__track" aria-hidden="true">{dup}</ul><ul class="marquee__track" aria-hidden="true">{dup}</ul></div>'
+
+LEADS = [o for o in OFFICERS if o[1] == 'Co-President']
+CREW = [o for o in OFFICERS if o[1] != 'Co-President']
+half = (len(ALUMNI) + 1) // 2
+TEAM_INDEX = ''.join(f'<a href="#{k}" data-cursor="Jump"><span class="micro">{i + 1:02d}</span><b>{label}</b><i>{n}</i></a>'
+                     for i, (k, label, n) in enumerate([('officers', 'Officers', len(OFFICERS)), ('founders', 'Founders', len(FOUNDERS)), ('alumni', 'Alumni', len(ALUMNI))]))
 team_page = head('Our team: officers, founders and alumni | Eternal Growth', 'Meet the high school officers, founders and alumni behind Eternal Growth, a student-run tutoring nonprofit on Long Island, New York.', 'team', [crumbs('Team', 'team'), TEAM_LD]) + f'''
   <main id="main">{hero('The team', f'{COUNT.capitalize()} officers, seven founders, {WORDS[len(ALUMNI)]} alumni. All students.', 'Mostly from Syosset', btn('Tutor with us', '#join', 'btn btn--ghost'), cls='hero page-hero')}
     {ticker([('one', PEOPLE[p]) for p, _, _ in OFFICERS])}
-    <section class="section" id="people" aria-labelledby="people-title">
+    <section class="section" aria-label="Team sections" style="padding-block:clamp(40px, 5vw, 72px) 0">
+      <nav class="wrap team-index" aria-label="Jump to" data-rise>{TEAM_INDEX}</nav>
+    </section>
+
+    <section class="section" id="officers" aria-labelledby="officers-title">
       <div class="wrap">
-        <div class="shead shead--center"><h2 class="head" id="people-title" data-anim="lines">The people.</h2><p class="lead" data-anim="blur">The officers who run it, the founders who started it, and the alumni who built it.</p></div>
-        <div class="tabs" data-tabs>
-          <div class="tabs__nav" data-rise><div class="tabs__bar" role="tablist" aria-label="Team"><span class="tabs__pill" aria-hidden="true"></span>{TAB_BUTTONS}</div></div>
-          <div class="tabs__panel" role="tabpanel" id="officers" aria-labelledby="tab-officers" tabindex="0">
-            <div class="tabs__head"><h3>Officers</h3><p>They tutor, and they run Eternal Growth.</p></div>
-            <div class="people">
-{chr(10).join(person(*o, rise=False) for o in OFFICERS)}
-            </div>
-          </div>
-          <div class="tabs__panel" role="tabpanel" id="founders" aria-labelledby="tab-founders" tabindex="0">
-            <div class="tabs__head"><h3>Founders</h3><p>Seven students from Syosset and Jericho planted it.</p></div>
-            <div class="people">
-{chr(10).join(person(*f, rise=False) for f in FOUNDERS)}
-            </div>
-          </div>
-          <div class="tabs__panel" role="tabpanel" id="alumni" aria-labelledby="tab-alumni" tabindex="0">
-            <div class="tabs__head"><h3>Alumni</h3><p>Former officers who built what Eternal Growth is today.</p></div>
-            <ul class="alumni">{ALUMNI_HTML}</ul>
-          </div>
+        <div class="shead"><div class="shead__kicker"><p class="micro" data-anim="scramble">01 · Officers</p><h2 class="head" id="officers-title" data-anim="lines">Leadership.</h2></div><p class="lead" data-anim="blur">{COUNT.capitalize()} students run Eternal Growth. They tutor, raise money and keep it growing.</p></div>
+        <div class="leads">
+{chr(10).join(lead_card(*o) for o in LEADS)}
+        </div>
+        <div class="crew">
+{chr(10).join(person(o[0], role_of(o[0], o[1]), o[2]) for o in CREW)}
         </div>
       </div>
     </section>
+
+    <section class="band team-founders" id="founders" aria-labelledby="founders-title">
+      <div class="wrap">
+        <div class="shead"><div class="shead__kicker"><p class="micro" data-anim="scramble">02 · Founders</p><h2 class="head" id="founders-title" data-anim="lines">Where it started.</h2></div><p class="lead" data-anim="blur">Seven students from Syosset and Jericho planted Eternal Growth. Meet three of them.</p></div>
+        <div class="founders">
+{chr(10).join(founder_card(i, *f) for i, f in enumerate(FOUNDERS))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="alumni" aria-labelledby="alumni-title">
+      <div class="wrap">
+        <div class="shead"><div class="shead__kicker"><p class="micro" data-anim="scramble">03 · Alumni</p><h2 class="head" id="alumni-title" data-anim="lines">The alumni.</h2></div><p class="lead" data-anim="blur">Former officers who built what Eternal Growth is today.</p></div>
+      </div>
+      <div class="marquee" data-marquee>
+        {alumni_row(ALUMNI[:half])}
+        {alumni_row(ALUMNI[half:], reverse=True)}
+      </div>
+    </section>
+
     <section class="section" id="join" aria-labelledby="join-title" style="padding-top:0">
       <div class="wrap">
         <div class="shead shead--center"><h2 class="head" id="join-title" data-anim="scale">Tutor with us.</h2><p class="lead" data-anim="blur">High schoolers who love a subject and like explaining it.</p></div>

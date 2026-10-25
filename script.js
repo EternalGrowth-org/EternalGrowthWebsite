@@ -69,7 +69,7 @@
     const clean = (path) => path.replace(/\.html$/, '').replace(/\/index$/, '/');
     const samePage = clean(url.pathname) === clean(location.pathname);
     if (samePage && url.search === location.search) {
-      if (url.hash) { e.preventDefault(); closeMenu(); const el = document.querySelector(url.hash); if (el && openTabFor) openTabFor(el); scrollToEl(el); }
+      if (url.hash) { e.preventDefault(); closeMenu(); scrollToEl(document.querySelector(url.hash)); }
       return;
     }
     if (/\.[a-z0-9]+$/i.test(url.pathname) && !/\.html$/.test(url.pathname)) return; // files such as PDFs open normally
@@ -131,61 +131,6 @@
     });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
   }
-  /* ---------------------------------------------------------------- team tabs */
-  var openTabFor = null;
-  const tabsRoot = document.querySelector('[data-tabs]');
-  if (tabsRoot) {
-    const tabs = [...tabsRoot.querySelectorAll('[role="tab"]')];
-    const panels = tabs.map((t) => document.getElementById(t.getAttribute('aria-controls')));
-    const pill = tabsRoot.querySelector('.tabs__pill');
-    let current = 0;
-    const place = (animate) => {
-      const t = tabs[current];
-      const to = { x: t.offsetLeft, width: t.offsetWidth };
-      if (G && animate && motion) G.to(pill, { ...to, duration: 0.7, ease: 'expo.out', overwrite: true });
-      else if (G) G.set(pill, to);
-      else { pill.style.transform = 'translateX(' + to.x + 'px)'; pill.style.width = to.width + 'px'; }
-    };
-    const select = (i, { focus = false, animate = true } = {}) => {
-      if (i === current && animate) return;
-      const prev = panels[current], next = panels[i];
-      current = i;
-      tabs.forEach((t, j) => { t.setAttribute('aria-selected', String(j === i)); t.tabIndex = j === i ? 0 : -1; });
-      if (focus) tabs[i].focus();
-      place(animate);
-      const show = () => {
-        panels.forEach((p) => { p.hidden = p !== next; });
-        if (G && motion && animate) {
-          G.fromTo(next.querySelectorAll('.tabs__head, .person, .alum'), { y: 32, opacity: 0, rotationX: -8, transformPerspective: 900 },
-            { y: 0, opacity: 1, rotationX: 0, duration: 0.9, ease: 'expo.out', stagger: 0.06, clearProps: 'transform' });
-        }
-        if (ST) ST.refresh();
-      };
-      if (G && motion && animate && prev !== next) {
-        G.killTweensOf(prev.querySelectorAll('.tabs__head, .person, .alum'));
-        G.to(prev, { opacity: 0, y: -10, duration: 0.22, ease: 'power2.in', onComplete: () => { G.set(prev, { clearProps: 'opacity,transform' }); show(); } });
-      } else show();
-    };
-    tabs.forEach((t, i) => {
-      t.addEventListener('click', () => select(i));
-      t.addEventListener('keydown', (e) => {
-        const k = { ArrowRight: 1, ArrowLeft: -1, Home: -99, End: 99 }[e.key];
-        if (k === undefined) return;
-        e.preventDefault();
-        const n = k === -99 ? 0 : k === 99 ? tabs.length - 1 : (current + k + tabs.length) % tabs.length;
-        select(n, { focus: true });
-      });
-    });
-    openTabFor = (el) => { const i = panels.findIndex((p) => p === el || p.contains(el)); if (i > -1) select(i); };
-    // start on the tab that holds the #hash, if any
-    const target = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
-    const start = Math.max(0, panels.findIndex((p) => target && (p === target || p.contains(target))));
-    current = start;
-    select(start, { animate: false });
-    addEventListener('resize', () => place(false));
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => place(false));
-  }
-
   const here = location.pathname.split('/').pop().replace(/\.html$/, '') || './';
   document.querySelectorAll('.nav__links a').forEach((a) => { if (a.getAttribute('href') === here) a.setAttribute('aria-current', 'page'); });
   if (nav) {
@@ -283,6 +228,45 @@
       });
       tl.to({}, { duration: 0.4 });
       return () => { G.set(cards, { clearProps: 'all' }); };
+    });
+  }
+
+  /* ---------------------------------------------------------------- team: layered cards, role switch, alumni marquee */
+  function teamMotion() {
+    // each layer of a lead card follows the pointer at its own depth
+    if (motion && fine) {
+      document.querySelectorAll('[data-layers]').forEach((card) => {
+        const layers = [...card.querySelectorAll('[data-layer]')].map((el) => ({ d: parseFloat(el.dataset.layer), x: G.quickTo(el, 'x', { duration: 1.1, ease: 'power3' }), y: G.quickTo(el, 'y', { duration: 1.1, ease: 'power3' }) }));
+        card.addEventListener('pointermove', (e) => {
+          const r = card.getBoundingClientRect(), px = (e.clientX - r.left) / r.width - 0.5, py = (e.clientY - r.top) / r.height - 0.5;
+          layers.forEach((l) => { l.x(px * l.d * 70); l.y(py * l.d * 46); });
+        });
+        card.addEventListener('pointerleave', () => layers.forEach((l) => { l.x(0); l.y(0); }));
+      });
+    }
+    // a role label that switches between an officer's roles
+    document.querySelectorAll('[data-roles]').forEach((el) => {
+      const roles = el.dataset.roles.split('|');
+      if (!motion || !has('ScrambleTextPlugin')) { el.textContent = roles.join(' · '); return; }
+      let i = 0;
+      const next = () => { i = (i + 1) % roles.length; G.to(el, { duration: 0.9, scrambleText: { text: roles[i], chars: 'upperCase', speed: 0.7 } }); G.delayedCall(2.8, next); };
+      G.delayedCall(2.4, next);
+    });
+    // alumni drift in two rows, faster while you scroll
+    document.querySelectorAll('[data-marquee]').forEach((m) => {
+      if (!motion) return;
+      m.classList.add('is-moving');
+      m.querySelectorAll('.marquee__row').forEach((row) => {
+        const w = row.querySelector('.marquee__track').offsetWidth;
+        const rev = row.hasAttribute('data-reverse');
+        const loop = G.fromTo(row, { x: rev ? -w : 0 }, { x: rev ? 0 : -w, duration: w / 42, ease: 'none', repeat: -1 });
+        row.addEventListener('pointerenter', () => G.to(loop, { timeScale: 0.2, duration: 0.6, overwrite: true }));
+        row.addEventListener('pointerleave', () => G.to(loop, { timeScale: 1, duration: 0.6, overwrite: true }));
+        ST.create({ trigger: m, start: 'top bottom', end: 'bottom top', onUpdate: (self) => {
+          G.to(loop, { timeScale: 1 + Math.min(Math.abs(self.getVelocity()) / 300, 4), duration: 0.2, overwrite: true });
+          G.to(loop, { timeScale: 1, duration: 1.2, delay: 0.25 });
+        } });
+      });
     });
   }
 
@@ -516,7 +500,7 @@
     }
     document.querySelectorAll('.bio-toggle').forEach((b) => {
       b.addEventListener('click', () => {
-        const p = b.closest('.person');
+        const p = b.closest('.person, .lead-card, .founder');
         const open = !p.classList.contains('is-open');
         p.classList.toggle('is-open', open);
         b.setAttribute('aria-expanded', String(open));
@@ -619,6 +603,7 @@
     slider();
     processPath();
     projectTrack();
+    teamMotion();
     people();
     footer();
     if (ST) ST.refresh();
