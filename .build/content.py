@@ -1,6 +1,6 @@
 PEOPLE = {
     'leon': 'Leon Zhang', 'victor': 'Victor Pan', 'lucille': 'Lucille Lin', 'mike': 'Mike Lu', 'alan': 'Alan Chen', 'kehan': 'Kehan Ying',
-    'gary': 'Gary Han', 'albert': 'Albert Zhang', 'andrew': 'Andrew Liu',
+    'daniel': 'Daniel Chen', 'gary': 'Gary Han', 'albert': 'Albert Zhang', 'andrew': 'Andrew Liu',
     # alumni
     'katherine': 'Katherine Fei', 'jack': 'Jack Li', 'eliot': 'Eliot Bih', 'robert': 'Robert Liu Meng', 'sue': 'Sue Nian',
     'vincent': 'Vincent Yang', 'sam': 'Sam Moon', 'isaac': 'Isaac Tsui', 'austin': 'Austin Ma',
@@ -42,6 +42,7 @@ OFFICERS = [
     ('kehan', 'Social Media Manager', 'Kehan Ying runs social media for Eternal Growth.'),
 ]
 FOUNDERS = [
+    ('daniel', 'Founder', 'Daniel is a violinist and varsity diver from Syosset. As a shortlisted writer for the John Locke Global Essay Competition, a classical violin student at the Manhattan School of Music Precollege Program, and a county-level diver, Daniel is passionate about academics, arts and sports.'),
     ('gary', 'Founder', 'Gary Han is a researcher, violist and community leader from Syosset, NY. A 2025 Regeneron ISEF Grand Award winner and YoungArts National Winner in Classical Music, he has discovered new exocomets with deep learning, performed as principal violist at Juilliard Pre-College, and founded nonprofits bringing STEM and music education to underserved students.'),
     ('albert', 'Founder', 'Albert is studying Business Administration at the Tepper School of Business at Carnegie Mellon University, class of 2029. At Syosset High School he was an active member of the DECA club.'),
     ('andrew', 'Founder', 'Andrew is a freshman at RPI studying aerospace engineering, and likes anything to do with flying or driving. At Syosset High School he helped create Eternal Growth and tutored math, reading and an introduction to computer-aided design. He hopes to work on helicopters or supersonic commercial travel.'),

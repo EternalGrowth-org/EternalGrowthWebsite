@@ -603,7 +603,7 @@ def lead_card(pid, role, bio):
 
 def founder_card(i, pid, role, bio):
     text, toggle = bio_parts(bio)
-    speed = ['0.86', '0.78', '0.9'][i % 3]
+    speed = ['0.86', '0.78', '0.9', '0.82'][i % 4]
     return f'''          <article class="founder" id="{pid}" data-rise>
             <span class="founder__num" aria-hidden="true" data-speed="{speed}">{i + 1:02d}</span>
             {plate(pid)}
@@ -649,7 +649,7 @@ team_page = head('Our team: officers, founders and alumni | Eternal Growth', 'Me
 
     <section class="band team-founders" id="founders" aria-labelledby="founders-title">
       <div class="wrap">
-        <div class="shead"><div class="shead__kicker"><p class="micro" data-anim="scramble">02 · Founders</p><h2 class="head" id="founders-title" data-anim="lines">Where it started.</h2></div><p class="lead" data-anim="blur">Seven students from Syosset and Jericho planted Eternal Growth. Meet three of them.</p></div>
+        <div class="shead"><div class="shead__kicker"><p class="micro" data-anim="scramble">02 · Founders</p><h2 class="head" id="founders-title" data-anim="lines">Where it started.</h2></div><p class="lead" data-anim="blur">Seven students from Syosset and Jericho planted Eternal Growth. Meet {WORDS[len(FOUNDERS)]} of them.</p></div>
         <div class="founders">
 {chr(10).join(founder_card(i, *f) for i, f in enumerate(FOUNDERS))}
         </div>
