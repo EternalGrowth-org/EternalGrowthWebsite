@@ -33,7 +33,7 @@ try {
   const m = await p.eval(() => ({ hidden: document.querySelector('.match').hidden, text: document.querySelector('.match p').textContent, faces: document.querySelectorAll('.match .monos span').length }));
   check('match hidden before choice', hiddenAtStart === true);
   check('match shows tutors for music', !m.hidden && m.faces === 4, `${m.faces} faces, "${m.text}"`);
-  await p.eval(() => document.getElementById('request').scrollIntoView());
+  await p.eval(() => { const s = window.ScrollSmoother && ScrollSmoother.get(); if (s) s.scrollTo('#request', false, 'top 90px'); else document.getElementById('request').scrollIntoView(); });
   await sleep(1500);
   await p.screenshot({ path: out + 'match.jpg' });
 

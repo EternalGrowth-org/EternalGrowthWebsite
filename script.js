@@ -43,32 +43,23 @@
   /* ---------------------------------------------------------------- page transition */
   const shutter = document.querySelector('.shutter');
   const bars = shutter ? [...shutter.querySelectorAll('i')] : [];
-  const wordBox = shutter && shutter.querySelector('.shutter__word > span');
-  const setWord = (text) => { if (wordBox) wordBox.innerHTML = '<b>' + text + '</b>'; return wordBox && wordBox.firstChild; };
   function arrive() {
     if (!root.classList.contains('is-arriving')) return;
     if (!motion || !shutter) { root.classList.remove('is-arriving'); return; }
-    // the arriving page starts exactly where the leaving page stopped: bars closed, word centred
-    const w = setWord(document.title.split(' — ')[0]);
-    G.timeline({ onComplete: () => { root.classList.remove('is-arriving'); G.set(bars, { clearProps: 'transform' }); setWord(''); } })
+    // the arriving page starts exactly where the leaving page stopped: bars closed
+    G.timeline({ onComplete: () => { root.classList.remove('is-arriving'); G.set(bars, { clearProps: 'transform' }); } })
       .set(bars, { scaleY: 1, transformOrigin: 'top' })
-      .set(w, { yPercent: 0 })
-      .to(w, { yPercent: -115, duration: 0.7, ease: 'expo.in' }, 0.1)
-      .to(bars, { scaleY: 0, duration: 0.95, ease: 'expo.inOut', stagger: { each: 0.06, from: 'center' } }, 0.45);
+      .to(bars, { scaleY: 0, duration: 0.95, ease: 'expo.inOut', stagger: { each: 0.06, from: 'center' } }, 0.15);
   }
-  function leave(href, label) {
+  function leave(href) {
     if (!motion || !shutter) { location.href = href; return; }
     try { sessionStorage.setItem('eg-arrive', '1'); } catch (e) { /* still navigates */ }
     shutter.style.visibility = 'visible';
-    const w = setWord(label);
     G.timeline({ onComplete: () => { location.href = href; } })
       .set(bars, { scaleY: 0, transformOrigin: 'bottom' })
-      .set(w, { yPercent: 115 })
       .to(bars, { scaleY: 1, duration: 0.75, ease: 'expo.inOut', stagger: { each: 0.06, from: 'edges' } })
-      .to(w, { yPercent: 0, duration: 0.8, ease: 'expo.out' }, 0.45)
-      .to({}, { duration: 0.15 });
+      .to({}, { duration: 0.1 });
   }
-  const pageName = (url) => ({ 'index.html': 'Home', 'subjects.html': 'Subjects', 'impact.html': 'Impact', 'about.html': 'About', 'team.html': 'Team' }[url.pathname.split('/').pop() || 'index.html'] || 'Eternal Growth');
   document.addEventListener('click', (e) => {
     const a = e.target.closest('a[href]');
     if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
@@ -82,7 +73,7 @@
     }
     if (!/\.html$|\/$/.test(url.pathname)) return;
     e.preventDefault();
-    leave(url.href, pageName(url));
+    leave(url.href);
   });
   addEventListener('pageshow', (e) => { if (e.persisted && shutter) { shutter.style.visibility = ''; if (G) G.set(bars, { clearProps: 'transform' }); } });
 
@@ -493,8 +484,8 @@
   });
 
   /* ---------------------------------------------------------------- request form */
-  const TUTORS = { daniel: 'Daniel Chen', katherine: 'Katherine Fei', jack: 'Jack Li', eliot: 'Eliot Bih', robert: 'Robert Liu Meng', sue: 'Sue Nian', vincent: 'Vincent Yang', sam: 'Sam Moon', isaac: 'Isaac Tsui', victor: 'Victor Pan', gary: 'Gary Han' };
-  const BY_SUBJECT = { math: ['jack', 'sam', 'eliot'], english: ['robert', 'daniel'], science: ['eliot', 'gary', 'sue'], coding: ['jack', 'victor'], music: ['sue', 'vincent', 'daniel', 'katherine'], 'social-studies': ['isaac', 'robert'], beyond: ['sue', 'sam', 'katherine'] };
+  const TUTORS = { eliot: 'Eliot Bih', robert: 'Robert Liu Meng', sue: 'Sue Nian', vincent: 'Vincent Yang', sam: 'Sam Moon', isaac: 'Isaac Tsui', victor: 'Victor Pan', gary: 'Gary Han' };
+  const BY_SUBJECT = { math: ['sam', 'eliot'], english: ['robert'], science: ['eliot', 'gary', 'sue'], coding: ['victor'], music: ['sue', 'vincent', 'gary', 'sam'], 'social-studies': ['isaac', 'robert'], beyond: ['sue', 'sam'] };
   const initials = (n) => n.split(' ').slice(0, 2).map((w) => w[0]).join('');
   const listNames = (l) => (l.length < 2 ? l.join('') : l.slice(0, -1).join(', ') + ' or ' + l[l.length - 1]);
   const form = document.getElementById('request-form');

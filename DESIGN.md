@@ -39,7 +39,7 @@ Archivo (Google Fonts, width 62–125, weight 400–800), one family. Headings a
   - The subject slider pins and moves sideways, each card leaning in 3D as it passes.
   - The kinetic lines slide sideways with scroll.
   - `data-rise` blocks rise in batches.
-- **Page transitions:** four black shutters close from the edges while the next page's name scrambles in, then open from the centre on arrival.
+- **Page transitions:** four black shutters close from the edges, then open from the centre on arrival. No text shows during the transition.
 - **Cursor:** an ink dot that grows over controls and shows a label over `data-cursor` elements. The grey haze leans toward the pointer.
 - Everything respects `prefers-reduced-motion` (no smoothing, no animation, everything visible) and works without JavaScript.
 
@@ -48,7 +48,7 @@ Vanta FOG 0.5.24 (three.js r134, in `vendor/`) in greys on the fixed `.atmos` la
 
 ## Motion added in the restraint pass
 - **Hero:** one entrance (fog fades up, letters rise through masks, the finder and chips follow), then the hero recedes on scroll, scaling to 90% and blurring away.
-- **Stacked impact cards (desktop):** the band pins and each figure slides up over the last, which shrinks, dims and softens.
+- **Stacked impact cards (desktop):** the band runs edge to edge, pins and each figure slides up over the last, which shrinks, dims and softens.
 - **Lean:** section headings, the subject track, card rows and plates skew up to 3° with scroll speed and settle when scrolling stops.
 - **Mask reveals:** subject drawings, slide art and the giving ring open from an inset rounded clip.
 - **Footer:** rises and squares off its corners as it comes into view.
