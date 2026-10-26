@@ -65,7 +65,10 @@ button, input, select, textarea { font: inherit; color: inherit; }
 /* ------------------------------------------------------------------ background: a slow grey fog */
 .atmos { position: fixed; inset: 0; z-index: -2; pointer-events: none; overflow: hidden; background: var(--ground); }
 .atmos__orb { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.8; }
-.atmos.has-fog .atmos__orb { display: none; }
+.atmos__orb { transition: opacity 1.4s ease; }
+.atmos canvas { opacity: 0; transition: opacity 1.4s ease; }
+.atmos.has-fog canvas { opacity: 1; }
+.atmos.has-fog .atmos__orb { opacity: 0; }
 .atmos__orb:nth-child(1) { width: 52vw; height: 52vw; left: -12vw; top: -14vw; background: #d4d4cf; }
 .atmos__orb:nth-child(2) { width: 44vw; height: 44vw; right: -10vw; top: 24vh; background: #dcdcd7; }
 .atmos__orb:nth-child(3) { width: 40vw; height: 40vw; left: 26vw; bottom: -18vw; background: #cfcfca; }
@@ -542,7 +545,8 @@ html.is-arriving .shutter i { transform: scaleY(1); }
 .alum small { font-size: var(--fs-micro); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-2); transition: color 400ms ease; }
 .alum:hover small { color: #a5a5a0; }
 
-@media (max-width: 1100px) { .crew { grid-template-columns: repeat(2, minmax(0, 1fr)); } .lead-card { grid-template-columns: 1fr; } .lead-card__plate .plate__face { aspect-ratio: 16 / 10; height: auto; min-height: 0; } }
+@media (max-width: 1100px) { .crew { grid-template-columns: repeat(2, minmax(0, 1fr)); } .lead-card { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); min-height: 0; } }
+@media (max-width: 640px) { .lead-card { grid-template-columns: 1fr; } .lead-card__plate .plate__face { aspect-ratio: 2 / 1; height: auto; min-height: 0; } }
 @media (max-width: 860px) {
   .team-index { grid-template-columns: 1fr; }
   .leads, .founders { grid-template-columns: 1fr; }
@@ -592,3 +596,7 @@ a:hover .plate__photo img, .person:hover .plate__photo img, .lead-card:hover .pl
 .project__given .stat__num { font-size: clamp(2.2rem, 1.4rem + 2.2vw, 3.4rem); font-weight: 600; font-stretch: 88%; }
 .project__given .small { color: var(--gray-1); }
 @media (max-width: 860px) { .project { grid-template-columns: 1fr; } .project__main { padding: 12px 8px 8px; } }
+
+/* ------------------------------------------------------------------ large screens: scale the whole layout up */
+@media (min-width: 1800px) { html { font-size: 112.5%; } :root { --max: 1480px; } }
+@media (min-width: 2300px) { html { font-size: 125%; } :root { --max: 1680px; } }

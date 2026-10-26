@@ -31,14 +31,27 @@
   /* ---------------------------------------------------------------- the grey haze */
   const atmos = document.querySelector('.atmos');
   let fog = null;
-  if (atmos && !reduce && window.VANTA && VANTA.FOG && window.THREE) {
-    try {
-      fog = VANTA.FOG({ el: atmos, THREE: window.THREE, mouseControls: false, touchControls: false, gyroControls: false, minHeight: 200, minWidth: 200,
-        highlightColor: 0xfbfbf9, midtoneColor: 0xd4d4cf, lowlightColor: 0xaeaea8, baseColor: 0xf0f0ed, blurFactor: 0.6, speed: 0.75, zoom: 0.85 });
-    } catch (e) { fog = null; }
+  const loadScript = (src) => new Promise((ok, no) => { const el = document.createElement('script'); el.src = src; el.async = true; el.onload = ok; el.onerror = no; document.head.appendChild(el); });
+  function startFog() {
+    if (!atmos || fog) return;
+    const go = () => {
+      try {
+        fog = VANTA.FOG({ el: atmos, THREE: window.THREE, mouseControls: false, touchControls: false, gyroControls: false, minHeight: 200, minWidth: 200,
+          highlightColor: 0xfbfbf9, midtoneColor: 0xd4d4cf, lowlightColor: 0xaeaea8, baseColor: 0xf0f0ed, blurFactor: 0.6, speed: 0.75, zoom: 0.85 });
+        atmos.classList.add('has-fog');
+      } catch (e) { fog = null; }
+    };
+    if (window.VANTA && VANTA.FOG && window.THREE) { go(); return; }
+    loadScript('vendor/three.r134.min.js').then(() => loadScript('vendor/vanta.fog.min.js')).then(go).catch(() => {});
+  }
+  // the haze is decoration: fetch its 3D code only after the page has loaded, and not at all on data saver
+  const saveData = navigator.connection && navigator.connection.saveData;
+  if (atmos && !reduce && !saveData) {
+    const idle = window.requestIdleCallback || ((f) => setTimeout(f, 500));
+    const later = () => idle(startFog, { timeout: 2500 });
+    if (document.readyState === 'complete') later(); else addEventListener('load', later);
   }
   addEventListener('pagehide', () => { if (fog) { fog.destroy(); fog = null; } });
-  if (fog) atmos.classList.add('has-fog');
 
   /* ---------------------------------------------------------------- page transition */
   const shutter = document.querySelector('.shutter');

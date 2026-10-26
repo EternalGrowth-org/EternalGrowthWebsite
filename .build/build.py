@@ -214,6 +214,7 @@ def head(title, desc, path='', extra=(), kind='WebPage', index=True):
       try {{ if (sessionStorage.getItem('eg-arrive')) {{ sessionStorage.removeItem('eg-arrive'); if (!matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('is-arriving'); }} }} catch (e) {{}}
     }})();
   </script>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
@@ -222,8 +223,6 @@ def head(title, desc, path='', extra=(), kind='WebPage', index=True):
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">{plugins}
-  <script src="vendor/three.r134.min.js" defer></script>
-  <script src="vendor/vanta.fog.min.js" defer></script>
   <script src="script.js?v={ASSET_V}" defer></script>
 </head>
 <body>
