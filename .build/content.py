@@ -38,7 +38,7 @@ OFFICERS = [
     ('leon', 'Co-President', 'Hello, I am Leon Zhang. I am a video game designer, and I believe that everything we learn, whether it is writing, drawing, composing or more, can be combined into an experience everybody across the world can enjoy.'),
     ('victor', 'Co-President', 'Victor Pan is a junior at Syosset High School with a passion for swimming and technology. He is an AI enthusiast who designs and codes AI applications, combining creativity with technical skill to explore the future of intelligent software.'),
     ('lucille', 'Secretary', 'Lucille Lin is the secretary of Eternal Growth.'),
-    ('mike', 'Treasurer', 'Mike Lu is a treasurer of Eternal Growth.'),
+    ('mike', 'Treasurer', 'Mike Lu is a student at Syosset High School with a head for markets. He taught himself to trade stocks to build his own college fund and has grown it by more than 100%. As treasurer, he brings that same discipline to how Eternal Growth raises and gives its money.'),
     ('alan', 'Treasurer', 'Alan Chen is a treasurer of Eternal Growth.'),
     ('kehan', 'Social Media Manager', 'Kehan Ying runs social media for Eternal Growth.'),
 ]
@@ -68,5 +68,5 @@ PHOTO_FRAME = {
     'sue': (2.3, '50% 20%', '45% 50%'), 'vincent': (2.1, '50% 0%', '50% 38%'), 'isaac': (1.15, '50% 0%', '50% 50%'),
     'jack': (1.3, '50% 50%', '49% 60%'), 'katherine': (1.2, '50% 0%', '49% 50%'), 'sam': (1.25, '50% 43%', '41% 50%'),
     'albert': (2.4, '50% 50%', '47% 27%'), 'daniel': (1.05, '50% 50%', '45% 55%'), 'eliot': (1.25, '50% 50%', '46% 45%'),
-    'gary': (1.1, '50% 50%', '50% 50%'),
+    'gary': (1.1, '50% 50%', '50% 50%'), 'mike': (1.0, '50% 62%', '50% 50%'),
 }
