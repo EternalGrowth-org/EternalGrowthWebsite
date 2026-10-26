@@ -548,8 +548,8 @@
   });
 
   /* ---------------------------------------------------------------- request form */
-  const TUTORS = { gary: 'Gary Han', victor: 'Victor Pan' };
-  const BY_SUBJECT = { math: [], english: [], science: ['gary'], coding: ['victor'], music: ['gary'], 'social-studies': [], beyond: [] };
+  const TUTORS = { gary: 'Gary Han', lucille: 'Lucille Lam', victor: 'Victor Pan' };
+  const BY_SUBJECT = { math: ['lucille'], english: [], science: ['gary', 'lucille'], coding: ['victor'], music: ['gary', 'lucille'], 'social-studies': [], beyond: [] };
   const initials = (n) => n.split(' ').slice(0, 2).map((w) => w[0]).join('');
   const listNames = (l) => (l.length < 2 ? l.join('') : l.slice(0, -1).join(', ') + ' or ' + l[l.length - 1]);
   const form = document.getElementById('request-form');

@@ -1,5 +1,5 @@
 PEOPLE = {
-    'leon': 'Leon Zhang', 'victor': 'Victor Pan', 'lucille': 'Lucille Lin', 'mike': 'Mike Lu', 'alan': 'Alan Chen', 'kehan': 'Kehan Ying',
+    'leon': 'Leon Zhang', 'victor': 'Victor Pan', 'lucille': 'Lucille Lam', 'mike': 'Mike Lu', 'alan': 'Alan Chen', 'kehan': 'Kehan Ying',
     'daniel': 'Daniel Chen', 'gary': 'Gary Han', 'albert': 'Albert Zhang', 'andrew': 'Andrew Liu',
     'leo': 'Leo Dai', 'michael': 'Michael Ren',
     # alumni
@@ -12,19 +12,19 @@ def first(pid): return PEOPLE[pid].split()[0]
 SUBJECTS = [
     ('math', 'Mathematics', 'Math', 'From times tables to derivatives, with the problem-solving habits that make the next unit easier.',
      'Number sense and arithmetic for younger students, algebra and geometry in middle school, and precalculus, calculus and contest problems for high schoolers.',
-     ['Algebra through calculus', 'SAT and ACT math', 'AMC competition math', 'Problem-solving strategies', 'Math games for younger students'], []),
+     ['Algebra through calculus', 'SAT and ACT math', 'AMC competition math', 'Problem-solving strategies', 'Math games for younger students'], ['lucille']),
     ('english', 'English and Writing', 'English', 'Reading closely and writing clearly, from a first book report to a college essay.',
      'Reading for meaning, building an argument, and the grammar and vocabulary underneath both, through to speaking with confidence in front of a room.',
      ['Essay writing and structure', 'Reading comprehension', 'Grammar and vocabulary', 'Creative writing', 'Public speaking'], []),
     ('science', 'Science', 'Science', 'Biology, chemistry and physics, with the lab work and the writing that go with them.',
      'The ideas behind each unit, the experiments that test them, and the reports that explain them, from a first science fair to high school lab courses.',
-     ['Biology and chemistry', 'Physics fundamentals', 'Lab report writing', 'Science fair projects', 'How it applies outside class'], ['gary']),
+     ['Biology and chemistry', 'Physics fundamentals', 'Lab report writing', 'Science fair projects', 'How it applies outside class'], ['gary', 'lucille']),
     ('coding', 'Coding', 'Coding', 'How to think like a computer scientist, by building apps, games and small tools.',
      'Writing first programs, then structuring larger ones, then solving the algorithm problems used in programming contests.',
      ['Python, Java and C++', 'HTML, CSS and JavaScript', 'Algorithmic thinking', 'USACO and competitive programming', 'Creative coding and AI basics'], ['victor']),
     ('music', 'Music', 'Music', 'Lessons and theory from officers who have played for years, from first notes to a recital.',
      'Technique on the instrument, reading and writing music, and preparing a piece to the point where it can be performed.',
-     ['Piano and keyboard', 'Violin, viola and flute', 'Guitar, acoustic and electric', 'Music theory and composition', 'Performance preparation'], ['gary']),
+     ['Piano and keyboard', 'Violin, viola and flute', 'Guitar, acoustic and electric', 'Music theory and composition', 'Performance preparation'], ['gary', 'lucille']),
     ('social-studies', 'Social Studies', 'History', 'History, geography and civics: the stories behind how the world got this way.',
      'Events and the reasons behind them, how places and cultures shape each other, how government works, and how to research and present any of it.',
      ['US and world history', 'Geography and cultures', 'Government and civics', 'Research and presentations', 'Current events'], []),
@@ -37,7 +37,7 @@ OPTIONS = ''.join(f'<option value="{s[0]}">{s[1]}</option>' for s in SUBJECTS)
 OFFICERS = [
     ('leon', 'Co-President', 'Hello, I am Leon Zhang. I am a video game designer, and I believe that everything we learn, whether it is writing, drawing, composing or more, can be combined into an experience everybody across the world can enjoy.'),
     ('victor', 'Co-President', 'Victor Pan is a junior at Syosset High School with a passion for swimming and technology. He is an AI enthusiast who designs and codes AI applications, combining creativity with technical skill to explore the future of intelligent software.'),
-    ('lucille', 'Secretary', 'Lucille Lin is the secretary of Eternal Growth.'),
+    ('lucille', 'Secretary', 'Hi! My name is Lucille and I am the secretary of Eternal Growth. I love teaching piano and violin and have been playing music since I was 5. I also teach math and science, specifically biology and chemistry.'),
     ('mike', 'Treasurer', 'Mike Lu is a student at Syosset High School with a head for markets. He taught himself to trade stocks to build his own college fund and has grown it by more than 100%. As treasurer, he brings that same discipline to how Eternal Growth raises and gives its money.'),
     ('alan', 'Treasurer', 'Alan Chen is a treasurer of Eternal Growth.'),
     ('kehan', 'Social Media Manager', 'Kehan Ying runs social media for Eternal Growth.'),
@@ -68,5 +68,5 @@ PHOTO_FRAME = {
     'sue': (2.3, '50% 20%', '45% 50%'), 'vincent': (2.1, '50% 0%', '50% 38%'), 'isaac': (1.15, '50% 0%', '50% 50%'),
     'jack': (1.3, '50% 50%', '49% 60%'), 'katherine': (1.2, '50% 0%', '49% 50%'), 'sam': (1.25, '50% 43%', '41% 50%'),
     'albert': (2.4, '50% 50%', '47% 27%'), 'daniel': (1.05, '50% 50%', '45% 55%'), 'eliot': (1.25, '50% 50%', '46% 45%'),
-    'gary': (1.1, '50% 50%', '50% 50%'), 'mike': (1.0, '50% 62%', '50% 50%'),
+    'gary': (1.1, '50% 50%', '50% 50%'), 'mike': (1.0, '50% 62%', '50% 50%'), 'lucille': (1.35, '50% 50%', '50% 38%'),
 }
